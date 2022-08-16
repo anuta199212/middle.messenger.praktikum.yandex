@@ -1,0 +1,34 @@
+{
+    "fields": [
+        {
+            "name": "email",
+            "text": "Почта",
+            "type": "text"
+        },
+        {
+            "name": "login",
+            "text": "Логин",
+            "type": "text"
+        },
+        {
+            "name": "first_name",
+            "text": "Имя",
+            "type": "text"
+        },
+        {
+            "name": "second_name",
+            "text": "Фамилия",
+            "type": "text"
+        },
+        {
+            "name": "phone",
+            "text": "Телефон",
+            "type": "text"
+        },
+        {
+            "name": "password",
+            "text": "Пароль",
+            "type": "password"
+        }
+    ]
+}

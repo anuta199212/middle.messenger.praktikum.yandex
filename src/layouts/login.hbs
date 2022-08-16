@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <title>Вход</title>
+    {{> meta}}
+</head>
+
+<div class="form-panel">
+    <div class="form-panel-wrapper">
+        <form class="form">
+
+            <span class="form-title">
+                Вход
+            </span>
+
+            {{#each login.fields}}
+            {{> inputField}}
+            {{/each}}
+
+            {{> button text="Войти" class="p-t-115"}}
+
+            <div class="text-align-center p-t-15">
+                <a class="text-primary" href="/src/layouts/signup.hbs">
+                    Регистрация
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+</html>

@@ -1,0 +1,48 @@
+{
+    "pages": [
+        {
+            "url": "/src/layouts/login.hbs",
+            "title": "Авторизация"
+        },
+        {
+            "url": "/src/layouts/signup.hbs",
+            "title": "Регистрация"
+        },
+        {
+            "url": "/src/layouts/profile/profile.hbs",
+            "title": "Профиль"
+        },
+        {
+            "url": "/src/layouts/profile/avatarEdit.hbs",
+            "title": "Изменить аватар"
+        },
+        {
+            "url": "/src/layouts/profile/passwordEdit.hbs",
+            "title": "Изменить пароль"
+        },
+        {
+            "url": "/src/layouts/error/error500.hbs",
+            "title": "Ошибка 500"
+        },
+        {
+            "url": "/src/layouts/error/error404.hbs",
+            "title": "Ошибка 404"
+        },
+        {
+            "url": "/src/layouts/chat/profile.hbs",
+            "title": "Показать профиль"
+        },
+        {
+            "url": "/src/layouts/chat/create.hbs",
+            "title": "Добавить пользователя"
+        },
+        {
+            "url": "/src/layouts/chat/delete.hbs",
+            "title": "Удалить чат с пользователем"
+        },
+        {
+            "url": "/src/layouts/chat/clear.hbs",
+            "title": "Очистить историю чата"
+        }
+    ]
+}

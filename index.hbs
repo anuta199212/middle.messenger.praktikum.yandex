@@ -1,0 +1,18 @@
+<html>
+
+<head>
+    <title>Menu</title>
+    {{> meta}}
+</head>
+
+<body>
+    <ul>
+        {{#each navigation.pages}}
+        <li>
+            <a href="{{this.url}}">{{this.title}}</a>
+        </li>
+        {{/each}}
+    </ul>
+</body>
+
+</html>
