@@ -19,6 +19,10 @@ npm run dev
 npm run build
 ```
 
+#### Запуск проекта
+```
+npm run start
+```
 
 # Структура проекта
 ```
