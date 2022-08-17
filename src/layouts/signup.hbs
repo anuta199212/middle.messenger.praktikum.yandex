@@ -6,31 +6,32 @@
 </head>
 
 
-<div class="form-panel">
-    <div class="form-panel-wrapper">
-        <form class="form">
+<main>
+    <div class="form-panel">
+        <div class="form-panel-wrapper">
+            <form class="form">
 
-            <span class="form-title">
-                Регистрация
-            </span>
+                <span class="form-title">
+                    Регистрация
+                </span>
 
-            <div>
-                {{#each signup.fields}}
-                {{>inputField}}
-                {{/each}}
-            </div>
+                <div>
+                    {{#each signup.fields}}
+                    {{>inputField}}
+                    {{/each}}
+                </div>
 
-            {{> button text="Зарегистрироваться" class="p-t-115"}}
+                {{> button text="Зарегистрироваться" class="p-t-115"}}
 
-            <div class="text-align-center p-t-15">
-                <a class="text-primary" href="/src/layouts/login.hbs">
-                    Войти
-                </a>
-            </div>
+                <div class="text-align-center p-t-15">
+                    <a class="text-primary" href="/src/layouts/login.hbs">
+                        Войти
+                    </a>
+                </div>
 
-        </form>
+            </form>
+        </div>
     </div>
-
-</div>
+</main>
 
 </html>

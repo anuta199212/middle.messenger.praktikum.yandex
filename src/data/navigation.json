@@ -43,6 +43,10 @@
         {
             "url": "/src/layouts/chat/clear.hbs",
             "title": "Очистить историю чата"
+        },
+        {
+            "url": "/src/layouts/chat/list.hbs",
+            "title": "Выбрать чат"
         }
     ]
 }

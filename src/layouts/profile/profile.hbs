@@ -8,43 +8,45 @@ first_name: "Имя пользователя"
     {{> meta}}
 </head>
 
-<div class="form-panel">
-    <div class="form-panel-wrapper">
-        <form class="form">
+<main>
+    <div class="form-panel">
+        <div class="form-panel-wrapper">
+            <form class="form">
 
-            <span class="avatar">
-                <a href="/src/layouts/profile/avatarEdit.hbs"><img src="/static/image-plus-outline.svg" alt="Avatar"
-                        style="width: 60px;"></a>
-            </span>
+                <span class="avatar">
+                    <a href="/src/layouts/profile/avatarEdit.hbs"><img src="/static/image-plus-outline.svg" alt="Avatar"
+                            style="width: 60px;"></a>
+                </span>
 
-            <span class="form-title">
-                {{first_name}}
-            </span>
+                <span class="form-title">
+                    {{first_name}}
+                </span>
 
-            <div>
-                {{#each profile.fields}}
-                {{>inputField}}
-                {{/each}}
-            </div>
+                <div>
+                    {{#each profile.fields}}
+                    {{>inputField}}
+                    {{/each}}
+                </div>
 
-            <div class="text-left p-t-15">
-                <a class="text-primary" href="/src/layouts/profile/edit.hbs">
-                    Изменить данные
-                </a>
-            </div>
-            <div class="text-left p-t-15">
-                <a class="text-primary" href="/src/layouts/profile/passwordEdit.hbs">
-                    Изменить пароль
-                </a>
-            </div>
-            <div class="text-left p-t-15">
-                <a class="text-danger" href="">
-                    Выйти
-                </a>
-            </div>
+                <div class="text-left p-t-15">
+                    <a class="text-primary" href="/src/layouts/profile/edit.hbs">
+                        Изменить данные
+                    </a>
+                </div>
+                <div class="text-left p-t-15">
+                    <a class="text-primary" href="/src/layouts/profile/passwordEdit.hbs">
+                        Изменить пароль
+                    </a>
+                </div>
+                <div class="text-left p-t-15">
+                    <a class="text-danger" href="">
+                        Выйти
+                    </a>
+                </div>
 
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+</main>
 
 </html>

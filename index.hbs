@@ -6,13 +6,15 @@
 </head>
 
 <body>
-    <ul>
-        {{#each navigation.pages}}
-        <li>
-            <a href="{{this.url}}">{{this.title}}</a>
-        </li>
-        {{/each}}
-    </ul>
+    <nav class="menu">
+        <ul class="menu-list">
+            {{#each navigation.pages}}
+            <li class="menu-item">
+                <a href="{{this.url}}">{{this.title}}</a>
+            </li>
+            {{/each}}
+        </ul>
+    </nav>
 </body>
 
 </html>
