@@ -1,0 +1,19 @@
+{
+    "fields": [
+        {
+            "name": "first_name",
+            "text": "Имя",
+            "type": "text"
+        },
+        {
+            "name": "login",
+            "text": "Логин",
+            "type": "text"
+        },
+        {
+            "name": "phone",
+            "text": "Телефон",
+            "type": "text"
+        }
+    ]
+}
