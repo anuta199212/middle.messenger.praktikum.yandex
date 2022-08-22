@@ -3,6 +3,14 @@
     "transformers": {
         "*.hbs": [
             "@anikin/parcel-transformer-handlebars"
+        ],
+        "*.css": [
+            "@parcel/transformer-css-experimental"
+        ]
+    },
+    "optimizers": {
+        "*.css": [
+            "@parcel/optimizer-css"
         ]
     }
 }
