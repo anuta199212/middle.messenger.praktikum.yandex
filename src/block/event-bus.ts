@@ -1,6 +1,8 @@
 export class EventBus {
 
-  listeners: Record<string, Function[]>;
+  //private readonly listeners: Record<string, Array<() => void>> = {};
+
+  private readonly listeners: Record<string, Function[]>;
 
   constructor() {
     this.listeners = {};
@@ -16,20 +18,19 @@ export class EventBus {
 
   off(event: string, callback: Function) {
     if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      throw new Error(`Event does not exist: ${event}`);
     }
 
     this.listeners[event] = this.listeners[event].filter(
-      listener => listener !== callback
+      (listener) => listener !== callback
     );
   }
 
   emit(event: string, ...args: any) {
     if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      throw new Error(`Event does not exist: ${event}`);
     }
-
-    this.listeners[event].forEach(function (listener) {
+    this.listeners[event].forEach((listener: Function) => {
       listener(...args);
     });
   }
