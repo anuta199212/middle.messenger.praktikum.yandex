@@ -2,11 +2,9 @@
 
 [`middle.messenger.praktikum.yandex`](https://github.com/anuta199212/middle.messenger.praktikum.yandex) — проект по созданию мессенджера. 
 
-
 ## Настройка проекта
 1. Скачать репозиторий (git clone `URL`)
 2. Установить зависимости (npm install в директории проекта) 
-
 
 ## Запуск и сборка проекта
 #### Запуск в режиме разработки

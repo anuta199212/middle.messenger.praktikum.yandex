@@ -6,7 +6,6 @@ type childrenAndPropsType = {
   children: Record<string, Block>
 }
 
-
 //export class Block<P = any> {
 export class Block {
   static EVENTS = {
@@ -16,7 +15,6 @@ export class Block {
     FLOW_RENDER: "flow:render"
   };
 
-
   public id: string = nanoid(6);
   protected props: Record<string, unknown>;
   protected children: Record<string, Block>;
@@ -24,9 +22,6 @@ export class Block {
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
   private _meta: { tagName: string; props: any };
-
-
-
 
   /** JSDoc
    * @param {string} tagName
@@ -55,7 +50,6 @@ export class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-
   _getChildrenAndProps(childrenAndProps: any): childrenAndPropsType {
     const props: Record<string, any> = {};
     const children: Record<string, Block> = {};
@@ -66,7 +60,6 @@ export class Block {
       } else {
         props[key] = value;
       }
-
     });
     return { props, children }
   }

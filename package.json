@@ -25,6 +25,7 @@
         "node": "v12.18.3"
     },
     "dependencies": {
+        "handlebars": "4.7.7",
         "eslint-plugin-editorconfig": "4.0.2",
         "nanoid": "4.0.0",
         "stylelint": "14.11.0",

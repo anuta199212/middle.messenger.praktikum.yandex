@@ -8,6 +8,7 @@ export class EventBus {
     this.listeners = {};
   }
 
+
   on(event: string, callback: Function) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
