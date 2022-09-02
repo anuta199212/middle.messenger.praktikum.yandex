@@ -5,9 +5,9 @@
         "node": true
     },
     "extends": [
-        //"eslint:recommended",
-        //"plugin:@typescript-eslint/recommended",
-        "airbnb"
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        //"airbnb"
     ],
     "overrides": [],
     "parser": "@typescript-eslint/parser",
@@ -18,5 +18,8 @@
     "plugins": [
         "@typescript-eslint"
     ],
-    "rules": {}
+    "rules": {[
+	"comma-dangle": [2, "always-multiline"],
+	"semi": [2, "always"]
+	}
 }

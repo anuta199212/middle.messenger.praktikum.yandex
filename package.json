@@ -1,34 +1,36 @@
 {
-    "name": "test",
-    "version": "1.0.0",
-    "description": "",
-    "scripts": {
-        "dev": "parcel index.hbs -p 3000",
-        "build": "parcel build index.hbs --no-cache",
-        "start": "npm run build && node server.js"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "@anikin/parcel-transformer-handlebars": "1.0.9",
-        "@parcel/transformer-css-experimental": "2.3.2",
-        "@parcel/transformer-sass": "2.7.0",
-        "@typescript-eslint/eslint-plugin": "5.34.0",
-        "@typescript-eslint/parser": "5.34.0",
-        "eslint": "8.22.0",
-        "express": "4.18.1",
-        "parcel": "2.7.0"
-    },
-    "engines": {
-        "npm": "6.14.6",
-        "node": "v12.18.3"
-    },
-    "dependencies": {
-        "handlebars": "4.7.7",
-        "eslint-plugin-editorconfig": "4.0.2",
-        "nanoid": "4.0.0",
-        "stylelint": "14.11.0",
-        "typescript": "4.7.4"
-    }
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "parcel ./src/index.html -p 3000",
+    "build": "parcel build index.hbs --no-cache",
+    "start": "npm run build && node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "@parcel/transformer-css-experimental": "2.3.2",
+    "@parcel/transformer-sass": "2.7.0",
+    "@typescript-eslint/eslint-plugin": "5.34.0",
+    "@typescript-eslint/parser": "5.34.0",
+    "eslint": "8.22.0",
+    "express": "4.18.1",
+    "parcel": "2.7.0"
+  },
+  "engines": {
+    "npm": "6.14.6",
+    "node": "v12.18.3"
+  },
+  "dependencies": {
+    "eslint-plugin-editorconfig": "4.0.2",
+    "handlebars": "4.7.7",
+    "nanoid": "4.0.0",
+    "stylelint": "14.11.0",
+    "typescript": "4.7.4",
+    "typescript-plugin-css-modules": "3.4.0"
+  }
 }

@@ -1,24 +1,18 @@
-import { EventBus } from './event-bus';
-import { nanoid } from 'nanoid'
+import { EventBus } from "./event-bus";
+import { nanoid } from "nanoid";
 
-type childrenAndPropsType = {
-  props: Record<string, any>,
-  children: Record<string, Block>
-}
-
-//export class Block<P = any> {
-export class Block {
+// Нельзя создавать экземпляр данного класса
+class Block {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
     FLOW_CDU: "flow:component-did-update",
-    FLOW_RENDER: "flow:render"
+    FLOW_RENDER: "flow:render",
   };
 
-  public id: string = nanoid(6);
-  protected props: Record<string, unknown>;
-  protected children: Record<string, Block>;
-  //protected props: P;
+  public id = nanoid(6);
+  protected props: any;
+  public children: Record<string, Block>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
   private _meta: { tagName: string; props: any };
@@ -36,11 +30,10 @@ export class Block {
 
     this._meta = {
       tagName,
-      props
+      props,
     };
 
     this.children = children;
-
     this.props = this._makePropsProxy(props);
 
     this.eventBus = () => eventBus;
@@ -50,7 +43,7 @@ export class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _getChildrenAndProps(childrenAndProps: any): childrenAndPropsType {
+  _getChildrenAndProps(childrenAndProps: any) {
     const props: Record<string, any> = {};
     const children: Record<string, Block> = {};
 
@@ -61,14 +54,18 @@ export class Block {
         props[key] = value;
       }
     });
-    return { props, children }
+
+    return { props, children };
   }
 
   _addEvents() {
-    const { events = {} } = this.props as { events: Record<string, () => void> };
-    Object.keys(events).forEach(eventName => {
-      this.element!.addEventListener(eventName, events[eventName]);
-    })
+    const { events = {} } = this.props as {
+      events: Record<string, () => void>;
+    };
+
+    Object.keys(events).forEach((eventName) => {
+      this._element?.addEventListener(eventName, events[eventName]);
+    });
   }
 
   _registerEvents(eventBus: EventBus) {
@@ -79,8 +76,8 @@ export class Block {
   }
 
   _createResources() {
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
+    //const { tagName } = this._meta;
+    // this._element = this._createDocumentElement(tagName);
   }
 
   private _init() {
@@ -91,27 +88,29 @@ export class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  protected init() {
-
-  }
+  protected init() {}
 
   _componentDidMount() {
     this.componentDidMount();
   }
 
-  componentDidMount() { }
+  componentDidMount() {}
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+
+    Object.values(this.children).forEach((child) =>
+      child.dispatchComponentDidMount()
+    );
   }
 
-  _componentDidUpdate(oldProps: any, newProps: any) {
+  private _componentDidUpdate(oldProps: any, newProps: any) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  componentDidUpdate(oldProps: any, newProps: any) {
+  protected componentDidUpdate(oldProps: any, newProps: any) {
     return true;
   }
 
@@ -128,14 +127,13 @@ export class Block {
   }
 
   private _render() {
-    const block = this.render();
-    // Этот небезопасный метод для упрощения логики
-    // Используйте шаблонизатор из npm или напишите свой безопасный
-    // Нужно не в строку компилировать (или делать это правильно),
-    // либо сразу в DOM-элементы возвращать из compile DOM-ноду
-    this._element!.innerHTML = "";
+    const fragment = this.render();
 
-    this._element!.append(block);
+    const newElement = fragment.firstElementChild as HTMLElement;
+
+    this._element?.replaceWith(newElement);
+
+    this._element = newElement;
 
     this._addEvents();
   }
@@ -144,27 +142,28 @@ export class Block {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([name, component]) => {
-      contextAndStubs[name] = `<div data-id=${component.id} />`;
-    })
+      contextAndStubs[name] = `<div data-id="${component.id}" />`;
+    });
 
     const html = template(contextAndStubs);
 
-    const temp = document.createElement('template');
+    const temp = document.createElement("template");
+
     temp.innerHTML = html;
 
-    Object.entries(this.children).forEach(([name, component]) => {
-      const stub = temp.content.querySelector(`[data-id=${component.id}]`);
+    Object.entries(this.children).forEach(([_, component]) => {
+      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
 
       if (!stub) {
         return;
       }
 
-      stub.replaceWith(component.getContent()!)
+      component.getContent()?.append(...Array.from(stub.childNodes));
 
-    })
+      stub.replaceWith(component.getContent()!);
+    });
 
     return temp.content;
-
   }
 
   protected render(): DocumentFragment {
@@ -176,8 +175,7 @@ export class Block {
   }
 
   _makePropsProxy(props: any) {
-    // Можно и так передать this
-    // Такой способ больше не применяется с приходом ES6+
+    // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
     const self = this;
 
     return new Proxy(props, {
@@ -197,7 +195,7 @@ export class Block {
       },
       deleteProperty() {
         throw new Error("Нет доступа");
-      }
+      },
     });
   }
 
@@ -214,3 +212,5 @@ export class Block {
     this.getContent()!.style.display = "none";
   }
 }
+
+export default Block;

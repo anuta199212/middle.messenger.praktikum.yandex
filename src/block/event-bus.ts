@@ -1,5 +1,4 @@
 export class EventBus {
-
   //private readonly listeners: Record<string, Array<() => void>> = {};
 
   private readonly listeners: Record<string, Function[]>;
@@ -7,7 +6,6 @@ export class EventBus {
   constructor() {
     this.listeners = {};
   }
-
 
   on(event: string, callback: Function) {
     if (!this.listeners[event]) {

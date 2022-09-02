@@ -1,0 +1,55 @@
+--- first_name: "Имя пользователя" ---
+<main>
+  <div class="{{styles.form-panel}}">
+    <div class="{{styles.form-panel-wrapper}}">
+      <form class="{{styles.form}}">
+
+        <span class="{{styles.avatar}}">
+          <a href="/src/layouts/profile/avatarEdit.hbs">
+            <!--TODO-->
+            <img
+              src="../../../static/image-outline.svg"
+              alt="Avatar"
+              class="{{styles.avatar-img}}"
+            /></a>
+        </span>
+
+        <span class="{{styles.form-title}}">
+          {{first_name}}
+        </span>
+
+        <div>
+          {{{inputEmail}}}
+          {{{inputLogin}}}
+          {{{inputFName}}}
+          {{{inputSName}}}
+          {{{inputDName}}}
+          {{{inputPhone}}}
+        </div>
+
+        <div class="{{styles.text-align-left}} {{styles.p-t-15}}">
+          <a
+            class="{{styles.text-primary}}"
+            href="/src/layouts/profile/edit.hbs"
+          >
+            Изменить данные
+          </a>
+        </div>
+        <div class="{{styles.text-align-left}} {{styles.p-t-15}}">
+          <a
+            class="{{styles.text-primary}}"
+            href="/src/layouts/profile/passwordEdit.hbs"
+          >
+            Изменить пароль
+          </a>
+        </div>
+        <div class="{{styles.text-align-left}} {{styles.p-t-15}}">
+          <a class="{{styles.text-danger}}" href="">
+            Выйти
+          </a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</main>

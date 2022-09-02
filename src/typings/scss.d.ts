@@ -1,5 +1,5 @@
-declare module "*.scss" {
-    declare const styles: Record<string, string>;
+declare module "*module.scss" {
+  const styles: { [key: string]: string };
 
-    export default styles;
-};
+  export default styles;
+}

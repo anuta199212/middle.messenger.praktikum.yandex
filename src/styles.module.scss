@@ -4,22 +4,23 @@
   box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
   height: 100%;
   font-family: Inter;
 }
 
 :root {
-  --main-bg-color: #FBFBFB;
-  --menu-item-hover-bg-color: #E4EDFD;
+  --main-bg-color: #fbfbfb;
+  --menu-item-hover-bg-color: #e4edfd;
   --form-title-color: #252525;
-  --input-color: #ADADAD;
+  --input-color: #adadad;
   --input-field-color: #555555;
   --input-focus-after-color: #999999;
-  --btn-bg-color:#3369F3;
-  --text-primary-color:#3369F3;
-  --text-danger-color:#FF0000;
-  }
+  --btn-bg-color: #3369f3;
+  --text-primary-color: #3369f3;
+  --text-danger-color: #ff0000;
+}
 
 /*menu*/
 
@@ -41,7 +42,6 @@ body, html {
   display: block;
   padding: 8px;
   text-decoration: none;
-  
 }
 
 .menu-item:hover {
@@ -152,4 +152,8 @@ body, html {
 
 .p-t-115 {
   padding-top: 115px;
+}
+
+.p-b-50 {
+  padding-bottom: 50px;
 }
