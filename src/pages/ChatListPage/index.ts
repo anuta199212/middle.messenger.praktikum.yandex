@@ -4,7 +4,6 @@ import { Button } from "../../components/Button";
 import buttonStyles from "../../components/Button/button.module.scss";
 import inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputField } from "../../components/InputField";
-import * as chatListStyles from "./chatList.module.scss";
 
 interface MessageItemType {
   class: string;
@@ -64,11 +63,6 @@ export class ChatListPage extends Block {
   }
 
   render() {
-    return this.compile(template, {
-      styles: this.props.styles,
-      chatList: this.props.chatList,
-      messageList: this.props.messageList,
-      chatListStyles,
-    });
+    return this.compile(template, this.props);
   }
 }

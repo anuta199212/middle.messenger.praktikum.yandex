@@ -2,58 +2,58 @@
   <nav class="{{styles.menu}}">
     <ul class="{{styles.menu-list}}">
       <li>
-        <div class="{{chatListStyles.chat-app-title-container}}">
-          <div class="{{chatListStyles.chat-app-title}}">
+        <div class="{{styles.chat-app-title-container}}">
+          <div class="{{styles.chat-app-title}}">
             MessageApp
           </div>
-          <button class="{{chatListStyles.chat-btn-more}}">
+          <button class="{{styles.chat-btn-more}}">
             <i
-              class="fa-solid fa-ellipsis-vertical {{chatListStyles.chat-btn-more-color}}"
+              class="fa-solid fa-ellipsis-vertical {{styles.chat-btn-more-color}}"
             ></i>
           </button>
         </div>
       </li>
       <li>
-        <div class="{{chatListStyles.chat-search-container}}">
-          <input placeholder="Поиск" class="{{chatListStyles.chat-search-input}}" />
+        <div class="{{styles.chat-search-container}}">
+          <input placeholder="Поиск" class="{{styles.chat-search-input}}" />
         </div>
       </li>
       {{#each chatList.item}}
         <li class="{{../styles.menu-item}}">
           <a href="#">
-            <table class="{{../chatListStyles.width-100}}">
+            <table class="{{../styles.width-100}}">
               <tr>
                 <td
                   rowspan="2"
-                  class="{{../styles.text-align-center}} {{../chatListStyles.width-45}}"
+                  class="{{../styles.text-align-center}} {{../styles.width-45}}"
                 >
                   <img
                     src="{{avatar}}"
                     alt="Avatar"
-                    class="{{../chatListStyles.chat-avatar-img}}"
+                    class="{{../styles.chat-avatar-img}}"
                   />
                 </td>
-                <td class="{{../chatListStyles.chat-title}}">
+                <td class="{{../styles.chat-title}}">
                   {{name}}
                 </td>
                 <td
-                  class="{{../chatListStyles.chat-message-text}}
+                  class="{{../styles.chat-message-text}}
                     {{../styles.text-align-right}}
-                    {{../chatListStyles.width-35}}"
+                    {{../styles.width-35}}"
                 >
                   {{lastMessage.time}}
                 </td>
               </tr>
               <tr>
                 <td
-                  class="{{../chatListStyles.chat-message-text}}
+                  class="{{../styles.chat-message-text}}
                     {{../styles.text-align-left}}"
                 >
                   {{lastMessage.text}}
                 </td>
                 <td>
                   {{#if unReadCount}}
-                    <span class="{{../chatListStyles.chat-badge}}">{{unReadCount}}</span>
+                    <span class="{{../styles.chat-badge}}">{{unReadCount}}</span>
                   {{/if}}
                 </td>
               </tr>
@@ -64,25 +64,25 @@
     </ul>
   </nav>
 
-  <div class="{{chatListStyles.chat-message-container}}">
+  <div class="{{styles.chat-message-container}}">
     {{#each messageList.message}}
-      <div class="{{../chatListStyles.chat-message}} {{class}}">
+      <div class="{{../styles.chat-message}} {{class}}">
         <p>{{text}}</p>
         <!--<div><img src="{{image}}" alt="Image"></div>-->
         <div
-          class="{{../chatListStyles.chat-message-text}} {{../chatListStyles.chat-message-time}}"
+          class="{{../styles.chat-message-text}} {{../styles.chat-message-time}}"
         >{{time}}</div>
       </div>
     {{/each}}
   </div>
 
-  <div class="{{chatListStyles.chat-message-send-container}}">
+  <div class="{{styles.chat-message-send-container}}">
     <input
       placeholder="Сообщение"
-      class="{{chatListStyles.chat-message-send}}"
+      class="{{styles.chat-message-send}}"
       name="message"
     />
-    <button class="{{chatListStyles.chat-btn}}">
+    <button class="{{styles.chat-btn}}">
       <i class="fa-solid fa-arrow-right"></i>
     </button>
   </div>
