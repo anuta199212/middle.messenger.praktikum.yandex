@@ -19,7 +19,9 @@ export class SignUpPage extends Block {
       text: "Зарегистрироваться",
       styles: buttonStyles,
       events: {
-        click: () => console.log("clicked"), //TODO
+        click: () => {
+          console.log("clicked");
+        }, //TODO
       },
     });
 
@@ -27,7 +29,9 @@ export class SignUpPage extends Block {
       styles: inputStyles,
       name: "email",
       text: "Почта",
-      type: "text",
+      type: "email",
+      required: "required",
+      disabled: "",
     });
 
     this.children.inputLogin = new InputField({
@@ -35,6 +39,8 @@ export class SignUpPage extends Block {
       name: "login",
       text: "Логин",
       type: "text",
+      required: "required",
+      disabled: "",
     });
 
     this.children.inputFName = new InputField({
@@ -42,6 +48,8 @@ export class SignUpPage extends Block {
       name: "first_name",
       text: "Имя",
       type: "text",
+      required: "required",
+      disabled: "",
     });
 
     this.children.inputSName = new InputField({
@@ -49,6 +57,8 @@ export class SignUpPage extends Block {
       name: "second_name",
       text: "Фамилия",
       type: "text",
+      required: "required",
+      disabled: "",
     });
 
     this.children.inputPhone = new InputField({
@@ -56,6 +66,8 @@ export class SignUpPage extends Block {
       name: "phone",
       text: "Телефон",
       type: "text",
+      required: "required",
+      disabled: "",
     });
 
     this.children.inputPassword = new InputField({
@@ -63,6 +75,8 @@ export class SignUpPage extends Block {
       name: "password",
       text: "Пароль",
       type: "password",
+      required: "required",
+      disabled: "",
     });
 
     this.children.inputPassword = new InputField({
@@ -70,41 +84,26 @@ export class SignUpPage extends Block {
       name: "password",
       text: "Пароль",
       type: "password",
+      required: "required",
+      disabled: "",
     });
   }
 
-  render() {
-    return this.compile(template, this.props);
+  componentDidMount() {
+    const form: HTMLFormElement | null =
+      this.element?.querySelector("form") ?? null;
+
+    if (form) {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        console.log(Object.fromEntries(formData.entries()));
+      });
+    }
   }
-}
-
-/*
-import Block from "../../block/block";
-import template from "../loginPage/login.hbs";
-
-interface PageListType {
-  pages: PageType[];
-}
-
-interface PageType {
-  url: string;
-  title: string;
-}
-
-interface SignUpPageProps {
-  navigation: PageListType;
-  styles: { [key: string]: string };
-}
-
-export class SignUpPage extends Block {
-  constructor(props: SignUpPageProps) {
-    super("div", props);
-  }
-
-  init() {}
 
   render() {
     return this.compile(template, this.props);
   }
 }
-*/

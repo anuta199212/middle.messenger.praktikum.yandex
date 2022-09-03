@@ -1,65 +1,63 @@
-
 /*button*/
 
 div button {
-    outline: none;
-    border: none;
-    background: transparent;
-  
-    &:hover {
-      cursor: pointer;
-    }
+  outline: none;
+  border: none;
+  background: transparent;
+
+  &:hover {
+    cursor: pointer;
   }
-  
-  .form-panel-btn {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 13px;
-    display: flex;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    
-  }
-  
-  .form-panel-btn-wrapper {
-    width: 100%;
-    display: block;
-    position: relative;
-    border-radius: 5px;
-    z-index: 1;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  
-  .form-panel-bgbtn {
-    position: absolute;
-    background: var(--btn-bg-color);
-    z-index: -1;
-    width: 300%;
-    height: 100%;
-    top: 0;
-    left: -100%;
-  }
-  
-  .form-panel-form-btn {
-    font-family: Inter;
-    font-size: 15px;
-    color: white;
-    line-height: 1.2;
-    width: 100%;
-    height: 50px;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
-    display: flex;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-  }
-  
-  .form-panel-btn-wrapper:hover .form-panel-bgbtn {
-    left: 0;
-  }
+}
+
+.form-panel-btn {
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 13px;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+}
+
+.form-panel-btn-wrapper {
+  width: 100%;
+  display: block;
+  position: relative;
+  border-radius: 5px;
+  z-index: 1;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.form-panel-bgbtn {
+  position: absolute;
+  background: var(--btn-bg-color);
+  z-index: -1;
+  width: 300%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+}
+
+.form-panel-form-btn {
+  font-family: Inter;
+  font-size: 15px;
+  color: white;
+  line-height: 1.2;
+  width: 100%;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+}
+
+.form-panel-btn-wrapper:hover .form-panel-bgbtn {
+  left: 0;
+}

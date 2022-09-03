@@ -6,6 +6,8 @@ interface InputFieldProps {
   name: string;
   type: string;
   text: string;
+  required: string;
+  disabled: string;
 }
 
 export class InputField extends Block {

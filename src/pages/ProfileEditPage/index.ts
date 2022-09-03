@@ -1,18 +1,30 @@
 import Block from "../../block/block";
-import template from "./profile.hbs";
+import template from "./profileEdit.hbs";
 import inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputField } from "../../components/InputField";
+import { Button } from "../../components/Button";
+import buttonStyles from "../../components/Button/button.module.scss";
 
-interface ProfilePageProps {
+interface ProfileEditPageProps {
   styles: { [key: string]: string };
 }
 
-export class ProfilePage extends Block {
-  constructor(props: ProfilePageProps) {
+export class ProfileEditPage extends Block {
+  constructor(props: ProfileEditPageProps) {
     super("div", props);
   }
 
   init() {
+    this.children.button = new Button({
+      text: "Сохранить",
+      styles: buttonStyles,
+      events: {
+        click: () => {
+          console.log("clicked");
+        }, //TODO
+      },
+    });
+
     this.children.inputEmail = new InputField({
       styles: inputStyles,
       name: "email",

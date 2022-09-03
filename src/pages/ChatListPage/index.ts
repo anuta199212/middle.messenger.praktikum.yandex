@@ -8,7 +8,7 @@ import { InputField } from "../../components/InputField";
 interface MessageItemType {
   class: string;
   text: string;
-  image: string;
+  image: { [key: string]: string };
   time: string;
 }
 
@@ -22,10 +22,10 @@ interface LastMessageType {
 }
 
 interface ItemType {
-  avatar: string;
+  avatar: { [key: string]: string };
   name: string;
   lastMessage: LastMessageType;
-  unReadCount: Number;
+  unReadCount: number;
 }
 
 interface ChatListType {
@@ -59,7 +59,23 @@ export class ChatListPage extends Block {
       name: "login",
       text: "Логин",
       type: "text",
+      required: "required",
+      disabled: "",
     });
+  }
+
+  componentDidMount() {
+    const form: HTMLFormElement | null =
+      this.element?.querySelector("form") ?? null;
+
+    if (form) {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        console.log(Object.fromEntries(formData.entries()));
+      });
+    }
   }
 
   render() {

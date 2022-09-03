@@ -1,23 +1,27 @@
 const navigation = {
   pages: [
     {
-      url: "/src/pages/loginPage/login.hbs",
+      url: "/src/pages/LoginPage/login.hbs",
       title: "Авторизация",
     },
     {
-      url: "/src/pages/signUpPage/signUp.hbs",
+      url: "/src/pages/SignUpPage/signUp.hbs",
       title: "Регистрация",
     },
     {
-      url: "/src/pages/profilePage/profile.hbs",
+      url: "/src/pages/ProfilePage/profile.hbs",
       title: "Профиль",
     },
     {
-      url: "/src/pages/avatarEditPage/avatarEdit.hbs",
+      url: "/src/pages/AvatarEditPage/avatarEdit.hbs",
       title: "Изменить аватар",
     },
     {
-      url: "/src/pages/passwordEditPage/passwordEdit.hbs",
+      url: "/src/pages/ProfileEditPage/profileEdit.hbs",
+      title: "Изменить пароль",
+    },
+    {
+      url: "/src/pages/PasswordEditPage/passwordEdit.hbs",
       title: "Изменить пароль",
     },
     {
@@ -29,7 +33,7 @@ const navigation = {
       title: "Ошибка 404",
     },
     {
-      url: "/src/pages/chatProfile/chatProfile.hbs",
+      url: "/src/pages/ChatProfile/chatProfile.hbs",
       title: "Показать профиль",
     },
     {

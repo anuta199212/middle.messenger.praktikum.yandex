@@ -5,12 +5,8 @@ import buttonStyles from "../../components/Button/button.module.scss";
 import inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputField } from "../../components/InputField";
 
-interface LoginPageProps {
-  styles: { [key: string]: string };
-}
-
 export class LoginPage extends Block {
-  constructor(props: LoginPageProps) {
+  constructor(props: any) {
     super("div", props);
   }
 
@@ -28,6 +24,8 @@ export class LoginPage extends Block {
       name: "login",
       text: "Логин",
       type: "text",
+      required: "required",
+      disabled: "",
     });
 
     this.children.inputPassword = new InputField({
@@ -35,41 +33,28 @@ export class LoginPage extends Block {
       name: "password",
       text: "Пароль",
       type: "password",
+      required: "required",
+      disabled: "",
     });
   }
 
-  render() {
-    return this.compile(template, this.props);
+  componentDidMount() {
+    const form: HTMLFormElement | null =
+      this.element?.querySelector("form") ?? null;
+
+    if (form) {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        //console.log("event",event.target.element)
+
+        const formData = new FormData(form);
+        console.log(Object.fromEntries(formData.entries()));
+      });
+    }
   }
-}
-
-/*
-import Block from "../../block/block";
-import template from "../loginPage/login.hbs";
-
-interface PageListType {
-  pages: PageType[];
-}
-
-interface PageType {
-  url: string;
-  title: string;
-}
-
-interface LoginPageProps {
-  navigation: PageListType;
-  styles: { [key: string]: string };
-}
-
-export class LoginPage extends Block {
-  constructor(props: LoginPageProps) {
-    super("div", props);
-  }
-
-  init() {}
 
   render() {
     return this.compile(template, this.props);
   }
 }
-*/

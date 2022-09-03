@@ -28,6 +28,8 @@ export class PasswordEditPage extends Block {
       name: "oldPassword",
       text: "Текущий пароль",
       type: "password",
+      required: "required",
+      disabled: "",
     });
 
     this.children.inputNewPsw = new InputField({
@@ -35,6 +37,8 @@ export class PasswordEditPage extends Block {
       name: "newPassword",
       text: "Новый пароль",
       type: "password",
+      required: "required",
+      disabled: "",
     });
 
     this.children.inputNewPswAppr = new InputField({
@@ -42,7 +46,23 @@ export class PasswordEditPage extends Block {
       name: "newPasswordAppr",
       text: "Повторите новый пароль",
       type: "password",
+      required: "required",
+      disabled: "",
     });
+  }
+
+  componentDidMount() {
+    const form: HTMLFormElement | null =
+      this.element?.querySelector("form") ?? null;
+
+    if (form) {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        console.log(Object.fromEntries(formData.entries()));
+      });
+    }
   }
 
   render() {

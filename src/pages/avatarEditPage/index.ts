@@ -22,6 +22,20 @@ export class AvatarEditPage extends Block {
     });
   }
 
+  componentDidMount() {
+    const form: HTMLFormElement | null =
+      this.element?.querySelector("form") ?? null;
+
+    if (form) {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        console.log(Object.fromEntries(formData.entries()));
+      });
+    }
+  }
+
   render() {
     return this.compile(template, this.props);
   }
