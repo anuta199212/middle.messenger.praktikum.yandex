@@ -1,7 +1,7 @@
 import Block from "../../block/block";
 import template from "./profile.hbs";
 import inputStyles from "../../components/InputField/inputField.module.scss";
-import { InputField } from "../../components/InputField";
+import { InputContainer } from "../../components/InputContainer";
 
 interface ProfilePageProps {
   styles: { [key: string]: string };
@@ -13,7 +13,7 @@ export class ProfilePage extends Block {
   }
 
   init() {
-    this.children.inputEmail = new InputField({
+    this.children.inputEmail = new InputContainer({
       styles: inputStyles,
       name: "email",
       text: "Почта",
@@ -22,7 +22,7 @@ export class ProfilePage extends Block {
       disabled: "",
     });
 
-    this.children.inputLogin = new InputField({
+    this.children.inputLogin = new InputContainer({
       styles: inputStyles,
       name: "login",
       text: "Логин",
@@ -31,7 +31,7 @@ export class ProfilePage extends Block {
       disabled: "",
     });
 
-    this.children.inputFName = new InputField({
+    this.children.inputFName = new InputContainer({
       styles: inputStyles,
       name: "first_name",
       text: "Имя",
@@ -40,7 +40,7 @@ export class ProfilePage extends Block {
       disabled: "",
     });
 
-    this.children.inputSName = new InputField({
+    this.children.inputSName = new InputContainer({
       styles: inputStyles,
       name: "second_name",
       text: "Фамилия",
@@ -49,7 +49,7 @@ export class ProfilePage extends Block {
       disabled: "",
     });
 
-    this.children.inputDName = new InputField({
+    this.children.inputDName = new InputContainer({
       styles: inputStyles,
       name: "display_name",
       text: "Имя в чате",
@@ -58,7 +58,7 @@ export class ProfilePage extends Block {
       disabled: "",
     });
 
-    this.children.inputPhone = new InputField({
+    this.children.inputPhone = new InputContainer({
       styles: inputStyles,
       name: "phone",
       text: "Телефон",

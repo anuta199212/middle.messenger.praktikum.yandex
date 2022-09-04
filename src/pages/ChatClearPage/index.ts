@@ -3,7 +3,7 @@ import template from "./chatClear.hbs";
 import { Button } from "../../components/Button";
 import buttonStyles from "../../components/Button/button.module.scss";
 import inputStyles from "../../components/InputField/inputField.module.scss";
-import { InputField } from "../../components/InputField";
+import { InputContainer } from "../../components/InputContainer";
 
 interface ChatClearPageProps {
   styles: { [key: string]: string };
@@ -23,7 +23,7 @@ export class ChatClearPage extends Block {
       },
     });
 
-    this.children.input = new InputField({
+    this.children.input = new InputContainer({
       styles: inputStyles,
       name: "login",
       text: "Логин",

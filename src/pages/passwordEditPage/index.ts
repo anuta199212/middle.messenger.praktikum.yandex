@@ -2,7 +2,7 @@ import Block from "../../block/block";
 import template from "./passwordEdit.hbs";
 import { Button } from "../../components/Button";
 import buttonStyles from "../../components/Button/button.module.scss";
-import { InputField } from "../../components/InputField";
+import { InputContainer } from "../../components/InputContainer";
 import inputStyles from "../../components/InputField/inputField.module.scss";
 
 interface PasswordEditPageProps {
@@ -23,7 +23,7 @@ export class PasswordEditPage extends Block {
       },
     });
 
-    this.children.inputOldPsw = new InputField({
+    this.children.inputOldPsw = new InputContainer({
       styles: inputStyles,
       name: "oldPassword",
       text: "Текущий пароль",
@@ -32,7 +32,7 @@ export class PasswordEditPage extends Block {
       disabled: "",
     });
 
-    this.children.inputNewPsw = new InputField({
+    this.children.inputNewPsw = new InputContainer({
       styles: inputStyles,
       name: "newPassword",
       text: "Новый пароль",
@@ -41,7 +41,7 @@ export class PasswordEditPage extends Block {
       disabled: "",
     });
 
-    this.children.inputNewPswAppr = new InputField({
+    this.children.inputNewPswAppr = new InputContainer({
       styles: inputStyles,
       name: "newPasswordAppr",
       text: "Повторите новый пароль",

@@ -1,7 +1,7 @@
 import Block from "../../block/block";
 import template from "./chatProfile.hbs";
 import inputStyles from "../../components/InputField/inputField.module.scss";
-import { InputField } from "../../components/InputField";
+import { InputContainer } from "../../components/InputContainer";
 
 interface ChatProfilePageProps {
   styles: { [key: string]: string };
@@ -13,7 +13,7 @@ export class ChatProfilePage extends Block {
   }
 
   init() {
-    this.children.inputFName = new InputField({
+    this.children.inputFName = new InputContainer({
       styles: inputStyles,
       name: "first_name",
       text: "Имя",
@@ -22,7 +22,7 @@ export class ChatProfilePage extends Block {
       disabled: "disabled",
     });
 
-    this.children.inputLogin = new InputField({
+    this.children.inputLogin = new InputContainer({
       styles: inputStyles,
       name: "login",
       text: "Логин",
@@ -31,7 +31,7 @@ export class ChatProfilePage extends Block {
       disabled: "disabled",
     });
 
-    this.children.inputPhone = new InputField({
+    this.children.inputPhone = new InputContainer({
       styles: inputStyles,
       name: "phone",
       text: "Телефон",

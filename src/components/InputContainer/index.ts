@@ -5,6 +5,11 @@ import { InputField } from "../InputField";
 
 interface InputContainerProps {
   styles: { [key: string]: string };
+  name: string;
+  type: string;
+  text: string;
+  required: string;
+  disabled: string;
 }
 
 export class InputContainer extends Block {
@@ -13,13 +18,13 @@ export class InputContainer extends Block {
   }
 
   init() {
-    this.children.inputEmail = new InputField({
+    this.children.input = new InputField({
       styles: inputStyles,
-      name: "email",
-      text: "Почта",
-      type: "email",
-      required: "required",
-      disabled: "",
+      name: this.props.name,
+      type: this.props.type,
+      text: this.props.text,
+      required: this.props.required,
+      disabled: this.props.disabled,
     });
   }
 
