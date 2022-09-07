@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "eslint-plugin-editorconfig": "4.0.2",
+    "express-history-api-fallback": "^2.2.1",
     "handlebars": "4.7.7",
     "nanoid": "4.0.0",
     "stylelint": "^14.11.0",

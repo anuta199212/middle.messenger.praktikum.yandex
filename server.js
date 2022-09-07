@@ -1,21 +1,15 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-
-const path = require('path');
+const fallback = require("express-history-api-fallback");
 const express = require("express");
 const PORT = 3000;
 
 const CURPORT = process.env.PORT || PORT;
 
 const app = express();
+let root = __dirname + "/dist/";
 
-const DIRNAME = path.resolve(__dirname, 'dist');
-const INDEXDIR = path.resolve(DIRNAME, 'index.html');
-
-app.use(express.static(DIRNAME));
-
-app.get('*', (req, res) => {
-    res.sendFile(INDEXDIR);
-});
+app.use(express.static(root));
+app.use(fallback("index.html", { root: root }));
 
 app.listen(CURPORT, (err) => {
   if (err) {
