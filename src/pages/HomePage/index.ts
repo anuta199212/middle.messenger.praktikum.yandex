@@ -2,7 +2,21 @@ import Block from "../../block/block";
 import template from "./home.hbs";
 
 interface PageListType {
-  pages: PageType[];
+  pages: {
+    login: PageType;
+    signUp: PageType;
+    profile: PageType;
+    avatarEdit: PageType;
+    profileEdit: PageType;
+    passwordEdit: PageType;
+    error500: PageType;
+    error404: PageType;
+    chatProfile: PageType;
+    chatCreate: PageType;
+    chatDelete: PageType;
+    chatClear: PageType;
+    chatList: PageType;
+  };
 }
 
 interface PageType {
@@ -19,8 +33,6 @@ export class HomePage extends Block {
   constructor(props: HomePageProps) {
     super("div", props);
   }
-
-  init() {}
 
   render() {
     return this.compile(template, this.props);

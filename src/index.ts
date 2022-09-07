@@ -1,5 +1,4 @@
 import { HomePage } from "./pages/HomePage";
-import { navigation } from "./data/navigation";
 import styles from "./styles.module.scss";
 import { chatList } from "./data/chatList";
 import { messageList } from "./data/messageList";
@@ -16,13 +15,16 @@ import { ChatDeletePage } from "./pages/ChatDeletePage";
 import { ChatClearPage } from "./pages/ChatClearPage";
 import { ChatListPage } from "./pages/ChatListPage";
 import { ProfileEditPage } from "./pages/ProfileEditPage";
+import { navigation } from "./data/navigation";
+import avatar from "/static/image-plus-outline.svg";
+import profileAvatar from "/static/account-circle.svg";
 
 window.addEventListener("DOMContentLoaded", () => {
   const root = document.querySelector("#app") ?? null;
   const path = document.location.pathname;
 
   switch (path) {
-    case "/src/pages/LoginPage/login.hbs": {
+    case navigation.pages.login.url: {
       const loginPage = new LoginPage({
         styles: styles,
       });
@@ -33,7 +35,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case "/src/pages/SignUpPage/signUp.hbs": {
+    case navigation.pages.signUp.url: {
       const signUpPage = new SignUpPage({
         styles: styles,
       });
@@ -44,9 +46,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case "/src/pages/ProfilePage/profile.hbs": {
+    case navigation.pages.profile.url: {
       const profilePage = new ProfilePage({
         styles: styles,
+        avatar: profileAvatar,
       });
 
       root?.append(profilePage.getContent() ?? "");
@@ -55,7 +58,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case "/src/pages/AvatarEditPage/avatarEdit.hbs": {
+    case navigation.pages.avatarEdit.url: {
       const avatarEditPage = new AvatarEditPage({
         styles: styles,
       });
@@ -66,9 +69,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case "/src/pages/ProfileEditPage/profileEdit.hbs": {
+    case navigation.pages.profileEdit.url: {
       const profileEditPage = new ProfileEditPage({
         styles: styles,
+        avatar: avatar,
       });
 
       root?.append(profileEditPage.getContent() ?? "");
@@ -77,9 +81,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case "/src/pages/PasswordEditPage/passwordEdit.hbs": {
+    case navigation.pages.passwordEdit.url: {
       const passwordEditPage = new PasswordEditPage({
         styles: styles,
+        avatar: avatar,
       });
 
       root?.append(passwordEditPage.getContent() ?? "");
@@ -88,7 +93,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case "/src/pages/Error404Page/error404.hbs": {
+    case navigation.pages.error404.url: {
       const error404Page = new Error404Page({
         styles: styles,
       });
@@ -99,7 +104,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case "/src/pages/Error500Page/error500.hbs": {
+    case navigation.pages.error500.url: {
       const error500Page = new Error500Page({
         styles: styles,
       });
@@ -110,9 +115,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case "/src/pages/ChatProfile/chatProfile.hbs": {
+    case navigation.pages.chatProfile.url: {
       const chatProfilePage = new ChatProfilePage({
         styles: styles,
+        avatar: avatar,
       });
 
       root?.append(chatProfilePage.getContent() ?? "");
@@ -121,7 +127,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case "/src/pages/ChatCreate/chatCreate.hbs": {
+    case navigation.pages.chatCreate.url: {
       const chatCreatePage = new ChatCreatePage({
         styles: styles,
       });
@@ -132,7 +138,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case "/src/pages/ChatDelete/chatDelete.hbs": {
+    case navigation.pages.chatDelete.url: {
       const chatDeletePage = new ChatDeletePage({
         styles: styles,
       });
@@ -143,7 +149,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case "/src/pages/ChatClear/chatClear.hbs": {
+    case navigation.pages.chatClear.url: {
       const chatClearPage = new ChatClearPage({
         styles: styles,
       });
@@ -154,7 +160,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case "/src/pages/ChatList/chatList.hbs": {
+    case navigation.pages.chatList.url: {
       const chatListPage = new ChatListPage({
         styles: styles,
         chatList: chatList,

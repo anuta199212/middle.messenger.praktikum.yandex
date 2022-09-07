@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/ban-types */
 export class EventBus {
-  //private readonly listeners: Record<string, Array<() => void>> = {};
+  //private readonly listeners: Record<string, Array<Function>> = {};
 
-  private readonly listeners: Record<string, Function[]>;
+  private readonly listeners: Record<string, Array<Function>>;
 
   constructor() {
     this.listeners = {};
@@ -21,7 +22,7 @@ export class EventBus {
     }
 
     this.listeners[event] = this.listeners[event].filter(
-      (listener) => listener !== callback
+      (listener) => listener !== callback,
     );
   }
 

@@ -1,16 +1,10 @@
---- first_name: "Имя пользователя" ---
-
 <main>
   <div class="{{styles.form-panel}}">
     <div class="{{styles.form-panel-wrapper}}">
       <form class="{{styles.form}}">
-        <!--TODO-->
+
         <span class="{{styles.avatar}}">
-          <img
-            src="/static/image-plus-outline.svg"
-            alt="Avatar"
-            class="{{styles.avatar-img}}"
-          />
+          <img src={{avatar}} alt="Avatar" class="{{styles.avatar-img}}" />
         </span>
 
         <span class="{{styles.form-title}}">
@@ -26,7 +20,7 @@
         <div class="{{styles.text-left}} {{styles.p-t-15}}">
           <a
             class="{{styles.text-primary}}"
-            href="/src/pages/ChatClearPage/chatClear.hbs"
+            href="/src/pages/ChatClear/chatClear.hbs"
           >
             Очистить историю
           </a>
@@ -34,7 +28,7 @@
         <div class="{{styles.text-left}} {{styles.p-t-15}}">
           <a
             class="{{styles.text-danger}}"
-            href="/src/pages/ChatDeletePage/chatDelete.hbs"
+            href="/src/pages/ChatDelete/chatDelete.hbs"
           >
             Удалить чат
           </a>

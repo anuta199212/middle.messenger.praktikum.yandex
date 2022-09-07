@@ -1,16 +1,15 @@
 import Block from "../../block/block";
-import template from "./button.hbs";
+import template from "./sendButton.hbs";
 
-interface ButtonProps {
-  text: string;
+interface SendButtonProps {
   styles: { [key: string]: string };
   events: {
     click: (event: any) => void;
   };
 }
 
-export class Button extends Block {
-  constructor(props: ButtonProps) {
+export class SendButton extends Block {
+  constructor(props: SendButtonProps) {
     super("div", props);
   }
 

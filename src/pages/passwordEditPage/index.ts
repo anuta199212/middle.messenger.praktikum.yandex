@@ -4,9 +4,12 @@ import { Button } from "../../components/Button";
 import buttonStyles from "../../components/Button/button.module.scss";
 import { InputContainer } from "../../components/InputContainer";
 import inputStyles from "../../components/InputField/inputField.module.scss";
+import { validateInputField } from "../../utils/validateInputField";
+import { navigation } from "../../data/navigation";
 
 interface PasswordEditPageProps {
   styles: { [key: string]: string };
+  avatar: { [key: string]: string };
 }
 
 export class PasswordEditPage extends Block {
@@ -19,7 +22,19 @@ export class PasswordEditPage extends Block {
       text: "Сохранить",
       styles: buttonStyles,
       events: {
-        click: () => console.log("clicked"), //TODO
+        click: (event: SubmitEvent) => {
+          event.preventDefault();
+
+          const { formData, result } = validateInputField(this.children);
+
+          console.log(formData);
+
+          if (result.isValid) {
+            document.location.href = navigation.pages.profile.url;
+          } else {
+            console.log("Некорректно заполнены поля формы");
+          }
+        },
       },
     });
 
@@ -30,6 +45,8 @@ export class PasswordEditPage extends Block {
       type: "password",
       required: "required",
       disabled: "",
+      regex: "^(?=.*[A-Z])(?=.*[0-9]).{8,40}$",
+      value: "",
     });
 
     this.children.inputNewPsw = new InputContainer({
@@ -39,6 +56,8 @@ export class PasswordEditPage extends Block {
       type: "password",
       required: "required",
       disabled: "",
+      regex: "^(?=.*[A-Z])(?=.*[0-9]).{8,40}$",
+      value: "",
     });
 
     this.children.inputNewPswAppr = new InputContainer({
@@ -48,21 +67,9 @@ export class PasswordEditPage extends Block {
       type: "password",
       required: "required",
       disabled: "",
+      regex: "^(?=.*[A-Z])(?=.*[0-9]).{8,40}$",
+      value: "",
     });
-  }
-
-  componentDidMount() {
-    const form: HTMLFormElement | null =
-      this.element?.querySelector("form") ?? null;
-
-    if (form) {
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-        console.log(Object.fromEntries(formData.entries()));
-      });
-    }
   }
 
   render() {

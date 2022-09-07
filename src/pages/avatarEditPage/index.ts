@@ -17,23 +17,9 @@ export class AvatarEditPage extends Block {
       text: "Установить",
       styles: buttonStyles,
       events: {
-        click: () => console.log("clicked"), //TODO
+        click: () => console.log("clicked"),
       },
     });
-  }
-
-  componentDidMount() {
-    const form: HTMLFormElement | null =
-      this.element?.querySelector("form") ?? null;
-
-    if (form) {
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-        console.log(Object.fromEntries(formData.entries()));
-      });
-    }
   }
 
   render() {

@@ -5,6 +5,7 @@ import { InputContainer } from "../../components/InputContainer";
 
 interface ProfilePageProps {
   styles: { [key: string]: string };
+  avatar: { [key: string]: string };
 }
 
 export class ProfilePage extends Block {
@@ -20,6 +21,8 @@ export class ProfilePage extends Block {
       type: "email",
       required: "required",
       disabled: "",
+      regex: "^[A-z0-9._%+-]{0,}@[A-z]+.",
+      value: "",
     });
 
     this.children.inputLogin = new InputContainer({
@@ -29,6 +32,8 @@ export class ProfilePage extends Block {
       type: "text",
       required: "required",
       disabled: "",
+      regex: "^(?=.*[a-zA-Z-_])[a-zA-Z-_0-9]{3,20}$",
+      value: "",
     });
 
     this.children.inputFName = new InputContainer({
@@ -38,6 +43,8 @@ export class ProfilePage extends Block {
       type: "text",
       required: "required",
       disabled: "",
+      regex: "^[A-ZА-Я]{1}[A-Za-zА-Яа-я-]{1,}$",
+      value: "",
     });
 
     this.children.inputSName = new InputContainer({
@@ -47,6 +54,8 @@ export class ProfilePage extends Block {
       type: "text",
       required: "required",
       disabled: "",
+      regex: "^[A-ZА-Я]{1}[A-Za-zА-Яа-я-]{1,}$",
+      value: "",
     });
 
     this.children.inputDName = new InputContainer({
@@ -56,6 +65,8 @@ export class ProfilePage extends Block {
       type: "text",
       required: "required",
       disabled: "",
+      regex: "",
+      value: "",
     });
 
     this.children.inputPhone = new InputContainer({
@@ -65,21 +76,9 @@ export class ProfilePage extends Block {
       type: "text",
       required: "required",
       disabled: "",
+      regex: "^[+]{0,1}[0-9]{10,15}$",
+      value: "",
     });
-  }
-
-  componentDidMount() {
-    const form: HTMLFormElement | null =
-      this.element?.querySelector("form") ?? null;
-
-    if (form) {
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-        console.log(Object.fromEntries(formData.entries()));
-      });
-    }
   }
 
   render() {

@@ -1,9 +1,8 @@
 import Block from "../../block/block";
-import template from "./inputContainer.hbs";
-import inputStyles from "../InputField/inputField.module.scss";
+import template from "./inputMessageContainer.hbs";
 import { InputField } from "../InputField";
 
-interface InputContainerProps {
+interface InputMessageContainerProps {
   styles: { [key: string]: string };
   name: string;
   type: string;
@@ -14,21 +13,21 @@ interface InputContainerProps {
   value: string;
 }
 
-export class InputContainer extends Block {
-  constructor(props: InputContainerProps) {
+export class InputMessageContainer extends Block {
+  constructor(props: InputMessageContainerProps) {
     super("div", props);
   }
 
   init() {
     this.children.input = new InputField({
-      styles: inputStyles,
+      styles: this.props.styles,
       name: this.props.name,
       type: this.props.type,
       text: this.props.text,
       required: this.props.required,
       disabled: this.props.disabled,
       regex: this.props.regex ?? "",
-      value: this.props.value,
+      value: this.props.value ?? "",
     });
   }
 

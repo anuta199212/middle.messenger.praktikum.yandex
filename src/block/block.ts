@@ -1,7 +1,6 @@
 import { EventBus } from "./event-bus";
 import { nanoid } from "nanoid";
 
-// Нельзя создавать экземпляр данного класса
 class Block {
   static EVENTS = {
     INIT: "init",
@@ -75,10 +74,7 @@ class Block {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
-    //const { tagName } = this._meta;
-    // this._element = this._createDocumentElement(tagName);
-  }
+  _createResources() {}
 
   private _init() {
     this._createResources();
@@ -90,17 +86,17 @@ class Block {
 
   protected init() {}
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
   }
 
-  componentDidMount() {}
+  protected componentDidMount() {}
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
     Object.values(this.children).forEach((child) =>
-      child.dispatchComponentDidMount()
+      child.dispatchComponentDidMount(),
     );
   }
 
@@ -151,7 +147,7 @@ class Block {
 
     temp.innerHTML = html;
 
-    Object.entries(this.children).forEach(([_, component]) => {
+    Object.entries(this.children).forEach(([, component]) => {
       const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
 
       if (!stub) {
@@ -160,7 +156,10 @@ class Block {
 
       component.getContent()?.append(...Array.from(stub.childNodes));
 
-      stub.replaceWith(component.getContent()!);
+      const getContent = component.getContent();
+      if (getContent) {
+        stub.replaceWith(getContent);
+      }
     });
 
     return temp.content;
@@ -175,7 +174,6 @@ class Block {
   }
 
   _makePropsProxy(props: any) {
-    // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
     const self = this;
 
     return new Proxy(props, {
@@ -188,8 +186,6 @@ class Block {
 
         target[prop] = value;
 
-        // Запускаем обновление компоненты
-        // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
@@ -200,16 +196,21 @@ class Block {
   }
 
   _createDocumentElement(tagName: string) {
-    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
   }
 
   show() {
-    this.getContent()!.style.display = "block";
+    const getContent = this.getContent();
+    if (getContent) {
+      getContent.style.display = "block";
+    }
   }
 
   hide() {
-    this.getContent()!.style.display = "none";
+    const getContent = this.getContent();
+    if (getContent) {
+      getContent.style.display = "none";
+    }
   }
 }
 

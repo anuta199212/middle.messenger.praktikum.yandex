@@ -4,11 +4,7 @@
     "es2021": true,
     "node": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
-    //"airbnb"
-  ],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -17,6 +13,10 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "no-this-alias": "off",
+    "@typescript-eslint/no-this-alias": "off",
     "comma-dangle": [2, "always-multiline"],
     "semi": [2, "always"]
   }

@@ -19,8 +19,8 @@
         </div>
       </li>
       {{#each chatList.item}}
-        <li class="{{../styles.menu-item}}">
-          <a href="#">
+        <li>
+          <a href="#" class="{{../styles.menu-item}}">
             <table class="{{../styles.width-100}}">
               <tr>
                 <td
@@ -66,25 +66,26 @@
 
   <div class="{{styles.chat-message-container}}">
     {{#each messageList.message}}
-      <div class="{{../styles.chat-message}} {{class}}">
+    <div>
+    {{#if incoming}}
+      <div class="{{../styles.chat-message-incoming}}">
+    {{else}}
+      <div class="{{../styles.chat-message-outgoing}}">
+    {{/if}}
         <p>{{text}}</p>
-        <!--<div><img src="{{image}}" alt="Image"></div>-->
         <div
           class="{{../styles.chat-message-text}} {{../styles.chat-message-time}}"
         >{{time}}</div>
       </div>
+
+	  </div>
     {{/each}}
   </div>
 
   <div class="{{styles.chat-message-send-container}}">
-    <input
-      placeholder="Сообщение"
-      class="{{styles.chat-message-send}}"
-      name="message"
-    />
-    <button class="{{styles.chat-btn}}">
-      <i class="fa-solid fa-arrow-right"></i>
-    </button>
+   {{{inputMessage}}}
+
+    {{{sendButton}}}
   </div>
 
 </form>

@@ -5,6 +5,7 @@ import { InputContainer } from "../../components/InputContainer";
 
 interface ChatProfilePageProps {
   styles: { [key: string]: string };
+  avatar: { [key: string]: string };
 }
 
 export class ChatProfilePage extends Block {
@@ -20,6 +21,8 @@ export class ChatProfilePage extends Block {
       type: "text",
       required: "",
       disabled: "disabled",
+      regex: "^[A-ZА-Я]{1}[A-Za-zА-Яа-я-]{1,}$",
+      value: "",
     });
 
     this.children.inputLogin = new InputContainer({
@@ -29,6 +32,8 @@ export class ChatProfilePage extends Block {
       type: "text",
       required: "",
       disabled: "disabled",
+      regex: "^(?=.*[a-zA-Z-_])[a-zA-Z-_0-9]{3,20}$",
+      value: "",
     });
 
     this.children.inputPhone = new InputContainer({
@@ -38,21 +43,9 @@ export class ChatProfilePage extends Block {
       type: "text",
       required: "",
       disabled: "disabled",
+      regex: "^[+]{0,1}[0-9]{10,15}$",
+      value: "",
     });
-  }
-
-  componentDidMount() {
-    const form: HTMLFormElement | null =
-      this.element?.querySelector("form") ?? null;
-
-    if (form) {
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-        console.log(Object.fromEntries(formData.entries()));
-      });
-    }
   }
 
   render() {
