@@ -30,7 +30,7 @@ export class ProfileEditPage extends Block {
           console.log(formData);
 
           if (result.isValid) {
-            document.location.href = navigation.pages.profile.url;
+            document.location.href = navigation.pages[2].url;
           } else {
             console.log("Некорректно заполнены поля формы");
           }

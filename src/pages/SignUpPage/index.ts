@@ -29,7 +29,7 @@ export class SignUpPage extends Block {
           console.log(formData);
 
           if (result.isValid) {
-            document.location.href = navigation.pages.login.url;
+            document.location.href = navigation.pages[0].url;
           } else {
             console.log("Некорректно заполнены поля формы");
           }

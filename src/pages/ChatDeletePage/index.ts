@@ -29,7 +29,7 @@ export class ChatDeletePage extends Block {
           console.log(formData);
 
           if (result.isValid) {
-            document.location.href = navigation.pages.chatList.url;
+            document.location.href = navigation.pages[12].url;
           } else {
             console.log("Некорректно заполнены поля формы");
           }

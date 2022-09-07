@@ -15,16 +15,16 @@ import { ChatDeletePage } from "./pages/ChatDeletePage";
 import { ChatClearPage } from "./pages/ChatClearPage";
 import { ChatListPage } from "./pages/ChatListPage";
 import { ProfileEditPage } from "./pages/ProfileEditPage";
-import { navigation } from "./data/navigation";
 import avatar from "/static/image-plus-outline.svg";
 import profileAvatar from "/static/account-circle.svg";
+import { navigation } from "./data/navigation";
 
 window.addEventListener("DOMContentLoaded", () => {
   const root = document.querySelector("#app") ?? null;
   const path = document.location.pathname;
 
   switch (path) {
-    case navigation.pages.login.url: {
+    case navigation.pages[0].url: {
       const loginPage = new LoginPage({
         styles: styles,
       });
@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case navigation.pages.signUp.url: {
+    case navigation.pages[1].url: {
       const signUpPage = new SignUpPage({
         styles: styles,
       });
@@ -46,7 +46,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case navigation.pages.profile.url: {
+    case navigation.pages[2].url: {
       const profilePage = new ProfilePage({
         styles: styles,
         avatar: profileAvatar,
@@ -58,7 +58,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case navigation.pages.avatarEdit.url: {
+    case navigation.pages[3].url: {
       const avatarEditPage = new AvatarEditPage({
         styles: styles,
       });
@@ -69,7 +69,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case navigation.pages.profileEdit.url: {
+    case navigation.pages[4].url: {
       const profileEditPage = new ProfileEditPage({
         styles: styles,
         avatar: avatar,
@@ -81,7 +81,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case navigation.pages.passwordEdit.url: {
+    case navigation.pages[5].url: {
       const passwordEditPage = new PasswordEditPage({
         styles: styles,
         avatar: avatar,
@@ -93,7 +93,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case navigation.pages.error404.url: {
+    case navigation.pages[7].url: {
       const error404Page = new Error404Page({
         styles: styles,
       });
@@ -104,7 +104,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case navigation.pages.error500.url: {
+    case navigation.pages[6].url: {
       const error500Page = new Error500Page({
         styles: styles,
       });
@@ -115,7 +115,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case navigation.pages.chatProfile.url: {
+    case navigation.pages[8].url: {
       const chatProfilePage = new ChatProfilePage({
         styles: styles,
         avatar: avatar,
@@ -127,7 +127,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case navigation.pages.chatCreate.url: {
+    case navigation.pages[9].url: {
       const chatCreatePage = new ChatCreatePage({
         styles: styles,
       });
@@ -138,7 +138,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case navigation.pages.chatDelete.url: {
+    case navigation.pages[10].url: {
       const chatDeletePage = new ChatDeletePage({
         styles: styles,
       });
@@ -149,7 +149,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case navigation.pages.chatClear.url: {
+    case navigation.pages[11].url: {
       const chatClearPage = new ChatClearPage({
         styles: styles,
       });
@@ -160,7 +160,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       break;
     }
-    case navigation.pages.chatList.url: {
+    case navigation.pages[12].url: {
       const chatListPage = new ChatListPage({
         styles: styles,
         chatList: chatList,
