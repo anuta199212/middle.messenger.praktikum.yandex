@@ -1,7 +1,7 @@
 import Block from "../../block/block";
 import template from "./avatarEdit.hbs";
 import { Button } from "../../components/Button";
-import buttonStyles from "../../components/Button/button.module.scss";
+import * as buttonStyles from "../../components/Button/button.module.scss";
 
 interface AvatarEditPageProps {
   styles: { [key: string]: string };

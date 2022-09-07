@@ -1,8 +1,8 @@
 import Block from "../../block/block";
 import template from "./chatCreate.hbs";
 import { Button } from "../../components/Button";
-import buttonStyles from "../../components/Button/button.module.scss";
-import inputStyles from "../../components/InputField/inputField.module.scss";
+import * as buttonStyles from "../../components/Button/button.module.scss";
+import * as inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
 import { navigation } from "../../data/navigation";
 import { validateInputField } from "../../utils/validateInputField";

@@ -1,5 +1,5 @@
 import { HomePage } from "./pages/HomePage";
-import styles from "./styles.module.scss";
+import * as styles from "./styles.module.scss";
 import { chatList } from "./data/chatList";
 import { messageList } from "./data/messageList";
 import { LoginPage } from "./pages/LoginPage";

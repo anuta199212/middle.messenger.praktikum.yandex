@@ -1,6 +1,6 @@
 import Block from "../../block/block";
 import template from "./chatList.hbs";
-import chatListStyles from "./chatList.module.scss";
+import * as chatListStyles from "./chatList.module.scss";
 
 import { SendButton } from "../../components/SendButton";
 import { validateInputField } from "../../utils/validateInputField";

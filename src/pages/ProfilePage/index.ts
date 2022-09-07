@@ -1,6 +1,6 @@
 import Block from "../../block/block";
 import template from "./profile.hbs";
-import inputStyles from "../../components/InputField/inputField.module.scss";
+import * as inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
 
 interface ProfilePageProps {

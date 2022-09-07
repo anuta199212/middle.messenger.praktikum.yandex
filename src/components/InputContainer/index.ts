@@ -1,6 +1,6 @@
 import Block from "../../block/block";
 import template from "./inputContainer.hbs";
-import inputStyles from "../InputField/inputField.module.scss";
+import * as inputStyles from "../InputField/inputField.module.scss";
 import { InputField } from "../InputField";
 
 interface InputContainerProps {
