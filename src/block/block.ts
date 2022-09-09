@@ -165,11 +165,11 @@ class Block<P extends Record<string, any> = any> {
 
     return temp.content;
   }
-  protected render(): DocumentFragment {
+  public render(): DocumentFragment {
     return new DocumentFragment();
   }
 
-  protected getContent() {
+  public getContent() {
     return this.element;
   }
 
