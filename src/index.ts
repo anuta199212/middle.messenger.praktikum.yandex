@@ -18,6 +18,7 @@ import { ProfileEditPage } from "./pages/ProfileEditPage";
 import avatar from "/static/image-plus-outline.svg";
 import profileAvatar from "/static/account-circle.svg";
 import { navigation } from "./data/navigation";
+import { firstName } from "./data/profile";
 
 window.addEventListener("DOMContentLoaded", () => {
   const root = document.querySelector("#app") ?? null;
@@ -50,6 +51,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const profilePage = new ProfilePage({
         styles: styles,
         avatar: profileAvatar,
+        firstName: firstName,
       });
 
       root?.append(profilePage.getContent() ?? "");

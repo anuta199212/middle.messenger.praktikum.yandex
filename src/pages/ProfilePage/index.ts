@@ -6,6 +6,7 @@ import { InputContainer } from "../../components/InputContainer";
 interface ProfilePageProps {
   styles: Record<string, string>;
   avatar: Record<string, string>;
+  firstName: string;
 }
 
 export class ProfilePage extends Block<ProfilePageProps> {

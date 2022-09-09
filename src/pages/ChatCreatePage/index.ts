@@ -38,7 +38,7 @@ export class ChatCreatePage extends Block<ChatCreatePageProps> {
   }
 
   componentDidMount() {
-    const form = this.element?.querySelector("form") ?? null;
+    const form = this.element?.querySelector("form");
 
     if (form) {
       form.addEventListener("submit", (event) => {

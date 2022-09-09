@@ -66,7 +66,6 @@ const fieldsRules: Record<string, FieldType> = {
     maxLength: 15,
   },
   display_name: {
-    //TODO
     regex: "", //по заданию спринта 2 доп. правила добавлять нельзя, для этого поля их нет. но по заданию спринта 1 поле должно быть (п.2)
     errorMessage: {
       length: "",
