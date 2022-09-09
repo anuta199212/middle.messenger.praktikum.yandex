@@ -4,11 +4,11 @@ import * as inputStyles from "../../components/InputField/inputField.module.scss
 import { InputContainer } from "../../components/InputContainer";
 
 interface ChatProfilePageProps {
-  styles: { [key: string]: string };
-  avatar: { [key: string]: string };
+  styles: Record<string, string>;
+  avatar: Record<string, string>;
 }
 
-export class ChatProfilePage extends Block {
+export class ChatProfilePage extends Block<ChatProfilePageProps> {
   constructor(props: ChatProfilePageProps) {
     super("div", props);
   }
@@ -19,10 +19,8 @@ export class ChatProfilePage extends Block {
       name: "first_name",
       text: "Имя",
       type: "text",
-      required: "",
+      required: false,
       disabled: "disabled",
-      regex: "^[A-ZА-Я]{1}[A-Za-zА-Яа-я-]{1,}$",
-      value: "",
     });
 
     this.children.inputLogin = new InputContainer({
@@ -30,10 +28,8 @@ export class ChatProfilePage extends Block {
       name: "login",
       text: "Логин",
       type: "text",
-      required: "",
+      required: false,
       disabled: "disabled",
-      regex: "^(?=.*[a-zA-Z-_])[a-zA-Z-_0-9]{3,20}$",
-      value: "",
     });
 
     this.children.inputPhone = new InputContainer({
@@ -41,10 +37,8 @@ export class ChatProfilePage extends Block {
       name: "phone",
       text: "Телефон",
       type: "text",
-      required: "",
+      required: false,
       disabled: "disabled",
-      regex: "^[+]{0,1}[0-9]{10,15}$",
-      value: "",
     });
   }
 

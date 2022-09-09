@@ -5,6 +5,7 @@ import * as chatListStyles from "./chatList.module.scss";
 import { SendButton } from "../../components/SendButton";
 import { validateInputField } from "../../utils/validateInputField";
 import { InputMessageContainer } from "../../components/InputMessageContainer";
+import { validateForm } from "../../utils/validateForm";
 
 interface MessageItemType {
   incoming: boolean;
@@ -22,23 +23,23 @@ interface LastMessageType {
 }
 
 interface ItemType {
-  avatar: { [key: string]: string };
+  avatar: Record<string, string>;
   name: string;
   lastMessage: LastMessageType;
   unReadCount: number;
 }
 
-interface ChatListType {
+interface MessageListType {
   item: ItemType[];
 }
 
 interface ChatListPageProps {
-  styles: { [key: string]: string };
-  chatList: ChatListType;
+  styles: Record<string, string>;
+  chatList: MessageListType;
   messageList: MessageType;
 }
 
-export class ChatListPage extends Block {
+export class ChatListPage extends Block<ChatListPageProps> {
   constructor(props: ChatListPageProps) {
     super("div", props);
   }
@@ -48,15 +49,7 @@ export class ChatListPage extends Block {
       styles: chatListStyles,
       events: {
         click: (event: SubmitEvent) => {
-          event.preventDefault();
-
-          const { formData, result } = validateInputField(this.children);
-
-          console.log(formData);
-
-          if (!result.isValid) {
-            console.log("Поле сообщения не должно быть пустым");
-          }
+          validateForm(event, this.children);
         },
       },
     });
@@ -66,10 +59,8 @@ export class ChatListPage extends Block {
       name: "message",
       text: "Сообщение",
       type: "text",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "",
-      value: "",
     });
   }
 

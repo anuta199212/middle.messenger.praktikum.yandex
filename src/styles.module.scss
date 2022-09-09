@@ -24,8 +24,6 @@ html {
   --text-danger-color: #ff0000;
 }
 
-/*menu*/
-
 .menu {
   height: 100%;
   background-color: var(--main-bg-color);
@@ -49,8 +47,6 @@ html {
 .menu-item:hover {
   background-color: var(--menu-item-hover-bg-color);
 }
-
-/*form*/
 
 .form {
   width: 100%;
@@ -94,8 +90,6 @@ html {
   -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
-/*text*/
-
 .text-primary {
   font-family: Inter;
   font-size: 13px;
@@ -119,7 +113,6 @@ html {
 .text-align-right {
   text-align: right;
 }
-/*error form*/
 
 .error-form-title {
   display: block;
@@ -130,8 +123,6 @@ html {
   text-align: center;
 }
 
-/*avatar*/
-
 .avatar {
   display: block;
   text-align: center;
@@ -141,8 +132,6 @@ html {
 .avatar-img {
   width: 60px;
 }
-
-/*paddins*/
 
 .p-t-15 {
   padding-top: 15px;

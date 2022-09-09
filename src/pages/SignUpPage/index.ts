@@ -4,14 +4,14 @@ import { Button } from "../../components/Button";
 import * as buttonStyles from "../../components/Button/button.module.scss";
 import * as inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
-import { validateInputField } from "../../utils/validateInputField";
 import { navigation } from "../../data/navigation";
+import { validateForm } from "../../utils/validateForm";
 
 interface SignUpPageProps {
-  styles: { [key: string]: string };
+  styles: Record<string, string>;
 }
 
-export class SignUpPage extends Block {
+export class SignUpPage extends Block<SignUpPageProps> {
   constructor(props: SignUpPageProps) {
     super("div", props);
   }
@@ -22,17 +22,7 @@ export class SignUpPage extends Block {
       styles: buttonStyles,
       events: {
         click: (event: SubmitEvent) => {
-          event.preventDefault();
-
-          const { formData, result } = validateInputField(this.children);
-
-          console.log(formData);
-
-          if (result.isValid) {
-            document.location.href = navigation.pages[0].url;
-          } else {
-            console.log("Некорректно заполнены поля формы");
-          }
+          validateForm(event, this.children, navigation.pages[12].url);
         },
       },
     });
@@ -42,10 +32,8 @@ export class SignUpPage extends Block {
       name: "email",
       text: "Почта",
       type: "email",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^[A-z0-9._%+-]{0,}@[A-z]+.",
-      value: "",
     });
 
     this.children.inputLogin = new InputContainer({
@@ -53,10 +41,8 @@ export class SignUpPage extends Block {
       name: "login",
       text: "Логин",
       type: "text",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^(?=.*[a-zA-Z-_])[a-zA-Z-_0-9]{3,20}$",
-      value: "",
     });
 
     this.children.inputFName = new InputContainer({
@@ -64,10 +50,8 @@ export class SignUpPage extends Block {
       name: "first_name",
       text: "Имя",
       type: "text",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^[A-ZА-Я]{1}[A-Za-zА-Яа-я-]{1,}$",
-      value: "",
     });
 
     this.children.inputSName = new InputContainer({
@@ -75,10 +59,8 @@ export class SignUpPage extends Block {
       name: "second_name",
       text: "Фамилия",
       type: "text",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^[A-ZА-Я]{1}[A-Za-zА-Яа-я-]{1,}$",
-      value: "",
     });
 
     this.children.inputPhone = new InputContainer({
@@ -86,10 +68,8 @@ export class SignUpPage extends Block {
       name: "phone",
       text: "Телефон",
       type: "text",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^[+]{0,1}[0-9]{10,15}$",
-      value: "",
     });
 
     this.children.inputPassword = new InputContainer({
@@ -97,10 +77,8 @@ export class SignUpPage extends Block {
       name: "password",
       text: "Пароль",
       type: "password",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^(?=.*[A-Z])(?=.*[0-9]).{8,40}$",
-      value: "",
     });
   }
 

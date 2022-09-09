@@ -12,10 +12,10 @@ interface PageType {
 
 interface HomePageProps {
   navigation: PageListType;
-  styles: { [key: string]: string };
+  styles: Record<string, string>;
 }
 
-export class HomePage extends Block {
+export class HomePage extends Block<HomePageProps> {
   constructor(props: HomePageProps) {
     super("div", props);
   }

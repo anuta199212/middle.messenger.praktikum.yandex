@@ -1,20 +1,20 @@
 import { EventBus } from "./event-bus";
 import { nanoid } from "nanoid";
 
-class Block {
+class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
     FLOW_CDU: "flow:component-did-update",
     FLOW_RENDER: "flow:render",
-  };
+  } as const;
 
   public id = nanoid(6);
-  protected props: any;
+  protected props: P;
   public children: Record<string, Block>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
-  private _meta: { tagName: string; props: any };
+  private tagName: string;
 
   /** JSDoc
    * @param {string} tagName
@@ -22,15 +22,13 @@ class Block {
    *
    * @returns {void}
    */
-  constructor(tagName = "div", propsWithChildren: any = {}) {
+  public constructor(tagName = "div", propsWithChildren: P) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
-    this._meta = {
-      tagName,
-      props,
-    };
+    this.tagName = tagName;
+    this.props = propsWithChildren;
 
     this.children = children;
     this.props = this._makePropsProxy(props);
@@ -42,23 +40,26 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _getChildrenAndProps(childrenAndProps: any) {
-    const props: Record<string, any> = {};
+  private _getChildrenAndProps(childrenAndProps: P): {
+    props: P;
+    children: Record<string, Block>;
+  } {
+    const props: Record<string, unknown> = {};
     const children: Record<string, Block> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
       if (value instanceof Block) {
-        children[key] = value;
+        children[key as string] = value;
       } else {
         props[key] = value;
       }
     });
 
-    return { props, children };
+    return { props: props as P, children };
   }
 
-  _addEvents() {
-    const { events = {} } = this.props as {
+  private _addEvents() {
+    const { events = {} } = this.props as P & {
       events: Record<string, () => void>;
     };
 
@@ -67,14 +68,14 @@ class Block {
     });
   }
 
-  _registerEvents(eventBus: EventBus) {
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {}
+  private _createResources() {}
 
   private _init() {
     this._createResources();
@@ -100,17 +101,17 @@ class Block {
     );
   }
 
-  private _componentDidUpdate(oldProps: any, newProps: any) {
+  private _componentDidUpdate(oldProps: P, newProps: P) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate(oldProps: any, newProps: any) {
+  protected componentDidUpdate(oldProps: P, newProps: P) {
     return true;
   }
 
-  setProps = (nextProps: any) => {
+  protected setProps = (nextProps: P) => {
     if (!nextProps) {
       return;
     }
@@ -118,7 +119,7 @@ class Block {
     Object.assign(this.props, nextProps);
   };
 
-  get element() {
+  protected get element() {
     return this._element;
   }
 
@@ -164,29 +165,26 @@ class Block {
 
     return temp.content;
   }
-
   protected render(): DocumentFragment {
     return new DocumentFragment();
   }
 
-  getContent() {
+  protected getContent() {
     return this.element;
   }
 
-  _makePropsProxy(props: any) {
-    const self = this;
-
+  private _makePropsProxy(props: P) {
     return new Proxy(props, {
-      get(target, prop) {
+      get(target, prop: string) {
         const value = target[prop];
         return typeof value === "function" ? value.bind(target) : value;
       },
-      set(target, prop, value) {
+      set: (target, prop: string, value) => {
         const oldTarget = { ...target };
 
-        target[prop] = value;
+        target[prop as keyof P] = value;
 
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
       deleteProperty() {
@@ -195,18 +193,18 @@ class Block {
     });
   }
 
-  _createDocumentElement(tagName: string) {
+  private _createDocumentElement(tagName: string) {
     return document.createElement(tagName);
   }
 
-  show() {
+  protected show() {
     const getContent = this.getContent();
     if (getContent) {
       getContent.style.display = "block";
     }
   }
 
-  hide() {
+  protected hide() {
     const getContent = this.getContent();
     if (getContent) {
       getContent.style.display = "none";

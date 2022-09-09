@@ -4,15 +4,15 @@ import { Button } from "../../components/Button";
 import * as buttonStyles from "../../components/Button/button.module.scss";
 import { InputContainer } from "../../components/InputContainer";
 import * as inputStyles from "../../components/InputField/inputField.module.scss";
-import { validateInputField } from "../../utils/validateInputField";
 import { navigation } from "../../data/navigation";
+import { validateForm } from "../../utils/validateForm";
 
 interface PasswordEditPageProps {
-  styles: { [key: string]: string };
-  avatar: { [key: string]: string };
+  styles: Record<string, string>;
+  avatar: Record<string, string>;
 }
 
-export class PasswordEditPage extends Block {
+export class PasswordEditPage extends Block<PasswordEditPageProps> {
   constructor(props: PasswordEditPageProps) {
     super("div", props);
   }
@@ -23,17 +23,7 @@ export class PasswordEditPage extends Block {
       styles: buttonStyles,
       events: {
         click: (event: SubmitEvent) => {
-          event.preventDefault();
-
-          const { formData, result } = validateInputField(this.children);
-
-          console.log(formData);
-
-          if (result.isValid) {
-            document.location.href = navigation.pages[2].url;
-          } else {
-            console.log("Некорректно заполнены поля формы");
-          }
+          validateForm(event, this.children, navigation.pages[2].url);
         },
       },
     });
@@ -43,10 +33,8 @@ export class PasswordEditPage extends Block {
       name: "oldPassword",
       text: "Текущий пароль",
       type: "password",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^(?=.*[A-Z])(?=.*[0-9]).{8,40}$",
-      value: "",
     });
 
     this.children.inputNewPsw = new InputContainer({
@@ -54,10 +42,8 @@ export class PasswordEditPage extends Block {
       name: "newPassword",
       text: "Новый пароль",
       type: "password",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^(?=.*[A-Z])(?=.*[0-9]).{8,40}$",
-      value: "",
     });
 
     this.children.inputNewPswAppr = new InputContainer({
@@ -65,10 +51,8 @@ export class PasswordEditPage extends Block {
       name: "newPasswordAppr",
       text: "Повторите новый пароль",
       type: "password",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^(?=.*[A-Z])(?=.*[0-9]).{8,40}$",
-      value: "",
     });
   }
 

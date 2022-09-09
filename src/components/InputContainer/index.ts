@@ -4,17 +4,16 @@ import * as inputStyles from "../InputField/inputField.module.scss";
 import { InputField } from "../InputField";
 
 interface InputContainerProps {
-  styles: { [key: string]: string };
+  styles: Record<string, string>;
   name: string;
   type: string;
   text: string;
-  required: string;
+  required: boolean;
   disabled: string;
-  regex: string;
-  value: string;
+  value?: string;
 }
 
-export class InputContainer extends Block {
+export class InputContainer extends Block<InputContainerProps> {
   constructor(props: InputContainerProps) {
     super("div", props);
   }
@@ -27,8 +26,7 @@ export class InputContainer extends Block {
       text: this.props.text,
       required: this.props.required,
       disabled: this.props.disabled,
-      regex: this.props.regex ?? "",
-      value: this.props.value,
+      value: this.props.value ?? "",
     });
   }
 

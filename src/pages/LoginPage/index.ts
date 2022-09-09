@@ -4,14 +4,14 @@ import { Button } from "../../components/Button";
 import * as buttonStyles from "../../components/Button/button.module.scss";
 import * as inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
-import { validateInputField } from "../../utils/validateInputField";
 import { navigation } from "../../data/navigation";
+import { validateForm } from "../../utils/validateForm";
 
 interface LoginPageProps {
-  styles: { [key: string]: string };
+  styles: Record<string, string>;
 }
 
-export class LoginPage extends Block {
+export class LoginPage extends Block<LoginPageProps> {
   constructor(props: LoginPageProps) {
     super("div", props);
   }
@@ -22,17 +22,7 @@ export class LoginPage extends Block {
       styles: buttonStyles,
       events: {
         click: (event: SubmitEvent) => {
-          event.preventDefault();
-
-          const { formData, result } = validateInputField(this.children);
-
-          console.log(formData);
-
-          if (result.isValid) {
-            document.location.href = navigation.pages[12].url;
-          } else {
-            console.log("Некорректно заполнены поля формы");
-          }
+          validateForm(event, this.children, navigation.pages[12].url);
         },
       },
     });
@@ -42,10 +32,8 @@ export class LoginPage extends Block {
       name: "login",
       text: "Логин",
       type: "text",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^(?=.*[a-zA-Z-_])[a-zA-Z-_0-9]{3,20}$",
-      value: "",
     });
 
     this.children.inputPassword = new InputContainer({
@@ -53,10 +41,8 @@ export class LoginPage extends Block {
       name: "password",
       text: "Пароль",
       type: "password",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^(?=.*[A-Z])(?=.*[0-9]).{8,40}$",
-      value: "",
     });
   }
 

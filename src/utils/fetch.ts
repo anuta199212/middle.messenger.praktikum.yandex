@@ -1,3 +1,5 @@
+import { queryStringify } from "./queryStringify";
+
 const METHODS = {
   GET: "GET",
   POST: "POST",
@@ -5,21 +7,6 @@ const METHODS = {
   PATCH: "PATCH",
   DELETE: "DELETE",
 };
-
-function queryStringify(data: Record<string, unknown>) {
-  let resStr = "";
-  if (data && typeof data === "object") {
-    resStr = "?";
-
-    let prop;
-    for (prop in data) {
-      resStr += prop + "=" + data[prop] + "&";
-    }
-
-    resStr = resStr.slice(0, -1);
-  }
-  return resStr;
-}
 
 interface optionsType {
   method: string;
@@ -41,11 +28,10 @@ export class HTTPTransport {
       data: {},
     },
   ) => {
-    return this.request(
-      url,
-      { ...options, method: METHODS.GET },
-      options.timeout,
-    );
+    if (options.data) {
+      url = url + queryStringify(options.data as Record<string, unknown>);
+    }
+    return this.request(url, { ...options, method: METHODS.GET });
   };
 
   post = (
@@ -56,11 +42,7 @@ export class HTTPTransport {
     },
   ) => {
     console.log(url, options);
-    return this.request(
-      url,
-      { ...options, method: METHODS.POST },
-      options.timeout,
-    );
+    return this.request(url, { ...options, method: METHODS.POST });
   };
 
   put = (
@@ -71,11 +53,7 @@ export class HTTPTransport {
     },
   ) => {
     console.log(url, options);
-    return this.request(
-      url,
-      { ...options, method: METHODS.PUT },
-      options.timeout,
-    );
+    return this.request(url, { ...options, method: METHODS.PUT });
   };
 
   delete = (
@@ -86,28 +64,22 @@ export class HTTPTransport {
     },
   ) => {
     console.log(url, options);
-    return this.request(
-      url,
-      { ...options, method: METHODS.DELETE },
-      options.timeout,
-    );
+    return this.request(url, { ...options, method: METHODS.DELETE });
   };
 
-  request = (url: string, options: optionsType, timeout = 5000) => {
+  request = (url: string, options: optionsType) => {
     if (!options.method) {
       options.method = METHODS.GET;
     }
+    if (!options.timeout) {
+      options.timeout = 5000;
+    }
 
-    const { method, data } = options;
+    const { method, data, timeout } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
-      if (method === "GET") {
-        if (options.data) {
-          url = url + queryStringify(options.data as Record<string, unknown>);
-        }
-      }
       xhr.open(method, url);
 
       xhr.onload = function () {
@@ -131,7 +103,6 @@ export class HTTPTransport {
       if (method === METHODS.GET || !data) {
         xhr.send();
       } else {
-        //console.log(data, queryStringify(data));
         xhr.send(data as Document | XMLHttpRequestBodyInit | null | undefined);
       }
     });

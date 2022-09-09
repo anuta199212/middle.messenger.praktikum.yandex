@@ -4,14 +4,14 @@ import { Button } from "../../components/Button";
 import * as buttonStyles from "../../components/Button/button.module.scss";
 import * as inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
-import { validateInputField } from "../../utils/validateInputField";
 import { navigation } from "../../data/navigation";
+import { validateForm } from "../../utils/validateForm";
 
 interface ChatClearPageProps {
-  styles: { [key: string]: string };
+  styles: Record<string, string>;
 }
 
-export class ChatClearPage extends Block {
+export class ChatClearPage extends Block<ChatClearPageProps> {
   constructor(props: ChatClearPageProps) {
     super("div", props);
   }
@@ -22,17 +22,7 @@ export class ChatClearPage extends Block {
       styles: buttonStyles,
       events: {
         click: (event: SubmitEvent) => {
-          event.preventDefault();
-
-          const { formData, result } = validateInputField(this.children);
-
-          console.log(formData);
-
-          if (result.isValid) {
-            document.location.href = navigation.pages[12].url;
-          } else {
-            console.log("Некорректно заполнены поля формы");
-          }
+          validateForm(event, this.children, navigation.pages[12].url);
         },
       },
     });
@@ -42,16 +32,13 @@ export class ChatClearPage extends Block {
       name: "login",
       text: "Логин",
       type: "text",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^(?=.*[a-zA-Z-_])[a-zA-Z-_0-9]{3,20}$",
-      value: "",
     });
   }
 
   componentDidMount() {
-    const form: HTMLFormElement | null =
-      this.element?.querySelector("form") ?? null;
+    const form = this.element?.querySelector("form");
 
     if (form) {
       form.addEventListener("submit", (event) => {

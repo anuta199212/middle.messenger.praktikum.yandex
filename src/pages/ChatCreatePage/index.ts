@@ -5,13 +5,13 @@ import * as buttonStyles from "../../components/Button/button.module.scss";
 import * as inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
 import { navigation } from "../../data/navigation";
-import { validateInputField } from "../../utils/validateInputField";
+import { validateForm } from "../../utils/validateForm";
 
 interface ChatCreatePageProps {
-  styles: { [key: string]: string };
+  styles: Record<string, string>;
 }
 
-export class ChatCreatePage extends Block {
+export class ChatCreatePage extends Block<ChatCreatePageProps> {
   constructor(props: ChatCreatePageProps) {
     super("div", props);
   }
@@ -22,17 +22,7 @@ export class ChatCreatePage extends Block {
       styles: buttonStyles,
       events: {
         click: (event: SubmitEvent) => {
-          event.preventDefault();
-
-          const { formData, result } = validateInputField(this.children);
-
-          console.log(formData);
-
-          if (result.isValid) {
-            document.location.href = navigation.pages[12].url;
-          } else {
-            console.log("Некорректно заполнены поля формы");
-          }
+          validateForm(event, this.children, navigation.pages[12].url);
         },
       },
     });
@@ -42,16 +32,13 @@ export class ChatCreatePage extends Block {
       name: "login",
       text: "Логин",
       type: "text",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^(?=.*[a-zA-Z-_])[a-zA-Z-_0-9]{3,20}$",
-      value: "",
     });
   }
 
   componentDidMount() {
-    const form: HTMLFormElement | null =
-      this.element?.querySelector("form") ?? null;
+    const form = this.element?.querySelector("form") ?? null;
 
     if (form) {
       form.addEventListener("submit", (event) => {

@@ -1,18 +1,23 @@
 import Block from "../../block/block";
+import { fieldsRules } from "../../data/fieldsRules";
 import template from "./inputField.hbs";
 
 interface InputFieldProps {
-  styles: { [key: string]: string };
+  styles: Record<string, string>;
   name: string;
   type: string;
   text: string;
-  required: string;
+  required: boolean;
   disabled: string;
-  regex: string;
   value: string;
+  events?: {
+    focus: () => void;
+    blur: () => void;
+    change: (event: any) => void;
+  };
 }
 
-export class InputField extends Block {
+export class InputField extends Block<InputFieldProps> {
   constructor(props: InputFieldProps) {
     super("div", props);
     this.props.value = "";
@@ -23,46 +28,68 @@ export class InputField extends Block {
     };
   }
 
-  getData(): { fieldName: string; fieldValue: string } {
+  public getData(): { fieldName: string; fieldValue: string } {
     return { fieldName: this.props.name, fieldValue: this.props.value };
   }
 
-  validate(): { isValid: boolean; toolTipMessage: string } {
+  public validate(): {
+    isValid: boolean;
+    message: { errorMessage: string; tooltipMessage: string };
+  } {
     let isValid = true;
-    let toolTipMessage = "";
+    const message: { errorMessage: string; tooltipMessage: string } = {
+      errorMessage: "",
+      tooltipMessage: "",
+    };
+
+    const maxLength = fieldsRules[this.props.name].maxLength;
 
     if (this.props.required && !this.props.value) {
       isValid = false;
-      toolTipMessage = "Обязательное поле";
+      message.errorMessage = "Обязательное поле";
     } else if (
-      this.props.regex &&
-      !this.props.value.toString().match(this.props.regex)
+      (maxLength && this.props.value.length > maxLength) ||
+      this.props.value.length < fieldsRules[this.props.name].minLength
     ) {
       isValid = false;
-      toolTipMessage = "Некорректное значение поля";
+      message.errorMessage = "Некорректная длина поля";
+      message.tooltipMessage = fieldsRules[this.props.name].errorMessage.length;
+    } else if (
+      !this.props.value.toString().match(fieldsRules[this.props.name].regex)
+    ) {
+      isValid = false;
+      message.errorMessage = "Некорректное значение поля";
+      message.tooltipMessage = fieldsRules[this.props.name].errorMessage.match;
     }
 
-    return { isValid, toolTipMessage };
+    return { isValid, message };
   }
 
-  onChange(event: any) {
+  private onChange(event: any) {
     const value = (event.target as HTMLInputElement).value;
 
-    this.setProps({ value: value });
+    this.setProps({ ...this.props, value: value });
   }
 
-  onFocus() {
+  private onFocus() {
     const result = this.validate();
 
-    console.log(result.toolTipMessage);
+    console.log(result.message.tooltipMessage);
   }
 
-  onBlur() {
+  private onBlur() {
     const result = this.validate();
 
-    const message = document.getElementsByName(this.props.name + "ErrMessage")[0];
+    const message = document.getElementsByName(
+      this.props.name + "ErrMessage",
+    )[0];
 
-    message.innerText = result.toolTipMessage;
+    const tooltip = document.getElementsByName(
+      this.props.name + "ErrTooltip",
+    )[0];
+
+    message.innerText = result.message.errorMessage;
+    tooltip.innerText = result.message.tooltipMessage;
   }
 
   render() {

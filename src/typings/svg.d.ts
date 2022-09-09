@@ -1,5 +1,5 @@
 declare module "*.svg" {
-  const svg: { [key: string]: string };
+  const svg: Record<string, string>;
 
   export default svg;
 }

@@ -3,17 +3,16 @@ import template from "./inputMessageContainer.hbs";
 import { InputField } from "../InputField";
 
 interface InputMessageContainerProps {
-  styles: { [key: string]: string };
+  styles: Record<string, string>;
   name: string;
   type: string;
   text: string;
-  required: string;
+  required: boolean;
   disabled: string;
-  regex: string;
-  value: string;
+  value?: string;
 }
 
-export class InputMessageContainer extends Block {
+export class InputMessageContainer extends Block<InputMessageContainerProps> {
   constructor(props: InputMessageContainerProps) {
     super("div", props);
   }
@@ -26,7 +25,6 @@ export class InputMessageContainer extends Block {
       text: this.props.text,
       required: this.props.required,
       disabled: this.props.disabled,
-      regex: this.props.regex ?? "",
       value: this.props.value ?? "",
     });
   }

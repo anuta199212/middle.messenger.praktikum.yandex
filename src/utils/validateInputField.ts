@@ -7,14 +7,27 @@ export function validateInputField(children: Record<string, Block>): {
   };
   result: {
     isValid: boolean;
-    toolTipMessage: string;
+    message: {
+      errorMessage: string;
+      tooltipMessage: string;
+    };
   };
 } {
-  const formData: { [key: string]: string } = {};
+  const formData: Record<string, string> = {};
+
   let result: {
     isValid: boolean;
-    toolTipMessage: string;
-  } = { isValid: false, toolTipMessage: "" };
+    message: {
+      errorMessage: string;
+      tooltipMessage: string;
+    };
+  } = {
+    isValid: false,
+    message: {
+      errorMessage: "",
+      tooltipMessage: "",
+    },
+  };
 
   Object.entries(children).forEach(([, value]) => {
     Object.entries(value.children).forEach(([key1, value1]) => {

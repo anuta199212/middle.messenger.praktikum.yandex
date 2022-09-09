@@ -3,13 +3,13 @@ import template from "./button.hbs";
 
 interface ButtonProps {
   text: string;
-  styles: { [key: string]: string };
+  styles: Record<string, string>;
   events: {
     click: (event: any) => void;
   };
 }
 
-export class Button extends Block {
+export class Button extends Block<ButtonProps> {
   constructor(props: ButtonProps) {
     super("div", props);
   }

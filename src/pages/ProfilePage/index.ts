@@ -4,11 +4,11 @@ import * as inputStyles from "../../components/InputField/inputField.module.scss
 import { InputContainer } from "../../components/InputContainer";
 
 interface ProfilePageProps {
-  styles: { [key: string]: string };
-  avatar: { [key: string]: string };
+  styles: Record<string, string>;
+  avatar: Record<string, string>;
 }
 
-export class ProfilePage extends Block {
+export class ProfilePage extends Block<ProfilePageProps> {
   constructor(props: ProfilePageProps) {
     super("div", props);
   }
@@ -19,10 +19,8 @@ export class ProfilePage extends Block {
       name: "email",
       text: "Почта",
       type: "email",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^[A-z0-9._%+-]{0,}@[A-z]+.",
-      value: "",
     });
 
     this.children.inputLogin = new InputContainer({
@@ -30,10 +28,8 @@ export class ProfilePage extends Block {
       name: "login",
       text: "Логин",
       type: "text",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^(?=.*[a-zA-Z-_])[a-zA-Z-_0-9]{3,20}$",
-      value: "",
     });
 
     this.children.inputFName = new InputContainer({
@@ -41,10 +37,8 @@ export class ProfilePage extends Block {
       name: "first_name",
       text: "Имя",
       type: "text",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^[A-ZА-Я]{1}[A-Za-zА-Яа-я-]{1,}$",
-      value: "",
     });
 
     this.children.inputSName = new InputContainer({
@@ -52,10 +46,8 @@ export class ProfilePage extends Block {
       name: "second_name",
       text: "Фамилия",
       type: "text",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^[A-ZА-Я]{1}[A-Za-zА-Яа-я-]{1,}$",
-      value: "",
     });
 
     this.children.inputDName = new InputContainer({
@@ -63,10 +55,8 @@ export class ProfilePage extends Block {
       name: "display_name",
       text: "Имя в чате",
       type: "text",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "",
-      value: "",
     });
 
     this.children.inputPhone = new InputContainer({
@@ -74,10 +64,8 @@ export class ProfilePage extends Block {
       name: "phone",
       text: "Телефон",
       type: "text",
-      required: "required",
+      required: true,
       disabled: "",
-      regex: "^[+]{0,1}[0-9]{10,15}$",
-      value: "",
     });
   }
 

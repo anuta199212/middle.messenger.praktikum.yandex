@@ -1,36 +1,44 @@
-/* eslint-disable @typescript-eslint/ban-types */
-export class EventBus {
-  //private readonly listeners: Record<string, Array<Function>> = {};
+type Handler<A extends any[] = unknown[]> = (...args: A) => void;
+type MapInterface<P> = P[keyof P];
 
-  private readonly listeners: Record<string, Array<Function>>;
+export class EventBus<
+  E extends Record<string, string> = Record<string, string>,
+  Args extends Record<MapInterface<E>, any[]> = Record<string, any[]>,
+> {
+  private readonly listeners: {
+    [K in MapInterface<E>]?: Handler<Args[K]>[];
+  } = {};
 
-  constructor() {
-    this.listeners = {};
-  }
-
-  on(event: string, callback: Function) {
+  on<Event extends MapInterface<E>>(
+    event: Event,
+    callback: Handler<Args[Event]>,
+  ) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
 
-    this.listeners[event].push(callback);
+    this.listeners[event]?.push(callback);
   }
 
-  off(event: string, callback: Function) {
+  off<Event extends MapInterface<E>>(
+    event: Event,
+    callback: Handler<Args[Event]>,
+  ) {
     if (!this.listeners[event]) {
-      throw new Error(`Event does not exist: ${event}`);
+      throw new Error(`Нет события: ${event}`);
     }
 
-    this.listeners[event] = this.listeners[event].filter(
+    this.listeners[event] = this.listeners[event]!.filter(
       (listener) => listener !== callback,
     );
   }
 
-  emit(event: string, ...args: any) {
+  emit<Event extends MapInterface<E>>(event: Event, ...args: Args[Event]) {
     if (!this.listeners[event]) {
-      throw new Error(`Event does not exist: ${event}`);
+      throw new Event(`Нет события: ${event}`);
     }
-    this.listeners[event].forEach((listener: Function) => {
+
+    this.listeners[event]!.forEach((listener) => {
       listener(...args);
     });
   }

@@ -1,7 +1,7 @@
 <div>
   <div class="{{styles.input-field-wrapper}}">
 
-    <div>{{{input}}}</div>
+    <div class="{{styles.input-field-tooltip}}">{{{input}}}</div>
 
     <span
       class="{{styles.input-field-focus}}"
@@ -11,6 +11,11 @@
     <span
       class="{{styles.input-field-error-message}}"
       name="{{name}}ErrMessage"
+    ></span>
+
+    <span
+      class="{{styles.input-field-tooltiptext}}"
+      name="{{name}}ErrTooltip"
     ></span>
 
   </div>

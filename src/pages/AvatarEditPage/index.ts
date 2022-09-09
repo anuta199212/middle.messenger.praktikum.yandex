@@ -4,10 +4,10 @@ import { Button } from "../../components/Button";
 import * as buttonStyles from "../../components/Button/button.module.scss";
 
 interface AvatarEditPageProps {
-  styles: { [key: string]: string };
+  styles: Record<string, string>;
 }
 
-export class AvatarEditPage extends Block {
+export class AvatarEditPage extends Block<AvatarEditPageProps> {
   constructor(props: AvatarEditPageProps) {
     super("div", props);
   }
