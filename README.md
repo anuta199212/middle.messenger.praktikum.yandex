@@ -1,3 +1,5 @@
+[`Sprint_2`](https://github.com/anuta199212/middle.messenger.praktikum.yandex/pull/2) pull request.
+
 # Введение
 
 [`middle.messenger.praktikum.yandex`](https://github.com/anuta199212/middle.messenger.praktikum.yandex) — проект по созданию мессенджера.
