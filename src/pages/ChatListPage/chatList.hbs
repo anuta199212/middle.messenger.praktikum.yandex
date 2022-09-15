@@ -1,0 +1,91 @@
+<form class="{{styles.form}}">
+  <nav class="{{styles.menu}}">
+    <ul class="{{styles.menu-list}}">
+      <li>
+        <div class="{{styles.chat-app-title-container}}">
+          <div class="{{styles.chat-app-title}}">
+            MessageApp
+          </div>
+          <button class="{{styles.chat-btn-more}}">
+            <i
+              class="fa-solid fa-ellipsis-vertical {{styles.chat-btn-more-color}}"
+            ></i>
+          </button>
+        </div>
+      </li>
+      <li>
+        <div class="{{styles.chat-search-container}}">
+          <input placeholder="Поиск" class="{{styles.chat-search-input}}" />
+        </div>
+      </li>
+      {{#each chatList.item}}
+        <li>
+          <a href="#" class="{{../styles.menu-item}}">
+            <table class="{{../styles.width-100}}">
+              <tr>
+                <td
+                  rowspan="2"
+                  class="{{../styles.text-align-center}} {{../styles.width-45}}"
+                >
+                  <img
+                    src="{{avatar}}"
+                    alt="Avatar"
+                    class="{{../styles.chat-avatar-img}}"
+                  />
+                </td>
+                <td class="{{../styles.chat-title}}">
+                  {{name}}
+                </td>
+                <td
+                  class="{{../styles.chat-message-text}}
+                    {{../styles.text-align-right}}
+                    {{../styles.width-35}}"
+                >
+                  {{lastMessage.time}}
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="{{../styles.chat-message-text}}
+                    {{../styles.text-align-left}}"
+                >
+                  {{lastMessage.text}}
+                </td>
+                <td>
+                  {{#if unReadCount}}
+                    <span class="{{../styles.chat-badge}}">{{unReadCount}}</span>
+                  {{/if}}
+                </td>
+              </tr>
+            </table>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  </nav>
+
+  <div class="{{styles.chat-message-container}}">
+    {{#each messageList.message}}
+    <div>
+    {{#if incoming}}
+      <div class="{{../styles.chat-message-incoming}}">
+    {{else}}
+      <div class="{{../styles.chat-message-outgoing}}">
+    {{/if}}
+        <p>{{text}}</p>
+        <div
+          class="{{../styles.chat-message-text}} {{../styles.chat-message-time}}"
+        >{{time}}</div>
+      </div>
+
+	  </div>
+    {{/each}}
+  </div>
+
+  <div class="{{styles.chat-message-send-container}}">
+   {{{inputMessage}}}
+
+    {{{sendButton}}}
+  </div>
+
+</form>

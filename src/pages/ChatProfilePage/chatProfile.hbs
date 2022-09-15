@@ -1,0 +1,40 @@
+<main>
+  <div class="{{styles.form-panel}}">
+    <div class="{{styles.form-panel-wrapper}}">
+      <form class="{{styles.form}}">
+
+        <span class="{{styles.avatar}}">
+          <img src={{avatar}} alt="Avatar" class="{{styles.avatar-img}}" />
+        </span>
+
+        <span class="{{styles.form-title}}">
+          {{first_name}}
+        </span>
+
+        <div>
+          {{{inputFName}}}
+          {{{inputLogin}}}
+          {{{inputPhone}}}
+        </div>
+
+        <div class="{{styles.text-left}} {{styles.p-t-15}}">
+          <a
+            class="{{styles.text-primary}}"
+            href="/src/pages/ChatClear/chatClear.hbs"
+          >
+            Очистить историю
+          </a>
+        </div>
+        <div class="{{styles.text-left}} {{styles.p-t-15}}">
+          <a
+            class="{{styles.text-danger}}"
+            href="/src/pages/ChatDelete/chatDelete.hbs"
+          >
+            Удалить чат
+          </a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</main>
