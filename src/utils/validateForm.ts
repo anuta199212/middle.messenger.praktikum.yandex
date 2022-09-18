@@ -1,4 +1,4 @@
-import Block from "../block/block";
+import Block from "../utils/Block";
 import { validateInputField } from "./validateInputField";
 
 export function validateForm(
@@ -16,9 +16,11 @@ export function validateForm(
     if (!result.isValid) {
       console.log("Поле сообщения не должно быть пустым");
     }
-  } else if (result.isValid) {
+  } /*else if (result.isValid) {
     document.location.href = url;
-  } else {
+  }*/ else {
     console.log("Некорректно заполнены поля формы");
   }
+
+  return { formData, result };
 }

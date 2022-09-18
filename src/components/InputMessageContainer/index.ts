@@ -1,4 +1,4 @@
-import Block from "../../block/block";
+import Block from "../../utils/Block";
 import template from "./inputMessageContainer.hbs";
 import { InputField } from "../InputField";
 
@@ -14,7 +14,7 @@ interface InputMessageContainerProps {
 
 export class InputMessageContainer extends Block<InputMessageContainerProps> {
   constructor(props: InputMessageContainerProps) {
-    super("div", props);
+    super(props);
   }
 
   init() {

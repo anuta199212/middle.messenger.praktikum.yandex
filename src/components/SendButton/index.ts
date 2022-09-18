@@ -1,4 +1,4 @@
-import Block from "../../block/block";
+import Block from "../../utils/Block";
 import template from "./sendButton.hbs";
 
 interface SendButtonProps {
@@ -10,7 +10,7 @@ interface SendButtonProps {
 
 export class SendButton extends Block<SendButtonProps> {
   constructor(props: SendButtonProps) {
-    super("div", props);
+    super(props);
   }
 
   render() {

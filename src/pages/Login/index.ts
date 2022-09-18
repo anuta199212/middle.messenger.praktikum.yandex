@@ -2,10 +2,17 @@ import Block from "../../utils/Block";
 import template from "./login.hbs";
 import { Button1 } from "../../components/Button1";
 import { Input } from "../../components/Input/input";
-import styles from "./styles.module.pcss";
+import styles from "../../styles.module.scss";
 import { Link } from "../../components/Link";
-import { SignupData } from "../../api/AuthAPI";
+import { SigninData, SignupData } from "../../api/AuthAPI";
 import AuthController from "../../controllers/AuthController";
+import { InputContainer } from "../../components/InputContainer";
+
+import * as inputStyles from "../../components/InputField/inputField.module.scss";
+import * as buttonStyles from "../../components/Button/button.module.scss";
+import { Button } from "../../components/Button";
+import { validateForm } from "../../utils/validateForm";
+import { navigation } from "../../data/navigation";
 
 export class LoginPage extends Block {
   constructor() {
@@ -13,20 +20,44 @@ export class LoginPage extends Block {
   }
 
   init() {
-    this.children.login = new Input({
+    this.children.login = new InputContainer({
+      styles: inputStyles,
       name: "login",
+      text: "Логин",
       type: "text",
-      placeholder: "Логин",
+      required: true,
+      disabled: "",
     });
 
-    this.children.password = new Input({
+    this.children.password = new InputContainer({
+      styles: inputStyles,
       name: "password",
+      text: "Пароль",
       type: "password",
-      placeholder: "Пароль",
+      required: true,
+      disabled: "",
     });
 
-    this.children.button = new Button1({
-      label: "Войти",
+    this.children.button = new Button({
+      text: "Войти",
+      styles: buttonStyles,
+      events: {
+        click: (event: SubmitEvent) => {
+          const { formData, result } = validateForm(
+            event,
+            this.children,
+            navigation.pages[12].url,
+          );
+
+          if (result.isValid) {
+            AuthController.signin(formData as unknown as SigninData);
+          }
+        },
+      },
+    });
+
+    this.children.button1 = new Button1({
+      label: "Войти 1",
       events: {
         click: () => this.onSubmit(),
       },

@@ -1,4 +1,4 @@
-import Block from "../../block/block";
+import Block from "../../utils/Block";
 import template from "./inputContainer.hbs";
 import * as inputStyles from "../InputField/inputField.module.scss";
 import { InputField } from "../InputField";
@@ -15,7 +15,7 @@ interface InputContainerProps {
 
 export class InputContainer extends Block<InputContainerProps> {
   constructor(props: InputContainerProps) {
-    super("div", props);
+    super(props);
   }
 
   init() {

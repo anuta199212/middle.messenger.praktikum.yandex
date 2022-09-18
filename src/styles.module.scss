@@ -1,4 +1,4 @@
-@import "./pages/ChatListPage/chatList.module.scss";
+//TODO @import "./pages/ChatListPage/chatList.module.scss";
 
 * {
   margin: 0px;
@@ -147,4 +147,12 @@ html {
 
 .p-b-50 {
   padding-bottom: 50px;
+}
+
+.link {
+  font-family: Inter;
+  font-size: 13px;
+  color: var(--text-primary-color);
+  text-decoration: underline;
+  cursor: pointer;
 }

@@ -1,4 +1,4 @@
-import Block from "../../block/block";
+import Block from "../../utils/Block";
 import { fieldsRules } from "../../data/fieldsRules";
 import template from "./inputField.hbs";
 
@@ -19,7 +19,7 @@ interface InputFieldProps {
 
 export class InputField extends Block<InputFieldProps> {
   constructor(props: InputFieldProps) {
-    super("div", props);
+    super(props);
     this.props.value = "";
     this.props.events = {
       focus: () => this.onFocus(),
