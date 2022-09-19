@@ -1,18 +1,32 @@
 import Block from "../../utils/Block";
-import template from "./profile.hbs";
-import { withStore } from "../../utils/Store";
-import AuthController from "../../controllers/AuthController";
-import { Button1 } from "../../components/Button1";
-
+import template from "./profileEdit.hbs";
 import * as inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
+import { Button } from "../../components/Button";
+import * as buttonStyles from "../../components/Button/button.module.scss";
+import { navigation } from "../../data/navigation";
+import { validateForm } from "../../utils/validateForm";
 import styles from "../../styles.module.scss";
-import { LinkTmp } from "../../components/Link_tmp";
-import { Link } from "../../components/Link";
+import { withStore } from "../../utils/Store";
+import UserController from "../../controllers/UserController";
+import { UserData } from "../../api/UserAPI";
 
-class ProfilePageBase extends Block {
+class ProfileEditPageBase extends Block {
   init() {
-    AuthController.fetchUser();
+    this.children.button = new Button({
+      text: "Сохранить",
+      styles: buttonStyles,
+      events: {
+        click: (event: SubmitEvent) => {
+          const { formData, result } = validateForm(event, this.children);
+
+          if (result.isValid) {
+            //TODO
+            UserController.profile(formData as unknown as UserData);
+          }
+        },
+      },
+    });
 
     this.children.inputEmail = new InputContainer({
       styles: inputStyles,
@@ -20,7 +34,7 @@ class ProfilePageBase extends Block {
       text: "Почта",
       type: "email",
       required: true,
-      disabled: "disabled",
+      disabled: "",
       value: this.props.email,
     });
 
@@ -30,7 +44,7 @@ class ProfilePageBase extends Block {
       text: "Логин",
       type: "text",
       required: true,
-      disabled: "disabled",
+      disabled: "",
       value: this.props.login,
     });
 
@@ -40,7 +54,7 @@ class ProfilePageBase extends Block {
       text: "Имя",
       type: "text",
       required: true,
-      disabled: "disabled",
+      disabled: "",
       value: this.props.first_name,
     });
 
@@ -50,7 +64,7 @@ class ProfilePageBase extends Block {
       text: "Фамилия",
       type: "text",
       required: true,
-      disabled: "disabled",
+      disabled: "",
       value: this.props.second_name,
     });
 
@@ -60,7 +74,7 @@ class ProfilePageBase extends Block {
       text: "Имя в чате",
       type: "text",
       required: true,
-      disabled: "disabled",
+      disabled: "",
       value: this.props.display_name,
     });
 
@@ -70,23 +84,8 @@ class ProfilePageBase extends Block {
       text: "Телефон",
       type: "text",
       required: true,
-      disabled: "disabled",
+      disabled: "",
       value: this.props.phone,
-    });
-
-    this.children.link = new Link({
-      label: "Изменить данные",
-      to: "/profile-edit",
-    });
-
-    this.children.linkLogout = new LinkTmp({
-      label: "Выйти",
-      to: "/login",
-      events: {
-        click: () => {
-          AuthController.logout();
-        },
-      },
     });
   }
 
@@ -105,7 +104,6 @@ class ProfilePageBase extends Block {
     return this.compile(template, { ...this.props, styles });
   }
 }
-
 const withUser = withStore((state) => ({ ...state.user }));
 
-export const ProfilePage = withUser(ProfilePageBase);
+export const ProfileEditPage = withUser(ProfileEditPageBase);

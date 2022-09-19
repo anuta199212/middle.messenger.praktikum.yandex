@@ -4,7 +4,6 @@ import { validateInputField } from "./validateInputField";
 export function validateForm(
   event: SubmitEvent,
   children: Record<string, Block<any>>,
-  url?: string,
 ) {
   event.preventDefault();
 

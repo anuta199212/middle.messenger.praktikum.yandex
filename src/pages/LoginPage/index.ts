@@ -1,13 +1,10 @@
 import Block from "../../utils/Block";
 import template from "./login.hbs";
-import { Button1 } from "../../components/Button1";
-import { Input } from "../../components/Input/input";
 import styles from "../../styles.module.scss";
 import { Link } from "../../components/Link";
-import { SigninData, SignupData } from "../../api/AuthAPI";
+import { SigninData } from "../../api/AuthAPI";
 import AuthController from "../../controllers/AuthController";
 import { InputContainer } from "../../components/InputContainer";
-
 import * as inputStyles from "../../components/InputField/inputField.module.scss";
 import * as buttonStyles from "../../components/Button/button.module.scss";
 import { Button } from "../../components/Button";
@@ -43,11 +40,7 @@ export class LoginPage extends Block {
       styles: buttonStyles,
       events: {
         click: (event: SubmitEvent) => {
-          const { formData, result } = validateForm(
-            event,
-            this.children,
-            navigation.pages[12].url,
-          );
+          const { formData, result } = validateForm(event, this.children);
 
           if (result.isValid) {
             AuthController.signin(formData as unknown as SigninData);
