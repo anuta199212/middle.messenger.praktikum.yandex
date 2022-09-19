@@ -30,6 +30,15 @@ export class InputContainer extends Block<InputContainerProps> {
     });
   }
 
+  componentDidUpdate(
+    oldProps: InputContainerProps,
+    newProps: InputContainerProps,
+  ) {
+    this.children.input.setProps({ value: newProps.value });
+
+    return true;
+  }
+
   render() {
     return this.compile(template, this.props);
   }

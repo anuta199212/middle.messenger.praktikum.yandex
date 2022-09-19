@@ -12,15 +12,13 @@ export function validateForm(
 
   console.log(formData);
 
-  if (!url) {
-    if (!result.isValid) {
-      console.log("Поле сообщения не должно быть пустым");
-    }
-  } /*else if (result.isValid) {
-    document.location.href = url;
-  }*/ else {
+  //if (!url) {
+  if (!result.isValid) {
     console.log("Некорректно заполнены поля формы");
   }
+  /* } else if (result.isValid) {
+    document.location.href = url;
+  }*/
 
   return { formData, result };
 }

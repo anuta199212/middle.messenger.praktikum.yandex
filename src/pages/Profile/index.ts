@@ -8,6 +8,7 @@ import * as inputStyles from "../../components/InputField/inputField.module.scss
 import { InputContainer } from "../../components/InputContainer";
 import styles from "../../styles.module.scss";
 import { LinkTmp } from "../../components/Link_tmp";
+import { Link } from "../../components/Link";
 
 class ProfilePageBase extends Block {
   init() {
@@ -20,7 +21,7 @@ class ProfilePageBase extends Block {
       type: "email",
       required: true,
       disabled: "disabled",
-      value: this.props.email, //TODO
+      value: this.props.email,
     });
 
     this.children.inputLogin = new InputContainer({
@@ -73,7 +74,12 @@ class ProfilePageBase extends Block {
       value: this.props.phone,
     });
 
-    this.children.link = new LinkTmp({
+    this.children.link = new Link({
+      label: "Изменить данные",
+      to: "/profile-edit",
+    });
+
+    this.children.linkLogout = new LinkTmp({
       label: "Выйти",
       to: "/login",
       events: {
@@ -91,6 +97,17 @@ class ProfilePageBase extends Block {
         },
       },
     });
+  }
+
+  componentDidUpdate(oldProps: any, newProps: any) {
+    this.children.inputEmail.setProps({ value: newProps.email });
+    this.children.inputLogin.setProps({ value: newProps.login });
+    this.children.inputFName.setProps({ value: newProps.first_name });
+    this.children.inputSName.setProps({ value: newProps.second_name });
+    this.children.inputDName.setProps({ value: newProps.display_name });
+    this.children.inputPhone.setProps({ value: newProps.phone });
+
+    return true;
   }
 
   render() {
