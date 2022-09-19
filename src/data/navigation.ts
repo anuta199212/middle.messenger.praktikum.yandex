@@ -1,55 +1,55 @@
 const navigation = {
   pages: [
     {
-      url: "/src/pages/LoginPage/login.hbs",
+      url: "/",
       title: "Авторизация",
     },
     {
-      url: "/src/pages/SignUpPage/signUp.hbs",
+      url: "/sign-up",
       title: "Регистрация",
     },
     {
-      url: "/src/pages/ProfilePage/profile.hbs",
+      url: "/profile",
       title: "Профиль",
     },
     {
-      url: "/src/pages/AvatarEditPage/avatarEdit.hbs",
+      url: "/avatar-edit",
       title: "Изменить аватар",
     },
     {
-      url: "/src/pages/ProfileEditPage/profileEdit.hbs",
+      url: "/profile-edit",
       title: "Изменить данные",
     },
     {
-      url: "/src/pages/PasswordEditPage/passwordEdit.hbs",
+      url: "/password-edit",
       title: "Изменить пароль",
     },
     {
-      url: "/src/pages/Error500Page/error500.hbs",
+      url: "/error-500",
       title: "Ошибка 500",
     },
     {
-      url: "/src/pages/Error404Page/error404.hbs",
+      url: "/error-404",
       title: "Ошибка 404",
     },
     {
-      url: "/src/pages/ChatProfile/chatProfile.hbs",
+      url: "/chat-profile",
       title: "Показать профиль",
     },
     {
-      url: "/src/pages/ChatCreate/chatCreate.hbs",
+      url: "/chat-create",
       title: "Добавить пользователя",
     },
     {
-      url: "/src/pages/ChatDelete/chatDelete.hbs",
+      url: "/chat-delete",
       title: "Удалить чат с пользователем",
     },
     {
-      url: "/src/pages/ChatClear/chatClear.hbs",
+      url: "/chat-clear",
       title: "Очистить историю чата",
     },
     {
-      url: "/src/pages/ChatList/chatList.hbs",
+      url: "/chat-list",
       title: "Выбрать чат",
     },
   ],

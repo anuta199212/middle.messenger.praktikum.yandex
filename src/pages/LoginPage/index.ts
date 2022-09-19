@@ -56,30 +56,10 @@ export class LoginPage extends Block {
       },
     });
 
-    this.children.button1 = new Button1({
-      label: "Войти 1",
-      events: {
-        click: () => this.onSubmit(),
-      },
-    });
-
     this.children.link = new Link({
       label: "Регистрация",
-      to: "/register",
+      to: "/sign-up",
     });
-  }
-
-  onSubmit() {
-    const values = Object.values(this.children)
-      .filter((child) => child instanceof Input)
-      .map((child) => [
-        (child as Input).getName(),
-        (child as Input).getValue(),
-      ]);
-
-    const data = Object.fromEntries(values);
-
-    AuthController.signin(data as SignupData);
   }
 
   render() {

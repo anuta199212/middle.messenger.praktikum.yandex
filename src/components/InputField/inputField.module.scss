@@ -41,7 +41,7 @@ input {
   padding: 0 5px;
 }
 
-.input-field-focus {
+/*.input-field-focus {
   position: absolute;
   display: block;
   width: 100%;
@@ -69,7 +69,7 @@ input {
   &::after {
     top: -15px;
   }
-}
+}*/
 
 .input-field-error-message {
   font-family: Inter;
@@ -103,4 +103,11 @@ input {
       visibility: visible;
     }
   }
+}
+
+.input-field-label {
+  font-family: Inter;
+  font-size: 13px;
+  color: var(--input-field-color);
+  padding-left: 5px;
 }

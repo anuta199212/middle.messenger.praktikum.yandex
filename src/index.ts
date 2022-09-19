@@ -1,26 +1,21 @@
-import { LoginPage } from "./pages/Login";
+import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/Register";
 import Router from "./utils/Router";
 import { ProfilePage } from "./pages/Profile";
-import store from "./utils/Store";
-import AuthController from "./controllers/AuthController";
 
-enum Routes {
-  Index = "/",
-  Register = "/register",
-  Profile = "/profile",
-}
+import AuthController from "./controllers/AuthController";
+import { navigation } from "./data/navigation";
 
 window.addEventListener("DOMContentLoaded", async () => {
-  Router.use(Routes.Index, LoginPage)
-    .use(Routes.Register, RegisterPage)
-    .use(Routes.Profile, ProfilePage);
+  Router.use(navigation.pages[0].url, LoginPage)
+    .use(navigation.pages[1].url, RegisterPage)
+    .use(navigation.pages[2].url, ProfilePage);
 
   let isProtectedRoute = true;
 
   switch (window.location.pathname) {
-    case Routes.Index:
-    case Routes.Register:
+    case navigation.pages[0].url:
+    case navigation.pages[1].url:
       isProtectedRoute = false;
       break;
   }
@@ -31,13 +26,13 @@ window.addEventListener("DOMContentLoaded", async () => {
     Router.start();
 
     if (!isProtectedRoute) {
-      Router.go(Routes.Profile);
+      Router.go(navigation.pages[2].url);
     }
   } catch (e) {
     Router.start();
 
     if (isProtectedRoute) {
-      Router.go(Routes.Index);
+      Router.go(navigation.pages[0].url);
     }
   }
 });

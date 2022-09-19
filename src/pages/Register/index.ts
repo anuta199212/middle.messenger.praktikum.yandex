@@ -2,7 +2,7 @@ import Block from "../../utils/Block";
 import template from "./register.hbs";
 import { Button1 } from "../../components/Button1";
 import { Input } from "../../components/Input/input";
-import styles from "./styles.module.pcss";
+import styles from "../../styles.module.scss";
 import { Link } from "../../components/Link";
 import { SignupData } from "../../api/AuthAPI";
 import AuthController from "../../controllers/AuthController";

@@ -1,4 +1,4 @@
-import Block from "../block/block";
+import Block from "../utils/Block";
 import { InputField } from "../components/InputField";
 
 export function validateInputField(children: Record<string, Block>): {
