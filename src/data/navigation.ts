@@ -33,23 +33,27 @@ const navigation = {
       title: "Ошибка 404",
     },
     {
-      url: "/chat-profile",
+      url: "/chats-profile",
       title: "Показать профиль",
     },
     {
-      url: "/chat-create",
-      title: "Добавить пользователя",
+      url: "/chats-create",
+      title: "Создать чат",
     },
     {
-      url: "/chat-delete",
+      url: "/chats-delete",
       title: "Удалить чат с пользователем",
     },
     {
-      url: "/chat-clear",
+      url: "/chats-add-user",
+      title: "Добавить пользователя",
+    },
+    {
+      url: "/chats-clear",
       title: "Очистить историю чата",
     },
     {
-      url: "/chat-list",
+      url: "/chats-list",
       title: "Выбрать чат",
     },
   ],

@@ -1,19 +1,19 @@
 import Block from "../../utils/Block";
-import template from "./profileEdit.hbs";
+import template from "./signUp.hbs";
+import * as buttonStyles from "../../components/Button/button.module.scss";
 import * as inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
-import { Button } from "../../components/Button";
-import * as buttonStyles from "../../components/Button/button.module.scss";
 import { validateForm } from "../../utils/validateForm";
 import styles from "../../styles.module.scss";
-import { withStore } from "../../utils/Store";
-import UserController from "../../controllers/UserController";
-import { UserData } from "../../api/UserAPI";
+import { Link } from "../../components/Link";
+import { SignupData } from "../../api/AuthAPI";
+import AuthController from "../../controllers/AuthController";
+import { Button } from "../../components/Button";
 
-class ProfileEditPageBase extends Block {
+export class SignUpPage extends Block {
   init() {
     this.children.button = new Button({
-      text: "Сохранить",
+      text: "Зарегистрироваться",
       styles: buttonStyles,
       events: {
         click: (event: SubmitEvent) => {
@@ -21,7 +21,7 @@ class ProfileEditPageBase extends Block {
 
           if (result.isValid) {
             //TODO
-            UserController.profile(formData as unknown as UserData);
+            AuthController.signup(formData as unknown as SignupData);
           }
         },
       },
@@ -34,7 +34,6 @@ class ProfileEditPageBase extends Block {
       type: "email",
       required: true,
       disabled: "",
-      value: this.props.email,
     });
 
     this.children.inputLogin = new InputContainer({
@@ -44,7 +43,6 @@ class ProfileEditPageBase extends Block {
       type: "text",
       required: true,
       disabled: "",
-      value: this.props.login,
     });
 
     this.children.inputFName = new InputContainer({
@@ -54,7 +52,6 @@ class ProfileEditPageBase extends Block {
       type: "text",
       required: true,
       disabled: "",
-      value: this.props.first_name,
     });
 
     this.children.inputSName = new InputContainer({
@@ -64,17 +61,6 @@ class ProfileEditPageBase extends Block {
       type: "text",
       required: true,
       disabled: "",
-      value: this.props.second_name,
-    });
-
-    this.children.inputDName = new InputContainer({
-      styles: inputStyles,
-      name: "display_name",
-      text: "Имя в чате",
-      type: "text",
-      required: true,
-      disabled: "",
-      value: this.props.display_name,
     });
 
     this.children.inputPhone = new InputContainer({
@@ -84,25 +70,24 @@ class ProfileEditPageBase extends Block {
       type: "text",
       required: true,
       disabled: "",
-      value: this.props.phone,
     });
-  }
 
-  componentDidUpdate(oldProps: any, newProps: any) {
-    this.children.inputEmail.setProps({ value: newProps.email });
-    this.children.inputLogin.setProps({ value: newProps.login });
-    this.children.inputFName.setProps({ value: newProps.first_name });
-    this.children.inputSName.setProps({ value: newProps.second_name });
-    this.children.inputDName.setProps({ value: newProps.display_name });
-    this.children.inputPhone.setProps({ value: newProps.phone });
+    this.children.inputPassword = new InputContainer({
+      styles: inputStyles,
+      name: "password",
+      text: "Пароль",
+      type: "password",
+      required: true,
+      disabled: "",
+    });
 
-    return true;
+    this.children.link = new Link({
+      label: "Войти",
+      to: "/",
+    });
   }
 
   render() {
     return this.compile(template, { ...this.props, styles });
   }
 }
-const withUser = withStore((state) => ({ ...state.user }));
-
-export const ProfileEditPage = withUser(ProfileEditPageBase);

@@ -2,12 +2,10 @@ import Block from "../../utils/Block";
 import template from "./profile.hbs";
 import { withStore } from "../../utils/Store";
 import AuthController from "../../controllers/AuthController";
-import { Button1 } from "../../components/Button1";
-
 import * as inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
 import styles from "../../styles.module.scss";
-import { LinkTmp } from "../../components/Link_tmp";
+import { LinkBtn } from "../../components/LinkBtn";
 import { Link } from "../../components/Link";
 
 class ProfilePageBase extends Block {
@@ -74,12 +72,17 @@ class ProfilePageBase extends Block {
       value: this.props.phone,
     });
 
-    this.children.link = new Link({
+    this.children.linkDataChange = new Link({
       label: "Изменить данные",
       to: "/profile-edit",
     });
 
-    this.children.linkLogout = new LinkTmp({
+    this.children.linkPswChange = new Link({
+      label: "Изменить пароль",
+      to: "/password-edit",
+    });
+
+    this.children.linkLogout = new LinkBtn({
       label: "Выйти",
       to: "/login",
       events: {

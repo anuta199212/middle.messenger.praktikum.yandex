@@ -1,0 +1,42 @@
+<li>
+  <a href="#" class="{{styles.menu-item}}">
+    <table class="{{styles.width-100}}">
+      <tr>
+        <td
+          rowspan="2"
+          class="{{styles.text-align-center}} {{styles.width-45}}"
+        >
+          <img
+		  src="{{img}}"
+		  	{{#if avatar}}
+            src="{{avatar}}"
+			{{/if}}
+            alt="Avatar"
+            class="{{styles.chat-avatar-img}}"
+          />
+
+        </td>
+        <td class="{{styles.chat-title}}">
+          {{chats.title}}
+        </td>
+        <td
+          class="{{styles.chat-message-text}}
+            {{styles.text-align-right}}
+            {{styles.width-35}}"
+        >
+          {{chats.lastMessage.time}}
+        </td>
+      </tr>
+      <tr>
+        <td class="{{styles.chat-message-text}} {{styles.text-align-left}}">
+          {{chats.lastMessage.content}}
+        </td>
+        <td>
+          {{#if chats.unReadCount}}
+            <span class="{{styles.chat-badge}}">{{chats.unReadCount}}</span>
+          {{/if}}
+        </td>
+      </tr>
+    </table>
+  </a>
+</li>

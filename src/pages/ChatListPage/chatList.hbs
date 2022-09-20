@@ -1,0 +1,52 @@
+<form class="{{styles.form}}">
+  <nav class="{{styles.menu}}">
+	{{{buttonCreate}}}
+    <ul class="{{styles.menu-list}}">
+      <li>
+        <div class="{{styles.chat-app-title-container}}">
+          <div class="{{styles.chat-app-title}}">
+            MessageApp
+          </div>
+          <button class="{{styles.chat-btn-more}}">
+            <i
+              class="fa-solid fa-ellipsis-vertical {{styles.chat-btn-more-color}}"
+            ></i>
+          </button>
+        </div>
+      </li>
+      <li>
+        <div class="{{styles.chat-search-container}}">
+          <input placeholder="Поиск" class="{{styles.chat-search-input}}" />
+        </div>
+      </li>
+	{{{chatsList}}}
+    </ul>
+
+  </nav>
+
+
+  <div class="{{styles.chat-message-container}}">
+    {{#each messageList.message}}
+    <div>
+    {{#if incoming}}
+      <div class="{{../styles.chat-message-incoming}}">
+    {{else}}
+      <div class="{{../styles.chat-message-outgoing}}">
+    {{/if}}
+        <p>{{text}}</p>
+        <div
+          class="{{../styles.chat-message-text}} {{../styles.chat-message-time}}"
+        >{{time}}</div>
+      </div>
+
+	  </div>
+    {{/each}}
+  </div>
+
+  <div class="{{styles.chat-message-send-container}}">
+   {{{inputMessage}}}
+
+    {{{sendButton}}}
+  </div>
+
+</form>

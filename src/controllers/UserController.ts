@@ -1,4 +1,4 @@
-import API, { UserAPI, UserData, UserId } from "../api/UserAPI";
+import API, { PasswordData, UserAPI, UserData, UserId } from "../api/UserAPI";
 import store from "../utils/Store";
 import router from "../utils/Router";
 
@@ -12,6 +12,16 @@ export class UserController {
   async profile(data: UserData) {
     try {
       await this.api.profile(data);
+
+      router.go("/profile");
+    } catch (e: any) {
+      console.error(e);
+    }
+  }
+
+  async password(data: PasswordData) {
+    try {
+      await this.api.password(data);
 
       router.go("/profile");
     } catch (e: any) {

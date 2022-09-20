@@ -24,6 +24,10 @@ export interface UserId {
   id: number;
 }
 
+export interface PasswordData {
+  password: string;
+}
+
 export class UserAPI extends BaseAPI {
   constructor() {
     super("/user");
@@ -35,6 +39,10 @@ export class UserAPI extends BaseAPI {
 
   get(data: UserId): Promise<User> {
     return this.http.get(`/user/${data.id}`);
+  }
+
+  password(data: PasswordData) {
+    return this.http.put("/password", data);
   }
 
   read: undefined;

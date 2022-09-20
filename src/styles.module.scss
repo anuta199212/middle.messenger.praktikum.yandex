@@ -1,4 +1,4 @@
-//TODO @import "./pages/ChatListPage/chatList.module.scss";
+@import "./pages/ChatListPage/chatList.module.scss";
 
 * {
   margin: 0px;
@@ -155,4 +155,8 @@ html {
   color: var(--text-primary-color);
   text-decoration: underline;
   cursor: pointer;
+}
+
+.link-danger {
+  color: var(--text-danger-color);
 }

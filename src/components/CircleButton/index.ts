@@ -1,9 +1,10 @@
 import Block from "../../utils/Block";
-import template from "./sendButton.hbs";
+import template from "./circleButton.hbs";
 
 interface SendButtonProps {
   styles: Record<string, string>;
-  events: {
+  icon: string;
+  events?: {
     click: (event: any) => void;
   };
 }

@@ -3,7 +3,7 @@ import { PropsWithRouter, withRouter } from "../../hocs/withRouter";
 import template from "./link.hbs";
 import styles from "../../styles.module.scss";
 
-interface LinkTmpProps extends PropsWithRouter {
+interface LinkBtnProps extends PropsWithRouter {
   to: string;
   label: string;
   events: {
@@ -11,8 +11,8 @@ interface LinkTmpProps extends PropsWithRouter {
   };
 }
 
-class BaseLinkTmp extends Block<LinkTmpProps> {
-  constructor(props: LinkTmpProps) {
+class BaseLinkBtn extends Block<LinkBtnProps> {
+  constructor(props: LinkBtnProps) {
     super({
       ...props,
       events: {
@@ -30,4 +30,4 @@ class BaseLinkTmp extends Block<LinkTmpProps> {
   }
 }
 
-export const LinkTmp = withRouter(BaseLinkTmp);
+export const LinkBtn = withRouter(BaseLinkBtn);

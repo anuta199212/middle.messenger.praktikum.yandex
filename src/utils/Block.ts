@@ -11,7 +11,7 @@ class Block<P extends Record<string, any> = any> {
 
   public id = nanoid(6);
   protected props: P;
-  public children: Record<string, Block>;
+  public children: Record<string, any>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
 
@@ -38,14 +38,19 @@ class Block<P extends Record<string, any> = any> {
 
   _getChildrenAndProps(childrenAndProps: P): {
     props: P;
-    children: Record<string, Block>;
+    children: Record<string, any>;
   } {
     const props: Record<string, unknown> = {};
-    const children: Record<string, Block> = {};
+    const children: Record<string, any> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key as string] = value;
+      } else if (
+        Array.isArray(value) &&
+        value.every((value) => value instanceof Block)
+      ) {
+        children[key] = value;
       } else {
         props[key] = value;
       }
@@ -132,8 +137,19 @@ class Block<P extends Record<string, any> = any> {
   protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
 
-    Object.entries(this.children).forEach(([name, component]) => {
+    /*Object.entries(this.children).forEach(([name, component]) => {
       contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+    });*/
+
+    Object.entries(this.children).forEach(([key, child]) => {
+      if (Array.isArray(child)) {
+        contextAndStubs[key] = [];
+        for (let i = 0; i < child.length; i++) {
+          contextAndStubs[key][i] = `<div data-id="${child[i].id}"></div>`;
+        }
+      } else {
+        contextAndStubs[key] = `<div data-id="${child.id}"></div>`;
+      }
     });
 
     const html = template(contextAndStubs);
@@ -142,7 +158,7 @@ class Block<P extends Record<string, any> = any> {
 
     temp.innerHTML = html;
 
-    Object.entries(this.children).forEach(([_, component]) => {
+    /* Object.entries(this.children).forEach(([_, component]) => {
       const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
 
       if (!stub) {
@@ -152,6 +168,29 @@ class Block<P extends Record<string, any> = any> {
       component.getContent()?.append(...Array.from(stub.childNodes));
 
       stub.replaceWith(component.getContent()!);
+    });*/
+
+    Object.values(this.children).forEach((child) => {
+      if (Array.isArray(child)) {
+        for (let i = 0; i < child.length; i++) {
+          const stub = temp.content.querySelector<HTMLTemplateElement>(
+            `[data-id="${child[i].id}"]`,
+          );
+          if (!stub) {
+            return;
+          }
+          child[i].getContent()?.append(...Array.from(stub.childNodes));
+          stub.replaceWith(child[i].getContent());
+        }
+      } else {
+        const stub = temp.content.querySelector(`[data-id="${child.id}"]`);
+
+        if (!stub) {
+          return;
+        }
+        child.getContent()?.append(...Array.from(stub.childNodes));
+        stub.replaceWith(child.getContent());
+      }
     });
 
     return temp.content;
