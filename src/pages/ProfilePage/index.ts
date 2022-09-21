@@ -7,8 +7,13 @@ import { InputContainer } from "../../components/InputContainer";
 import styles from "../../styles.module.scss";
 import { LinkBtn } from "../../components/LinkBtn";
 import { Link } from "../../components/Link";
+import { Avatar } from "../../components/Avatar";
 
 class ProfilePageBase extends Block {
+  constructor(props: any) {
+    super(props);
+  }
+
   init() {
     AuthController.fetchUser();
 
@@ -91,6 +96,10 @@ class ProfilePageBase extends Block {
         },
       },
     });
+
+    this.children.avatar = new Avatar({
+      avatar: this.props.avatar,
+    });
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
@@ -100,6 +109,7 @@ class ProfilePageBase extends Block {
     this.children.inputSName.setProps({ value: newProps.second_name });
     this.children.inputDName.setProps({ value: newProps.display_name });
     this.children.inputPhone.setProps({ value: newProps.phone });
+    this.children.avatar.setProps({ avatar: newProps.avatar });
 
     return true;
   }

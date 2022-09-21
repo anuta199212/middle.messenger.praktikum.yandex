@@ -1,4 +1,10 @@
-import API, { PasswordData, UserAPI, UserData, UserId } from "../api/UserAPI";
+import API, {
+  AvatarData,
+  PasswordData,
+  UserAPI,
+  UserData,
+  UserId,
+} from "../api/UserAPI";
 import store from "../utils/Store";
 import router from "../utils/Router";
 
@@ -13,7 +19,7 @@ export class UserController {
     try {
       await this.api.profile(data);
 
-      router.go("/profile");
+      router.go("/settings");
     } catch (e: any) {
       console.error(e);
     }
@@ -23,7 +29,17 @@ export class UserController {
     try {
       await this.api.password(data);
 
-      router.go("/profile");
+      router.go("/settings");
+    } catch (e: any) {
+      console.error(e);
+    }
+  }
+
+  async avatar(data: AvatarData) {
+    try {
+      await this.api.avatar(data);
+
+      router.go("/settings");
     } catch (e: any) {
       console.error(e);
     }

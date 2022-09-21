@@ -1,25 +1,25 @@
 <main>
   <div class="{{styles.form-panel}}">
     <div class="{{styles.form-panel-wrapper}}">
-      <form class="{{styles.form}}">
+      <!--<form class="{{styles.form}}">-->
 
-        <span class="{{styles.form-title}}">
-          Загрузите файл
-        </span>
+      <span class="{{styles.form-title}}">
+        Загрузите файл
+      </span>
 
-        <div
-          class="{{styles.text-align-center}}
-            {{styles.p-t-15}}
-            {{styles.p-b-50}}"
-        >
-          <a class="{{styles.text-primary}}" href="">
-            Выбрать файл на компьютере
-          </a>
-        </div>
+      <div
+        class="{{styles.text-align-center}} {{styles.p-t-15}} {{styles.p-b-50}}"
+      >
 
-        {{{button}}}
+        <a class="{{styles.text-primary}}" href="#">
+          Выбрать файл на компьютере
+        </a>
+        <input id="avatar" type="file" name="avatar" accept="image/*" />
+      </div>
 
-      </form>
+      {{{button}}}
+
+      <!--</form>-->
     </div>
   </div>
 </main>

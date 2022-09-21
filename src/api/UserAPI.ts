@@ -28,6 +28,10 @@ export interface PasswordData {
   password: string;
 }
 
+export interface AvatarData {
+  avatar: string;
+}
+
 export class UserAPI extends BaseAPI {
   constructor() {
     super("/user");
@@ -43,6 +47,10 @@ export class UserAPI extends BaseAPI {
 
   password(data: PasswordData) {
     return this.http.put("/password", data);
+  }
+
+  avatar(data: AvatarData) {
+    return this.http.put("/profile/avatar", data, "multipart/form-data");
   }
 
   read: undefined;

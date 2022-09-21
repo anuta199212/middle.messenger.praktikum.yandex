@@ -9,7 +9,7 @@ const navigation = {
       title: "Регистрация",
     },
     {
-      url: "/profile",
+      url: "/settings",
       title: "Профиль",
     },
     {

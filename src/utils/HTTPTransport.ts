@@ -1,43 +1,55 @@
 export enum Method {
-  Get = 'Get',
-  Post = 'Post',
-  Put = 'Put',
-  Patch = 'Patch',
-  Delete = 'Delete'
+  Get = "Get",
+  Post = "Post",
+  Put = "Put",
+  Patch = "Patch",
+  Delete = "Delete",
 }
 
 type Options = {
   method: Method;
   data?: any;
+  type?: string;
 };
 
 export default class HTTPTransport {
-  static API_URL = 'https://ya-praktikum.tech/api/v2';
+  static API_URL = "https://ya-praktikum.tech/api/v2";
   protected endpoint: string;
 
   constructor(endpoint: string) {
     this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  public get<Response>(path = '/'): Promise<Response> {
+  public get<Response>(path = "/"): Promise<Response> {
     return this.request<Response>(this.endpoint + path);
   }
 
-  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
+  public post<Response = void>(
+    path: string,
+    data?: unknown,
+  ): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
       method: Method.Post,
       data,
     });
   }
 
-  public put<Response = void>(path: string, data: unknown): Promise<Response> {
+  public put<Response = void>(
+    path: string,
+    data: unknown,
+    type?: string,
+  ): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
       method: Method.Put,
       data,
+      type,
     });
   }
 
-  public patch<Response = void>(path: string, data: unknown): Promise<Response> {
+  public patch<Response = void>(
+    path: string,
+    data: unknown,
+  ): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
       method: Method.Patch,
       data,
@@ -50,15 +62,17 @@ export default class HTTPTransport {
     });
   }
 
-  private request<Response>(url: string, options: Options = {method: Method.Get}): Promise<Response> {
-    const {method, data} = options;
+  private request<Response>(
+    url: string,
+    options: Options = { method: Method.Get },
+  ): Promise<Response> {
+    const { method, data, type = "application/json" } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open(method, url);
 
       xhr.onreadystatechange = (e) => {
-
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status < 400) {
             resolve(xhr.response);
@@ -68,19 +82,24 @@ export default class HTTPTransport {
         }
       };
 
-      xhr.onabort = () => reject({reason: 'abort'});
-      xhr.onerror = () => reject({reason: 'network error'});
-      xhr.ontimeout = () => reject({reason: 'timeout'});
+      if (!(data instanceof FormData))
+        xhr.setRequestHeader("Content-type", type);
 
-      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onabort = () => reject({ reason: "abort" });
+      xhr.onerror = () => reject({ reason: "network error" });
+      xhr.ontimeout = () => reject({ reason: "timeout" });
+
+      //xhr.setRequestHeader("Content-Type", "application/json");
 
       xhr.withCredentials = true;
-      xhr.responseType = 'json';
+      xhr.responseType = "json";
 
       if (method === Method.Get || !data) {
         xhr.send();
-      } else {
+      } else if (type === "application/json") {
         xhr.send(JSON.stringify(data));
+      } else {
+        xhr.send(data);
       }
     });
   }

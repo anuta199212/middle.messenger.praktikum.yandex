@@ -13,7 +13,7 @@ export class AuthController {
     try {
       await this.api.signin(data);
 
-      router.go("/profile");
+      router.go("/chats-list");
     } catch (e: any) {
       console.error(e);
     }
@@ -25,7 +25,7 @@ export class AuthController {
 
       await this.fetchUser();
 
-      router.go("/profile");
+      router.go("/chats-list");
     } catch (e: any) {
       console.error(e.message);
     }
