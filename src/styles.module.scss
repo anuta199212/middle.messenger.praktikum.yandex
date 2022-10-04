@@ -1,4 +1,5 @@
 @import "./pages/ChatListPage/chatList.module.scss";
+@import "./components/MessageContainer/messageContainer.module.scss";
 
 * {
   margin: 0px;
@@ -36,6 +37,7 @@ html {
   margin: 0;
   padding: 0;
   list-style-type: none;
+  margin-top: -10%;
 }
 
 .menu-item {

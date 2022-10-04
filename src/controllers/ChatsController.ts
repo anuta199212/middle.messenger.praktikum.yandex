@@ -21,7 +21,7 @@ export class UserController {
 
       await this.api.read();
 
-      router.go("/chats-list");
+      router.go("/messenger");
     } catch (e: any) {
       console.error(e);
     }
@@ -31,7 +31,7 @@ export class UserController {
     try {
       await this.api.deletechats(data);
 
-      router.go("/chats-list");
+      router.go("/messenger");
     } catch (e: any) {
       console.error(e);
     }
@@ -41,7 +41,7 @@ export class UserController {
     try {
       await this.api.adduserschats(data);
 
-      router.go("/chats-list");
+      router.go("/messenger");
     } catch (e: any) {
       console.error(e);
     }

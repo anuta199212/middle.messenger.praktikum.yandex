@@ -53,7 +53,7 @@ const navigation = {
       title: "Очистить историю чата",
     },
     {
-      url: "/chats-list",
+      url: "/messenger",
       title: "Выбрать чат",
     },
   ],

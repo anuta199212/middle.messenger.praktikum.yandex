@@ -1,6 +1,10 @@
 <form class="{{styles.form}}">
   <nav class="{{styles.menu}}">
-	{{{buttonCreate}}}
+
+    <div style="position: sticky; top: 90%; margin-left: 80%;">
+      {{{buttonCreate}}}
+    </div>
+
     <ul class="{{styles.menu-list}}">
       <li>
         <div class="{{styles.chat-app-title-container}}">
@@ -9,7 +13,8 @@
           </div>
           <button class="{{styles.chat-btn-more}}">
             <i
-              class="fa-solid fa-ellipsis-vertical {{styles.chat-btn-more-color}}"
+              class="fa-solid fa-ellipsis-vertical
+                {{styles.chat-btn-more-color}}"
             ></i>
           </button>
         </div>
@@ -19,13 +24,13 @@
           <input placeholder="Поиск" class="{{styles.chat-search-input}}" />
         </div>
       </li>
-	{{{chatsList}}}
+      {{{chatsList}}}
     </ul>
+    <!--style="position: sticky;width:100%;top: 90%; margin-left: 80%;"-->
 
   </nav>
 
-
-  <div class="{{styles.chat-message-container}}">
+  <!--<div class="{{styles.chat-message-container}}">
     {{#each messageList.message}}
     <div>
     {{#if incoming}}
@@ -42,9 +47,13 @@
 	  </div>
     {{/each}}
   </div>
+  -->
+  <div class="{{styles.chat-message-container}}">
+    {{{messageContainer}}}
+  </div>
 
   <div class="{{styles.chat-message-send-container}}">
-   {{{inputMessage}}}
+    {{{inputMessage}}}
 
     {{{sendButton}}}
   </div>

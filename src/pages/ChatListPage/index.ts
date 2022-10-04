@@ -1,7 +1,7 @@
 import Block from "../../utils/Block";
 import template from "./chatList.hbs";
 import * as chatListStyles from "./chatList.module.scss";
-import { SendButton } from "../../components/CircleButton";
+import { CircleButton } from "../../components/CircleButton";
 import { InputMessageContainer } from "../../components/InputMessageContainer";
 import { validateForm } from "../../utils/validateForm";
 import styles from "../../styles.module.scss";
@@ -10,6 +10,8 @@ import ChatsController from "../../controllers/ChatsController";
 import Router from "../../utils/Router";
 import { Chats } from "../../api/ChatsAPI";
 import { ChatsListItem } from "../../components/ChatsListItem";
+import { ChatList } from "../../components/ChatList";
+import { MessageContainer } from "../../components/MessageContainer";
 
 interface MessageItemType {
   incoming: boolean;
@@ -49,9 +51,10 @@ export class ChatListPageBase extends Block {
   init() {
     ChatsController.getchats(); //TODO
 
-    this.children.sendButton = new SendButton({
+    this.children.sendButton = new CircleButton({
       styles: chatListStyles,
       icon: "fa-solid fa-arrow-right",
+      color: "primary",
       events: {
         click: (event: SubmitEvent) => {
           validateForm(event, this.children);
@@ -68,9 +71,10 @@ export class ChatListPageBase extends Block {
       disabled: "",
     });
 
-    this.children.buttonCreate = new SendButton({
+    this.children.buttonCreate = new CircleButton({
       styles: chatListStyles,
       icon: "fa-solid fa-plus",
+      color: "primary",
       events: {
         click: (event: Event) => {
           Router.go("/chats-create");
@@ -79,23 +83,40 @@ export class ChatListPageBase extends Block {
       },
     });
 
-    const chatList = this.props.chats?.map((chatsItem: Chats) => {
+    /*const chatList = this.props.chats?.map((chatsItem: Chats) => {
       return new ChatsListItem({
         styles: styles,
         chats: chatsItem,
-        event: { click: () => {} },
+        event: {
+          click: (event: Event) => {
+            this.openChats(event);
+          },
+        },
       });
     });
 
-    this.children.chatsList = chatList;
+    this.children.chatsList = chatList ?? [];*/
 
-    console.log("chats:", this.props.chats);
-    console.log("chatList:", this.children.chatsList);
+    this.children.chatsList = new ChatList({
+      chats: this.props.chats,
+      styles: styles,
+    });
+    console.log(this.children.chatsList);
+
+    this.children.messageContainer = new MessageContainer({
+      styles: styles,
+      activeChat: this.props.activeChat,
+    });
   }
 
   componentDidUpdate(oldProps: any, newProps: any): boolean {
+    this.children.messageContainer.setProps({
+      activeChat: newProps.activeChat,
+    });
     return true;
   }
+
+  openChats(event: Event) {}
 
   render() {
     return this.compile(template, { ...this.props, styles });
@@ -103,7 +124,7 @@ export class ChatListPageBase extends Block {
 }
 
 const withChats = withStore((state) => {
-  return { chats: state.chats };
+  return { chats: state.chats, activeChat: state.activeChat };
 });
 
 export const ChatListPage = withChats(ChatListPageBase);

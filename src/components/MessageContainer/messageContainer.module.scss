@@ -1,0 +1,40 @@
+.message-container-header {
+  width: 100%;
+  display: flex;
+}
+
+.message-container-header-table {
+  width: 100%;
+  background-color: var(--main-bg-color);
+  border-collapse: collapse;
+  border-bottom: solid 1px;
+  border-color: var(--chat-input-bg-color);
+}
+
+.message-container-header-avatar {
+  width: 6%;
+  text-align: center;
+  padding: 8px;
+}
+
+.message-container-header-title {
+  padding: 8px;
+}
+
+.message-container-header-button {
+  width: 5%;
+  padding: 8px;
+}
+
+.empty-chat {
+  height: 100%;
+  position: relative;
+}
+
+.empty-chat-p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}

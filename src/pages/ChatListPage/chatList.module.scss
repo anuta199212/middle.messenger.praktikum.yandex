@@ -39,9 +39,11 @@
   align-items: center;
   float: right;
 }
+
 .chat-message-container {
   margin-left: 25%;
-  padding: 8px;
+  width: 75%;
+  padding: 0px;
   position: fixed;
   overflow: auto;
   height: 80%;
@@ -114,9 +116,10 @@
   border-radius: 50%;
   color: white;
   background-color: var(--btn-bg-color);
-  position: fixed;
+  //position: fixed;
   margin-left: 8px;
 }
+
 .chat-btn-more {
   width: 32px;
   height: 32px;
