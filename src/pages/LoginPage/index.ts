@@ -9,7 +9,6 @@ import * as inputStyles from "../../components/InputField/inputField.module.scss
 import * as buttonStyles from "../../components/Button/button.module.scss";
 import { Button } from "../../components/Button";
 import { validateForm } from "../../utils/validateForm";
-import { navigation } from "../../data/navigation";
 
 export class LoginPage extends Block {
   constructor() {

@@ -1,6 +1,7 @@
 import API, {
   AvatarData,
   PasswordData,
+  SearchUserData,
   UserAPI,
   UserData,
   UserId,
@@ -49,6 +50,12 @@ export class UserController {
     const user = await this.api.get(data);
 
     store.set("user", user);
+  }
+
+  async searchuser(data: SearchUserData) {
+    const autocompleteList = await this.api.searchuser(data);
+
+    store.set("autocompleteList", autocompleteList);
   }
 }
 

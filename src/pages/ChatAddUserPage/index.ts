@@ -7,19 +7,34 @@ import { InputContainer } from "../../components/InputContainer";
 import { validateForm } from "../../utils/validateForm";
 import styles from "../../styles.module.scss";
 import { withStore } from "../../utils/Store";
+import ChatsController from "../../controllers/ChatsController";
+import { AddUsersData } from "../../api/ChatsAPI";
+import UserController from "../../controllers/UserController";
+import { SearchUserData } from "../../api/UserAPI";
 
 class ChatAddUserPageBase extends Block {
+  constructor(props: any) {
+    super(props);
+  }
+
   init() {
     this.children.button = new Button({
       text: "Добавить",
       styles: buttonStyles,
       events: {
         click: (event: SubmitEvent) => {
-          validateForm(event, this.children);
+          event.preventDefault();
+          const { formData, result } = validateForm(event, this.children);
+
+          if (result.isValid) {
+            //TODO
+            UserController.searchuser(formData as unknown as SearchUserData);
+          }
         },
       },
     });
 
+    //TODO inputField - event
     this.children.input = new InputContainer({
       styles: inputStyles,
       name: "login",
@@ -27,27 +42,19 @@ class ChatAddUserPageBase extends Block {
       type: "text",
       required: true,
       disabled: "",
+      autoComplete: true,
+      autocompleteFunc: (value: string) =>
+        UserController.searchuser({ login: value } as SearchUserData),
     });
   }
-
-  /*componentDidMount() {
-    const form = this.element?.querySelector("form");
-
-    if (form) {
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-        console.log(Object.fromEntries(formData.entries()));
-      });
-    }
-  }*/
 
   render() {
     return this.compile(template, { ...this.props, styles });
   }
 }
 
-const withChats = withStore((state) => ({ ...state.chats }));
+const withChats = withStore((state) => ({
+  chats: state.chats,
+}));
 
 export const ChatAddUserPage = withChats(ChatAddUserPageBase);

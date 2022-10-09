@@ -41,8 +41,8 @@ const navigation = {
       title: "Создать чат",
     },
     {
-      url: "/chats-delete",
-      title: "Удалить чат с пользователем",
+      url: "/chats-delete-user",
+      title: "Удалить пользователя",
     },
     {
       url: "/chats-add-user",
