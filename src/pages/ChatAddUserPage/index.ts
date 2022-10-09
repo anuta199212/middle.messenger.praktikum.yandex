@@ -11,6 +11,7 @@ import ChatsController from "../../controllers/ChatsController";
 import { AddUsersData } from "../../api/ChatsAPI";
 import UserController from "../../controllers/UserController";
 import { SearchUserData } from "../../api/UserAPI";
+import { AutocompleteInputField } from "../../components/AutocompleteInputField";
 
 class ChatAddUserPageBase extends Block {
   constructor(props: any) {
@@ -26,9 +27,13 @@ class ChatAddUserPageBase extends Block {
           event.preventDefault();
           const { formData, result } = validateForm(event, this.children);
 
+          console.log(formData);
+
+          const reqData = this.prepairRequestData();
+
           if (result.isValid) {
             //TODO
-            UserController.searchuser(formData as unknown as SearchUserData);
+            ChatsController.adduserschats(reqData);
           }
         },
       },
@@ -51,10 +56,33 @@ class ChatAddUserPageBase extends Block {
   render() {
     return this.compile(template, { ...this.props, styles });
   }
+
+  prepairRequestData() {
+    console.log(this.props.activeChat);
+
+    const reqData: AddUsersData = {
+      users: [],
+      chatId: this.props.activeChat?.chatId,
+    };
+
+    const input = this.children.input;
+
+    Object.entries(input.children).forEach(([key1, value1]) => {
+      if (key1 == "input") {
+        const { fieldId } = (value1 as AutocompleteInputField).getData();
+
+        reqData.users.push(parseInt(fieldId));
+      }
+    });
+
+    console.log(reqData);
+    return reqData;
+  }
 }
 
 const withChats = withStore((state) => ({
   chats: state.chats,
+  activeChat: state.activeChat,
 }));
 
 export const ChatAddUserPage = withChats(ChatAddUserPageBase);

@@ -107,6 +107,8 @@ export class ChatListPageBase extends Block {
       styles: styles,
       activeChat: this.props.activeChat,
     });
+
+    console.log(this.props.chats);
   }
 
   componentDidUpdate(oldProps: any, newProps: any): boolean {

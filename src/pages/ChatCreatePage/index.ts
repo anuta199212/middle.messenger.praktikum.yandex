@@ -8,7 +8,7 @@ import { validateForm } from "../../utils/validateForm";
 import styles from "../../styles.module.scss";
 import { withStore } from "../../utils/Store";
 import ChatsController from "../../controllers/ChatsController";
-import { CreateData } from "../../api/ChatsAPI";
+import { AddUsersData, CreateData } from "../../api/ChatsAPI";
 
 class ChatCreatePageBase extends Block {
   init() {
@@ -16,12 +16,24 @@ class ChatCreatePageBase extends Block {
       text: "Создать",
       styles: buttonStyles,
       events: {
-        click: (event: SubmitEvent) => {
+        click: async (event: SubmitEvent) => {
           const { formData, result } = validateForm(event, this.children);
 
           if (result.isValid) {
             //TODO
-            ChatsController.createchats(formData as unknown as CreateData);
+            await ChatsController.createchats(
+              formData as unknown as CreateData,
+            );
+
+            await ChatsController.getcurrentchats({
+              limit: 1,
+              title: formData.title,
+            });
+
+            await ChatsController.adduserschats({
+              users: [this.props.user.id],
+              chatId: this.props.createdChat[0].id,
+            });
           }
         },
       },
@@ -42,6 +54,10 @@ class ChatCreatePageBase extends Block {
   }
 }
 
-const withChats = withStore((state) => ({ ...state.chats }));
+const withChats = withStore((state) => ({
+  chats: state.chats,
+  user: state.user,
+  createdChat: state.createdChat,
+}));
 
 export const ChatCreatePage = withChats(ChatCreatePageBase);

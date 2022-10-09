@@ -18,12 +18,21 @@ export interface AddUsersData {
   chatId: number;
 }
 
+export interface DeleteUsersData {
+  users: number[];
+  chatId: number;
+}
+
 export interface Chats {
   id: number;
   title: string;
   avatar: string | null;
   unread_count: number;
   last_message: { user: User; time: string; content: string } | null;
+}
+export interface GetCurentData {
+  limit: number;
+  title: string;
 }
 
 export class ChatsAPI extends BaseAPI {
@@ -43,8 +52,8 @@ export class ChatsAPI extends BaseAPI {
     return this.http.post("", data);
   }
 
-  deletechats(data: DeleteData) {
-    return this.http.post("", data);
+  deleteuserschats(data: DeleteUsersData) {
+    return this.http.delete("/users", data);
   }
 
   getuserchats(data: GetUserData) {
@@ -52,7 +61,11 @@ export class ChatsAPI extends BaseAPI {
   }
 
   adduserschats(data: AddUsersData) {
-    return this.http.post("/users", data);
+    return this.http.put("/users", data);
+  }
+
+  getcurrentchats(data: GetCurentData) {
+    return this.http.get(`?limit=${data.limit}&title=${data.title}`);
   }
 
   // read = undefined;

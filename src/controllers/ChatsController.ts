@@ -3,6 +3,8 @@ import API, {
   ChatsAPI,
   CreateData,
   DeleteData,
+  DeleteUsersData,
+  GetCurentData,
   GetUserData,
 } from "../api/ChatsAPI";
 import store from "../utils/Store";
@@ -27,9 +29,9 @@ export class UserController {
     }
   }
 
-  async deletechats(data: DeleteData) {
+  async deleteuserschats(data: DeleteUsersData) {
     try {
-      await this.api.deletechats(data);
+      await this.api.deleteuserschats(data);
 
       router.go("/messenger");
     } catch (e: any) {
@@ -52,6 +54,13 @@ export class UserController {
     const chats = await this.api.read();
 
     store.set("chats", chats);
+  }
+
+  async getcurrentchats(data: GetCurentData) {
+    //TODO
+    const createdChat = await this.api.getcurrentchats(data);
+
+    store.set("createdChat", createdChat); //TODO
   }
 
   async getchatsusers(data: GetUserData) {

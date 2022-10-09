@@ -2,7 +2,7 @@ import Block from "../../utils/Block";
 import template from "./inputContainer.hbs";
 import * as inputStyles from "../InputField/inputField.module.scss";
 import { InputField } from "../InputField";
-import { AutocompleteInputField } from "../AutocomleteInputField";
+import { AutocompleteInputField } from "../AutocompleteInputField";
 
 interface InputContainerProps {
   styles: Record<string, string>;

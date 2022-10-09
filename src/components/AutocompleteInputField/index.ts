@@ -4,6 +4,7 @@ import template from "./autocompleteInputField.hbs";
 import store from "../../utils/Store";
 
 interface AutocompleteInputFieldProps {
+  id?: string;
   styles: Record<string, string>;
   name: string;
   type: string;
@@ -25,7 +26,7 @@ interface AutocompleteInputFieldProps {
 export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
   constructor(props: AutocompleteInputFieldProps) {
     super(props);
-    //this.props.value = "";
+    this.props.id = "";
     this.props.events = {
       focus: () => this.onFocus(),
       blur: () => this.onBlur(),
@@ -39,8 +40,12 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
 
   currentFocus = -1;
 
-  public getData(): { fieldName: string; fieldValue: string } {
-    return { fieldName: this.props.name, fieldValue: this.props.value };
+  public getData(): { fieldName: string; fieldValue: string; fieldId: string } {
+    return {
+      fieldName: this.props.name,
+      fieldValue: this.props.value,
+      fieldId: this.props.id ?? "",
+    };
   }
 
   public validate(): {
@@ -107,7 +112,6 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     }
 
     const autocompleteStoreList = store.getState().autocompleteList;
-    console.log("autocompleteList:", autocompleteStoreList);
 
     const autocompleteList: { id: number; login: string }[] = [];
 
@@ -117,7 +121,6 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
       });
     }
 
-    console.log("onInput");
     let b: HTMLElement;
     let i: number;
     const val = value;
@@ -149,15 +152,25 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
 
       b.innerHTML = arr[i].login;
       /*insert a input field that will hold the current array item's value:*/
-      b.innerHTML += "<input type='hidden' value='" + arr[i].login + "'>";
+      b.innerHTML +=
+        "<input id='" +
+        arr[i].id +
+        "' type='hidden' value='" +
+        arr[i].login +
+        "'>";
       /*execute a function when someone clicks on the item value (DIV element):*/
 
       const inp = event.target;
       const closeAllLists = this.closeAllLists;
 
+      const self = this;
       b.addEventListener("click", function (e) {
         /*insert the value for the autocomplete text field:*/
         inp.value = this.getElementsByTagName("input")[0].value;
+
+        self.props.id = this.getElementsByTagName("input")[0].id;
+        self.props.value = this.getElementsByTagName("input")[0].value;
+
         /*close the list of autocompleted values,
 				(or any other open lists of autocompleted values:*/
         closeAllLists();
@@ -167,8 +180,6 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
   }
 
   private onKeyDown(event: any) {
-    console.log("onKeyDown");
-
     const x = document.getElementById(this.id + "autocomplete-list");
     let y: any;
     if (x) {
@@ -203,7 +214,6 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     });*/
 
   closeAllLists(elmnt?: any) {
-    console.log("closeAllLists");
     /*close all autocomplete lists in the document,
 	except the one passed as an argument:*/
     const x = document.getElementsByClassName("autocomplete-items");
@@ -216,8 +226,6 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
   }
 
   addActive(y: any) {
-    console.log("addActive");
-
     /*a function to classify an item as "active":*/
     if (!y) return false;
     /*start by removing the "active" class on all items:*/
@@ -229,8 +237,6 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
   }
 
   removeActive(y: any) {
-    console.log("removeActive");
-
     /*a function to remove the "active" class from all autocomplete items:*/
     for (let i = 0; i < y.length; i++) {
       y[i].classList.remove("autocomplete-active");
@@ -245,8 +251,6 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
   }
 
   render() {
-    console.log("render");
-
     return this.compile(template, this.props);
   }
 }
