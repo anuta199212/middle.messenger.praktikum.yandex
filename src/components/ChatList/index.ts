@@ -2,21 +2,19 @@ import Block from "../../utils/Block";
 import template from "./chatList.hbs";
 import { Chats } from "../../api/ChatsAPI";
 import { ChatsListItem } from "../ChatsListItem";
+import { withStore } from "../../utils/Store";
+import styles from "../../styles.module.scss";
+//TODO styles
 
-interface ChatListPageProps {
-  chats: Chats[];
-  styles: Record<string, string>;
-}
-
-export class ChatList extends Block<ChatListPageProps> {
-  constructor(props: ChatListPageProps) {
+export class ChatListBase extends Block {
+  constructor(props: any) {
     super(props);
   }
 
   init() {
     const chatList = this.props.chats?.map((chatsItem: Chats) => {
       return new ChatsListItem({
-        styles: this.props.styles,
+        styles: styles,
         chats: chatsItem,
       });
     });
@@ -25,6 +23,12 @@ export class ChatList extends Block<ChatListPageProps> {
   }
 
   render() {
-    return this.compile(template, this.props); //TODO
+    return this.compile(template, { ...this.props, styles }); //TODO
   }
 }
+
+const withChats = withStore((state) => {
+  return { chats: [...(state.chats || [])] }; //TODO
+});
+
+export const ChatList = withChats(ChatListBase);

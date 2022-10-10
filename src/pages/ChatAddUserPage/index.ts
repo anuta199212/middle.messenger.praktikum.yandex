@@ -27,9 +27,11 @@ class ChatAddUserPageBase extends Block {
           event.preventDefault();
           const { formData, result } = validateForm(event, this.children);
 
-          console.log(formData);
+          //console.log(formData);
 
           const reqData = this.prepairRequestData();
+
+          console.log(reqData);
 
           if (result.isValid) {
             //TODO
@@ -58,8 +60,6 @@ class ChatAddUserPageBase extends Block {
   }
 
   prepairRequestData() {
-    console.log(this.props.activeChat);
-
     const reqData: AddUsersData = {
       users: [],
       chatId: this.props.activeChat?.chatId,
@@ -75,7 +75,6 @@ class ChatAddUserPageBase extends Block {
       }
     });
 
-    console.log(reqData);
     return reqData;
   }
 }

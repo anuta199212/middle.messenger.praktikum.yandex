@@ -78,7 +78,6 @@ export class ChatListPageBase extends Block {
       events: {
         click: (event: Event) => {
           Router.go("/chats-create");
-          console.log(event);
         },
       },
     });
@@ -97,24 +96,19 @@ export class ChatListPageBase extends Block {
 
     this.children.chatsList = chatList ?? [];*/
 
-    this.children.chatsList = new ChatList({
-      chats: this.props.chats,
-      styles: styles,
-    });
-    console.log(this.children.chatsList);
+    this.children.chatsList = new ChatList({});
 
     this.children.messageContainer = new MessageContainer({
       styles: styles,
       activeChat: this.props.activeChat,
     });
-
-    console.log(this.props.chats);
   }
 
   componentDidUpdate(oldProps: any, newProps: any): boolean {
     this.children.messageContainer.setProps({
       activeChat: newProps.activeChat,
     });
+
     return true;
   }
 

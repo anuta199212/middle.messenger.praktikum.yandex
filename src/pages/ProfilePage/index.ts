@@ -87,6 +87,11 @@ class ProfilePageBase extends Block {
       to: "/password-edit",
     });
 
+    this.children.linkChats = new Link({
+      label: "К списку чатов",
+      to: "/messenger",
+    });
+
     this.children.linkLogout = new LinkBtn({
       label: "Выйти",
       to: "/login",

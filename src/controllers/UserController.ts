@@ -53,6 +53,8 @@ export class UserController {
   }
 
   async searchuser(data: SearchUserData) {
+    store.set("autocompleteList", []);
+
     const autocompleteList = await this.api.searchuser(data);
 
     store.set("autocompleteList", autocompleteList);

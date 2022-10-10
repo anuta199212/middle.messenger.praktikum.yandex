@@ -2,6 +2,7 @@ import Block from "../../utils/Block";
 import { fieldsRules } from "../../data/fieldsRules";
 import template from "./autocompleteInputField.hbs";
 import store from "../../utils/Store";
+import * as autocompleteInputStyles from "../AutocompleteInputField/autocompleteInputField.module.scss";
 
 interface AutocompleteInputFieldProps {
   id?: string;
@@ -32,9 +33,6 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
       blur: () => this.onBlur(),
       input: (event: any) => this.onInput(event),
       keydown: (event: any) => this.onKeyDown(event),
-      /*change: (event: any) => {
-        this.onChange(event);
-      },*/
     };
   }
 
@@ -102,10 +100,11 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     tooltip.innerText = result.message.tooltipMessage;
   }
 
+  // TODO comments
   private async onInput(event: any) {
     const value = (event.target as HTMLInputElement).value;
 
-    // this.setProps({ ...this.props, value: value });
+    this.closeAllLists();
 
     if (value) {
       await this.props.autocompleteFunc(value);
@@ -121,33 +120,36 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
       });
     }
 
-    let b: HTMLElement;
-    let i: number;
-    const val = value;
-
-    // const arr = this.props.autocompleteList;
     const arr = autocompleteList;
 
     if (!arr) {
       return;
     }
     /*close any already open lists of autocompleted values*/
-    this.closeAllLists();
-    if (!val) {
+
+    if (!value) {
       return false;
     }
     this.currentFocus = -1;
     /*create a DIV element that will contain the items (values):*/
     const a = document.createElement("DIV");
     a.setAttribute("id", this.id + "autocomplete-list");
-    a.setAttribute("class", "autocomplete-items");
+
+    a.setAttribute("class", autocompleteInputStyles["autocomplete-items"]);
     /*append the DIV element as a child of the autocomplete container:*/
     event.target.parentNode?.appendChild(a);
     /*for each item in the array...*/
-    for (i = 0; i < arr.length; i++) {
+
+    const self = this;
+
+    document.addEventListener("click", function (e) {
+      self.closeAllLists(e.target);
+    });
+
+    for (let i = 0; i < arr.length; i++) {
       /*check if the item starts with the same letters as the text field value:*/
       /*create a DIV element for each matching element:*/
-      b = document.createElement("DIV");
+      const b = document.createElement("DIV");
       /*make the matching letters bold:*/
 
       b.innerHTML = arr[i].login;
@@ -160,27 +162,25 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
         "'>";
       /*execute a function when someone clicks on the item value (DIV element):*/
 
-      const inp = event.target;
-      const closeAllLists = this.closeAllLists;
-
-      const self = this;
       b.addEventListener("click", function (e) {
-        /*insert the value for the autocomplete text field:*/
-        inp.value = this.getElementsByTagName("input")[0].value;
+        event.target.value = this.getElementsByTagName("input")[0].value;
 
         self.props.id = this.getElementsByTagName("input")[0].id;
         self.props.value = this.getElementsByTagName("input")[0].value;
 
-        /*close the list of autocompleted values,
-				(or any other open lists of autocompleted values:*/
-        closeAllLists();
+        self.closeAllLists();
       });
       a.appendChild(b);
     }
+
+    event.target.focus();
   }
 
   private onKeyDown(event: any) {
-    const x = document.getElementById(this.id + "autocomplete-list");
+    const x = document.getElementsByClassName(
+      autocompleteInputStyles["autocomplete-items"],
+    )[0];
+
     let y: any;
     if (x) {
       y = x.getElementsByTagName("div");
@@ -216,7 +216,9 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
   closeAllLists(elmnt?: any) {
     /*close all autocomplete lists in the document,
 	except the one passed as an argument:*/
-    const x = document.getElementsByClassName("autocomplete-items");
+    const x = document.getElementsByClassName(
+      autocompleteInputStyles["autocomplete-items"],
+    );
     const inp = document.getElementsByName("login")[0];
     for (let i = 0; i < x.length; i++) {
       if (elmnt != x[i] && elmnt != inp) {
@@ -233,13 +235,15 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     if (this.currentFocus >= y.length) this.currentFocus = 0;
     if (this.currentFocus < 0) this.currentFocus = y.length - 1;
     /*add class "autocomplete-active":*/
-    y[this.currentFocus].classList.add("autocomplete-active");
+    y[this.currentFocus].classList.add(
+      autocompleteInputStyles["autocomplete-active"],
+    );
   }
 
   removeActive(y: any) {
     /*a function to remove the "active" class from all autocomplete items:*/
     for (let i = 0; i < y.length; i++) {
-      y[i].classList.remove("autocomplete-active");
+      y[i].classList.remove(autocompleteInputStyles["autocomplete-active"]);
     }
   }
 
