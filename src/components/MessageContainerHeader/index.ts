@@ -8,6 +8,9 @@ interface MessageContainerHeaderProps {
   styles: Record<string, string>;
   title: string;
   avatar: string;
+  events: {
+    click: (event: any) => void;
+  };
 }
 
 export class MessageContainerHeader extends Block<MessageContainerHeaderProps> {

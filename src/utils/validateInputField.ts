@@ -30,15 +30,18 @@ export function validateInputField(children: Record<string, Block>): {
   };
 
   Object.entries(children).forEach(([, value]) => {
-    Object.entries(value.children).forEach(([key1, value1]) => {
-      if (key1 == "input") {
-        const { fieldName, fieldValue } = (value1 as InputField).getData();
+    if (value.children) {
+      Object.entries(value.children).forEach(([key1, value1]) => {
+        console.log("key1:", key1, "value1:", value);
+        if (key1 == "input") {
+          const { fieldName, fieldValue } = (value1 as InputField).getData();
 
-        formData[fieldName] = fieldValue;
+          formData[fieldName] = fieldValue;
 
-        result = (value1 as InputField).validate();
-      }
-    });
+          result = (value1 as InputField).validate();
+        }
+      });
+    }
   });
 
   return { formData: formData, result: result };

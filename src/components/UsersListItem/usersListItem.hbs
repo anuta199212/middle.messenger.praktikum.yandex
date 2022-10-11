@@ -1,0 +1,36 @@
+<li class="{{styles.a}}">
+  <a href="#" class="{{styles.menu-item}}">
+    <table class="{{styles.width-100}}">
+      <tr>
+        <td
+          class="{{styles.text-align-center}} {{styles.width-45}}"
+        >
+          <img
+		  src="{{img}}"
+		  	{{#if avatar}}
+            src="{{avatar}}"
+			{{/if}}
+            alt="Avatar"
+            class="{{styles.chat-avatar-img}}"
+          />
+
+        </td>
+        <td class="{{styles.user-title}} ">
+			{{#if user.display_name}}
+          {{user.display_name}}
+		  {{else}}
+		  {{user.first_name}} {{user.second_name}}
+		  {{/if}}
+
+        </td>
+        <td
+          class="{{styles.text-align-right}}
+            {{styles.width-35}}"
+        >
+        <i  name="deleteUser" class="fa-regular fa-trash-can"></i>
+        </td>
+      </tr>
+
+    </table>
+  </a>
+</li>

@@ -5,13 +5,13 @@ import { CircleButton } from "../../components/CircleButton";
 import { InputMessageContainer } from "../../components/InputMessageContainer";
 import { validateForm } from "../../utils/validateForm";
 import styles from "../../styles.module.scss";
-import store, { withStore } from "../../utils/Store";
+import { withStore } from "../../utils/Store";
 import ChatsController from "../../controllers/ChatsController";
 import Router from "../../utils/Router";
 import { Chats } from "../../api/ChatsAPI";
-import { ChatsListItem } from "../../components/ChatsListItem";
 import { ChatList } from "../../components/ChatList";
 import { MessageContainer } from "../../components/MessageContainer";
+import { UsersList } from "../../components/UsersList";
 
 interface MessageItemType {
   incoming: boolean;
@@ -82,26 +82,14 @@ export class ChatListPageBase extends Block {
       },
     });
 
-    /*const chatList = this.props.chats?.map((chatsItem: Chats) => {
-      return new ChatsListItem({
-        styles: styles,
-        chats: chatsItem,
-        event: {
-          click: (event: Event) => {
-            this.openChats(event);
-          },
-        },
-      });
-    });
-
-    this.children.chatsList = chatList ?? [];*/
-
     this.children.chatsList = new ChatList({});
 
     this.children.messageContainer = new MessageContainer({
       styles: styles,
       activeChat: this.props.activeChat,
     });
+
+    // this.children.usersList = new UsersList({});
   }
 
   componentDidUpdate(oldProps: any, newProps: any): boolean {
@@ -109,10 +97,12 @@ export class ChatListPageBase extends Block {
       activeChat: newProps.activeChat,
     });
 
+    this.children.usersList = new UsersList({});
+
     return true;
   }
 
-  openChats(event: Event) {}
+  componentDidMount(): void {}
 
   render() {
     return this.compile(template, { ...this.props, styles });
@@ -120,7 +110,11 @@ export class ChatListPageBase extends Block {
 }
 
 const withChats = withStore((state) => {
-  return { chats: state.chats, activeChat: state.activeChat };
+  return {
+    chats: state.chats,
+    activeChat: state.activeChat,
+    users: state.users,
+  };
 });
 
 export const ChatListPage = withChats(ChatListPageBase);

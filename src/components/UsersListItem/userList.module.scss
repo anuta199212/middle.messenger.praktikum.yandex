@@ -1,0 +1,23 @@
+.users-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-size: 0;
+}
+
+.a {
+  font-size: 13px;
+}
+
+.user-title {
+  display: block;
+  font-family: Inter;
+  font-size: 13px;
+  color: var(--chat-title-color);
+  text-align: left;
+  margin-top: 10px;
+}
+
+.user-avatar-img {
+  width: 40px;
+}
