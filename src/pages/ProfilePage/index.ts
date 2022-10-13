@@ -104,6 +104,7 @@ class ProfilePageBase extends Block {
 
     this.children.avatar = new Avatar({
       avatar: this.props.avatar,
+      styles: styles,
     });
   }
 

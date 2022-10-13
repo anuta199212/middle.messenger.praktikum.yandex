@@ -34,38 +34,6 @@
     {{{messageContainer}}}
   </div>
 
-  <div class="{{styles.chat-message-send-container}}">
-    {{{inputMessage}}}
-
-    {{{sendButton}}}
-  </div>
-
-  <div name="chatsUsersModal" class="{{styles.modal}}">
-    <div class="{{styles.modal-content}}">
-
-      <div class="{{styles.modal-header}}">
-        <span class="{{styles.close}}" name="closeChatsUsersModal"><i
-            class="fa-solid fa-xmark"
-          ></i></span>
-
-        <p>{{activeChat.title}}</p>
-        <p class="{{styles.modal-text}}">
-          {{users.length}}
-          участников(-а) чата
-        </p>
-      </div>
-
-      <div class="{{styles.modal-body}}">
-        <!-- {{#each users}}
-          <span class="{{../styles.close}}">
-            <i class="fa-regular fa-trash-can"></i>
-          </span>
-          <p>{{this.display_name}} {{this.id}} </p>
-        {{/each}}-->
-        {{{usersList}}}
-      </div>
-    </div>
-
-  </div>
+  {{{usersListModal}}}
 
 </form>

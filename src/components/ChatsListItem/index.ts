@@ -2,15 +2,16 @@ import Block from "../../utils/Block";
 import template from "./chatsListItem.hbs";
 import { Chats } from "../../api/ChatsAPI";
 import img from "/static/account-circle.svg";
-import store from "../../utils/Store";
+import store, { withStore } from "../../utils/Store";
 
 interface ChatsListItemProps {
+  activeChat: { chatId: number; title: string; avatar: string; userId: number };
   styles: Record<string, string>;
   chats: Chats;
   events?: { click: (event: Event) => void };
 }
 
-export class ChatsListItem extends Block<ChatsListItemProps> {
+class ChatsListItemBase extends Block<ChatsListItemProps> {
   constructor(props: ChatsListItemProps) {
     super({
       ...props,
@@ -34,6 +35,18 @@ export class ChatsListItem extends Block<ChatsListItemProps> {
   init() {}
 
   render() {
-    return this.compile(template, { ...this.props, img });
+    return this.compile(template, {
+      ...this.props,
+      img,
+      isActive: this.props.chats.id === this.props.activeChat?.chatId,
+    });
   }
 }
+
+const withChats = withStore((state) => {
+  return {
+    activeChat: state.activeChat,
+  };
+});
+
+export const ChatsListItem = withChats(ChatsListItemBase);

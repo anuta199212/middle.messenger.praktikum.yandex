@@ -1,10 +1,10 @@
 import Block from "../../utils/Block";
 import { PropsWithRouter, withRouter } from "../../hocs/withRouter";
 import template from "./avatar.hbs";
-import styles from "../../styles.module.scss";
 
 interface AvatarProps extends PropsWithRouter {
   avatar: string;
+  styles: Record<string, string>;
   events?: {
     click: () => void;
   };
@@ -25,7 +25,7 @@ class BaseAvatar extends Block<AvatarProps> {
   }
 
   render() {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, this.props);
   }
 }
 

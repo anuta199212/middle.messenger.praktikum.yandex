@@ -1,28 +1,19 @@
 import Block from "../../utils/Block";
-import { PropsWithRouter, withRouter } from "../../hocs/withRouter";
-import template from "./link.hbs";
+import template from "./userListModal.hbs";
 import styles from "../../styles.module.scss";
+import { UsersList } from "../UsersList";
+import { withStore } from "../../utils/Store";
 
-interface LinkProps extends PropsWithRouter {
-  to: string;
-  label: string;
-  events?: {
-    click: () => void;
-  };
-}
-
-class BaseLink extends Block<LinkProps> {
-  constructor(props: LinkProps) {
+class UsersListModalBase extends Block {
+  constructor(props: any) {
     super({
       ...props,
-      events: {
-        click: () => this.navigate(),
-      },
+      title: props.activeChat?.title ?? "",
+      usersCount: props.users?.length ?? 0,
     });
   }
-
-  navigate() {
-    this.props.router.go(this.props.to);
+  protected init(): void {
+    this.children.usersList = new UsersList({});
   }
 
   render() {
@@ -30,4 +21,11 @@ class BaseLink extends Block<LinkProps> {
   }
 }
 
-export const Link = withRouter(BaseLink);
+const withUsers = withStore((state) => {
+  return {
+    activeChat: state.activeChat,
+    users: state.users,
+  };
+});
+
+export const UsersListModal = withUsers(UsersListModalBase);

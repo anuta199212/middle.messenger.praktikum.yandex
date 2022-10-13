@@ -12,6 +12,7 @@ import { Chats } from "../../api/ChatsAPI";
 import { ChatList } from "../../components/ChatList";
 import { MessageContainer } from "../../components/MessageContainer";
 import { UsersList } from "../../components/UsersList";
+import { UsersListModal } from "../../components/UserListModal";
 
 interface MessageItemType {
   incoming: boolean;
@@ -51,26 +52,6 @@ export class ChatListPageBase extends Block {
   init() {
     ChatsController.getchats(); //TODO
 
-    this.children.sendButton = new CircleButton({
-      styles: chatListStyles,
-      icon: "fa-solid fa-arrow-right",
-      color: "primary",
-      events: {
-        click: (event: SubmitEvent) => {
-          validateForm(event, this.children);
-        },
-      },
-    });
-
-    this.children.inputMessage = new InputMessageContainer({
-      styles: chatListStyles,
-      name: "message",
-      text: "Сообщение",
-      type: "text",
-      required: true,
-      disabled: "",
-    });
-
     this.children.buttonCreate = new CircleButton({
       styles: chatListStyles,
       icon: "fa-solid fa-plus",
@@ -90,6 +71,11 @@ export class ChatListPageBase extends Block {
     });
 
     // this.children.usersList = new UsersList({});
+
+    // this.children.usersListModal = new UsersListModal({
+    // title: this.props.activeChat?.title ?? "",
+    // usersCount: this.props.users?.length ?? 0,
+    // });
   }
 
   componentDidUpdate(oldProps: any, newProps: any): boolean {
@@ -97,12 +83,10 @@ export class ChatListPageBase extends Block {
       activeChat: newProps.activeChat,
     });
 
-    this.children.usersList = new UsersList({});
+    this.children.usersListModal = new UsersListModal({});
 
     return true;
   }
-
-  componentDidMount(): void {}
 
   render() {
     return this.compile(template, { ...this.props, styles });
@@ -113,7 +97,7 @@ const withChats = withStore((state) => {
   return {
     chats: state.chats,
     activeChat: state.activeChat,
-    users: state.users,
+    // users: state.users,
   };
 });
 

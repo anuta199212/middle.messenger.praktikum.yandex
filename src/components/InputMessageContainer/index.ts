@@ -17,6 +17,10 @@ export class InputMessageContainer extends Block<InputMessageContainerProps> {
     super(props);
   }
 
+  setValue(value: string) {
+    return ((this.element as HTMLInputElement).value = value);
+  }
+
   init() {
     this.children.input = new InputField({
       styles: this.props.styles,

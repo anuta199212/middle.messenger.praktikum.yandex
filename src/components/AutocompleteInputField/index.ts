@@ -96,8 +96,10 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
       this.props.name + "ErrTooltip",
     )[0];
 
-    message.innerText = result.message.errorMessage;
-    tooltip.innerText = result.message.tooltipMessage;
+    if (message && tooltip) {
+      message.innerText = result.message.errorMessage;
+      tooltip.innerText = result.message.tooltipMessage;
+    }
   }
 
   // TODO comments

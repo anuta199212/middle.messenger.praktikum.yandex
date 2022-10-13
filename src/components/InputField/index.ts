@@ -88,8 +88,10 @@ export class InputField extends Block<InputFieldProps> {
       this.props.name + "ErrTooltip",
     )[0];
 
-    message.innerText = result.message.errorMessage;
-    tooltip.innerText = result.message.tooltipMessage;
+    if (message && tooltip) {
+      message.innerText = result.message.errorMessage;
+      tooltip.innerText = result.message.tooltipMessage;
+    }
   }
 
   render() {

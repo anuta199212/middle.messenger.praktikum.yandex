@@ -16,8 +16,14 @@
   color: var(--chat-title-color);
   text-align: left;
   margin-top: 10px;
+  padding-left: 8px;
 }
 
-.user-avatar-img {
-  width: 40px;
+.avatar {
+  display: block;
+  text-align: center;
+}
+
+.avatar-img {
+  width: 35px;
 }

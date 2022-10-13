@@ -12,6 +12,16 @@ export class ChatListBase extends Block {
   }
 
   init() {
+    this.createChatsList();
+  }
+
+  protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+    this.createChatsList();
+
+    return true;
+  }
+
+  private createChatsList() {
     const chatList = this.props.chats?.map((chatsItem: Chats) => {
       return new ChatsListItem({
         styles: styles,
@@ -28,7 +38,10 @@ export class ChatListBase extends Block {
 }
 
 const withChats = withStore((state) => {
-  return { chats: [...(state.chats || [])] }; //TODO
+  return {
+    chats: [...(state.chats || [])],
+    isLoaded: state.chatsAreLoaded,
+  };
 });
 
 export const ChatList = withChats(ChatListBase);

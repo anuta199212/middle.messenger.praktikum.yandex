@@ -1,5 +1,21 @@
-<div class="{{styles.text-align-left}} {{styles.p-t-15}}">
-  <span class="{{styles.link}}">
-    {{label}}
-  </span>
+<div name="chatsUsersModal" class="{{styles.modal}}">
+  <div class="{{styles.modal-content}}">
+
+    <div class="{{styles.modal-header}}">
+      <span class="{{styles.close}}" name="closeChatsUsersModal"><i
+          class="fa-solid fa-xmark"
+        ></i></span>
+
+      <p>{{title}}</p>
+      <p class="{{styles.modal-text}}">
+        {{usersCount}}
+        участников(-а) чата
+      </p>
+    </div>
+
+    <div class="{{styles.modal-body}}">
+      {{{usersList}}}
+    </div>
+  </div>
+
 </div>

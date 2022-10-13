@@ -9,6 +9,7 @@ import API, {
 } from "../api/ChatsAPI";
 import store from "../utils/Store";
 import router from "../utils/Router";
+import MessagesController from "./MessagesController";
 
 export class UserController {
   private readonly api: ChatsAPI;
@@ -21,7 +22,9 @@ export class UserController {
     try {
       await this.api.createchats(data);
 
-      await this.api.read();
+      //await this.api.read();
+
+      this.getchats();
 
       router.go("/messenger");
     } catch (e: any) {
@@ -51,9 +54,27 @@ export class UserController {
 
   async getchats() {
     //TODO
-    const chats = await this.api.read();
+    try {
+      store.set("chatsAreLoaded", false);
 
-    store.set("chats", chats);
+      const chats = await this.api.read();
+
+      chats.map(async (chat) => {
+        const token = await this.getToken(chat.id);
+
+        await MessagesController.connect(chat.id, token);
+      });
+
+      store.set("chats", chats);
+    } catch (e) {
+      store.set("chatsError", e);
+    }
+
+    store.set("chatsAreLoaded", true);
+  }
+
+  getToken(id: number) {
+    return this.api.getToken(id);
   }
 
   async getcurrentchats(data: GetCurentData) {

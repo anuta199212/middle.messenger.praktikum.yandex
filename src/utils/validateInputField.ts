@@ -32,7 +32,6 @@ export function validateInputField(children: Record<string, Block>): {
   Object.entries(children).forEach(([, value]) => {
     if (value.children) {
       Object.entries(value.children).forEach(([key1, value1]) => {
-        console.log("key1:", key1, "value1:", value);
         if (key1 == "input") {
           const { fieldName, fieldValue } = (value1 as InputField).getData();
 

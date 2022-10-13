@@ -1,9 +1,11 @@
 import Block from "../../utils/Block";
 import template from "./usersListItem.hbs";
-import { Chats, DeleteUsersData } from "../../api/ChatsAPI";
+import { DeleteUsersData } from "../../api/ChatsAPI";
 import img from "/static/account-circle.svg";
-import store, { withStore } from "../../utils/Store";
+import store from "../../utils/Store";
 import ChatsController from "../../controllers/ChatsController";
+import { Avatar } from "../Avatar";
+import * as userListStyles from "./userList.module.scss";
 
 interface UsersListItemProps {
   styles: Record<string, string>;
@@ -18,6 +20,7 @@ interface UsersListItemProps {
     phone: string;
     role: string;
   };
+
   events?: { click: (event: any) => void };
 }
 
@@ -45,7 +48,7 @@ export class UsersListItem extends Block<UsersListItemProps> {
 
             ChatsController.deleteuserschats(reqData);
 
-            //ChatsController.getchatsusers({ id: chatId });
+            ChatsController.getchatsusers({ id: chatId });
           }
 
           // console.log(this.props.users);
@@ -55,11 +58,14 @@ export class UsersListItem extends Block<UsersListItemProps> {
   }
 
   init() {
+    /*this.children.avatar = new Avatar({
+      avatar: this.props.user.avatar,
+      styles: userListStyles,
+    });*/
     //this.children.deleteUser
   }
 
   render() {
-    console.log("test");
-    return this.compile(template, { ...this.props, img });
+    return this.compile(template, { ...this.props, img, userListStyles });
   }
 }

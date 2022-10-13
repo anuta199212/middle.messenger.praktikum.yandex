@@ -47,6 +47,11 @@
 .chat-avatar-img {
   width: 40px;
 }
+
+.chat-active {
+  background-color: var(--menu-item-hover-bg-color);
+}
+
 .chat-badge {
   font-size: 11px;
   width: 23px;
@@ -59,6 +64,7 @@
   align-items: center;
   float: right;
 }
+
 .chat-message-container {
   margin-left: 25%;
   width: 75%;
@@ -68,50 +74,7 @@
   height: 80%;
   top: 0;
 }
-.chat-message-outgoing {
-  display: block;
-  font-family: Inter;
-  font-size: 13px;
-  color: var(--chat-title-color);
-  text-align: left;
-  border-radius: 5px;
-  width: 60%;
-  padding: 12px;
-  margin: 0px 0px 8px 0px;
-  float: right;
-  background-color: var(--chat-incoming-color);
-  &::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-}
-.chat-message-incoming {
-  display: block;
-  font-family: Inter;
-  font-size: 13px;
-  color: var(--chat-title-color);
-  text-align: left;
-  border-radius: 5px;
-  width: 60%;
-  padding: 12px;
-  margin: 0px 0px 8px 0px;
-  float: left;
-  background-color: var(--chat-outgoing-color);
-  &::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-}
-.chat-message-send-container {
-  margin-left: 25%;
-  padding: 8px;
-  display: block;
-  position: fixed;
-  bottom: 1px;
-  width: 75%;
-}
+
 .input-field {
   width: 90%;
   background-color: var(--chat-input-bg-color);
