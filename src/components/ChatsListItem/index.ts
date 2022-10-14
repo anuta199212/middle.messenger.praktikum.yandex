@@ -3,12 +3,14 @@ import template from "./chatsListItem.hbs";
 import { Chats } from "../../api/ChatsAPI";
 import img from "/static/account-circle.svg";
 import store, { withStore } from "../../utils/Store";
+import { convertTime } from "../../utils/convertTime";
 
 interface ChatsListItemProps {
   activeChat: { chatId: number; title: string; avatar: string; userId: number };
   styles: Record<string, string>;
   chats: Chats;
   events?: { click: (event: Event) => void };
+  time?: string;
 }
 
 class ChatsListItemBase extends Block<ChatsListItemProps> {
@@ -24,15 +26,14 @@ class ChatsListItemBase extends Block<ChatsListItemProps> {
             userId: store.getState().user?.id, //TODO
           };
           store.set("activeChat", activeChat);
-
-          // console.log("activeChat:", store.getState().activeChat);
-          //setTimeout(() => MessagesController.openWSS(), 100)} //TODO
         },
       },
     });
   }
 
-  init() {}
+  init() {
+    this.props.time = convertTime(this.props.chats.last_message?.time ?? "");
+  }
 
   render() {
     return this.compile(template, {

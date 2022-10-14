@@ -26,12 +26,10 @@ export class MessageContainerBase extends Block<MessageContainerProps> {
 
   init() {
     this.children.header = new MessageContainerHeader({
+      activeChatId: this.props.activeChat?.chatId,
       styles: this.props.styles,
       title: this.props.activeChat?.title ?? "",
       avatar: this.props.activeChat?.avatar ?? "",
-      events: {
-        click: (event) => this.openModal(event),
-      },
     });
 
     this.children.sendButton = new CircleButton({
@@ -72,36 +70,9 @@ export class MessageContainerBase extends Block<MessageContainerProps> {
     this.children.messages = this.createMessages(this.props);
   }
 
-  async openModal(event: any) {
-    if (event.target.getAttribute("name") === "circleButton") {
-      return;
-    }
-
-    await ChatsController.getchatsusers({ id: this.props.activeChat?.chatId });
-
-    const modal = document.getElementsByName("chatsUsersModal")[0];
-
-    if (modal) {
-      modal.classList.toggle(this.props.styles.show);
-
-      const span = document.getElementsByName("closeChatsUsersModal")[0];
-
-      const self = this;
-
-      span.onclick = function () {
-        modal.classList.toggle(self.props.styles.show);
-      };
-
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.classList.toggle(self.props.styles.show);
-        }
-      };
-    }
-  }
-
   protected componentDidUpdate(oldProps: any, newProps: any) {
     this.children.header.setProps({
+      activeChatId: newProps.activeChat?.chatId,
       title: newProps.activeChat?.title,
       avatar: newProps.activeChat?.avatar,
     });
@@ -129,14 +100,14 @@ const withActiveChatMessages = withStore((state) => {
     return {
       messages: [],
       activeChat: undefined,
-      userId: state.user.id,
+      userId: state.user?.id,
     };
   }
 
   return {
     messages: (state.messages || {})[activeChatId] || [],
     activeChat: state.activeChat,
-    userId: state.user.id,
+    userId: state.user?.id,
   };
 });
 

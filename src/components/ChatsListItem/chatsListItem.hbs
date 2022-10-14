@@ -24,16 +24,16 @@
             {{styles.text-align-right}}
             {{styles.width-35}}"
         >
-          {{chats.lastMessage.time}}
+          {{time}}
         </td>
       </tr>
       <tr>
         <td class="{{styles.chat-message-text}} {{styles.text-align-left}}">
-          {{chats.lastMessage.content}}
+          {{chats.last_message.content}}
         </td>
         <td>
-          {{#if chats.unReadCount}}
-            <span class="{{styles.chat-badge}}">{{chats.unReadCount}}</span>
+          {{#if chats.unread_count}}
+            <span class="{{styles.chat-badge}}">{{chats.unread_count}}</span>
           {{/if}}
         </td>
       </tr>

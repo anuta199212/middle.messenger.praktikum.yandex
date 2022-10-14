@@ -12,7 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
-    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
     "@parcel/transformer-css-experimental": "2.3.2",
     "@parcel/transformer-sass": "2.7.0",
     "@typescript-eslint/eslint-plugin": "5.33.0",
@@ -20,12 +20,12 @@
     "eslint": "8.22.0",
     "express": "4.18.1",
     "parcel": "2.7.0",
-    "stylelint-config-standard": "^28.0.0",
-    "stylelint-config-standard-scss": "^5.0.0",
+    "stylelint-config-standard": "28.0.0",
+    "stylelint-config-standard-scss": "5.0.0",
     "typescript": "4.7.4",
     "typescript-plugin-css-modules": "3.4.0",
-    "stylelint": "^14.11.0",
-    "stylelint-scss": "^4.3.0"
+    "stylelint": "14.11.0",
+    "stylelint-scss": "4.3.0"
   },
   "targets": {
     "modern": {
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "eslint-plugin-editorconfig": "4.0.2",
-    "express-history-api-fallback": "^2.2.1",
+    "express-history-api-fallback": "2.2.1",
     "handlebars": "4.7.7",
     "nanoid": "4.0.0"
   }

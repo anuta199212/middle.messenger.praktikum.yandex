@@ -1,6 +1,7 @@
 .message-container-header {
   width: 100%;
   display: flex;
+  border-bottom: 1px solid var(--input-color);
 }
 
 .message-container-header-table {
@@ -53,6 +54,10 @@
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+}
+
+.float-right {
+  float: right;
 }
 
 .dropdown {

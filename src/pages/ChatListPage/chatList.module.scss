@@ -21,7 +21,7 @@
 :root {
   --chat-title-color: #252525;
   --chat-badge-primary-color: #3369f3;
-  --chat-input-bg-color: #efefef;
+  --chat-input-bg-color: #fbfbfb;
   --chat-outgoing-color: #f8f8f8;
   --chat-incoming-color: #e4edfd;
   --chat-btn-more-color: #999999;
@@ -78,6 +78,7 @@
 .input-field {
   width: 90%;
   background-color: var(--chat-input-bg-color);
+  border: 1px solid var(--input-color);
   border-radius: 5px;
   height: 32px;
   padding: 8px;
@@ -101,7 +102,9 @@
 }
 .chat-btn-more-color {
   color: var(--chat-btn-more-color);
+  background-color: var(--main-bg-color);
 }
+
 .chat-app-title-container {
   padding: 15px;
 }
@@ -125,6 +128,7 @@
   border-radius: 5px;
   height: 32px;
   padding: 8px;
+  border: 1px solid var(--input-color);
 }
 .width-100 {
   width: 100%;

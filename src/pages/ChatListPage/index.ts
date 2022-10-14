@@ -32,8 +32,8 @@ interface LastMessageType {
 interface ItemType {
   avatar: Record<string, string>;
   name: string;
-  lastMessage: LastMessageType;
-  unReadCount: number;
+  last_message: LastMessageType;
+  unread_count: number;
 }
 
 interface MessageListType {
@@ -52,13 +52,30 @@ export class ChatListPageBase extends Block {
   init() {
     ChatsController.getchats(); //TODO
 
-    this.children.buttonCreate = new CircleButton({
+    this.children.buttonMore = new CircleButton({
       styles: chatListStyles,
-      icon: "fa-solid fa-plus",
-      color: "primary",
+      icon: "fa-solid fa-ellipsis-vertical",
+      color: "grey",
       events: {
         click: (event: Event) => {
-          Router.go("/chats-create");
+          event.preventDefault();
+          console.log("button more clicked");
+
+          document
+            .getElementsByName("mainDropdown")[0]
+            ?.classList.toggle(styles.show);
+
+          document
+            .getElementsByName("toProfile")[0]
+            ?.addEventListener("click", () => {
+              Router.go("/settings");
+            });
+
+          document
+            .getElementsByName("createChats")[0]
+            ?.addEventListener("click", () => {
+              Router.go("/chats-create");
+            });
         },
       },
     });
@@ -69,13 +86,6 @@ export class ChatListPageBase extends Block {
       styles: styles,
       activeChat: this.props.activeChat,
     });
-
-    // this.children.usersList = new UsersList({});
-
-    // this.children.usersListModal = new UsersListModal({
-    // title: this.props.activeChat?.title ?? "",
-    // usersCount: this.props.users?.length ?? 0,
-    // });
   }
 
   componentDidUpdate(oldProps: any, newProps: any): boolean {

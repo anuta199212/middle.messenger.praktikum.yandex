@@ -8,11 +8,16 @@ interface CircleButtonProps {
   events?: {
     click: (event: any) => void;
   };
+  isGrey?: boolean;
 }
 
 export class CircleButton extends Block<CircleButtonProps> {
   constructor(props: CircleButtonProps) {
     super(props);
+  }
+
+  protected init(): void {
+    this.props.isGrey = this.props.color === "grey" ? true : false;
   }
 
   render() {

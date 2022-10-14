@@ -1,9 +1,5 @@
 <form class="{{styles.form}}">
   <nav class="{{styles.menu}}">
-    <!--TODO-->
-    <div style="position: sticky; top: 90%; margin-left: 80%;">
-      {{{buttonCreate}}}
-    </div>
 
     <ul class="{{styles.menu-list}}">
       <li>
@@ -11,12 +7,20 @@
           <div class="{{styles.chat-app-title}}">
             MessageApp
           </div>
-          <button class="{{styles.chat-btn-more}}">
+          <!--<button class="{{styles.chat-btn-more}}">
             <i
               class="fa-solid fa-ellipsis-vertical
                 {{styles.chat-btn-more-color}}"
             ></i>
-          </button>
+          </button>-->
+
+          <div class="{{styles.dropdown}} {{styles.float-right}}">
+            {{{buttonMore}}}
+            <div name="mainDropdown" class="{{styles.dropdown-content}}">
+              <p name="toProfile">Профиль</p>
+              <p name="createChats">Создать новый чат</p>
+            </div>
+          </div>
         </div>
       </li>
       <li>

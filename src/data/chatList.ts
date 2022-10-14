@@ -5,29 +5,29 @@ const chatList = {
     {
       avatar: img,
       name: "Иван Иванов",
-      lastMessage: {
+      last_message: {
         text: "Lorem Ipsum is simply...",
         time: "20:00",
       },
-      unReadCount: 2,
+      unread_count: 2,
     },
     {
       avatar: img,
       name: "Кино",
-      lastMessage: {
+      last_message: {
         text: "Lorem Ipsum is simply...",
         time: "20:00",
       },
-      unReadCount: 0,
+      unread_count: 0,
     },
     {
       avatar: img,
       name: "Татьяна",
-      lastMessage: {
+      last_message: {
         text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
         time: "20:00",
       },
-      unReadCount: 90,
+      unread_count: 90,
     },
   ],
 };

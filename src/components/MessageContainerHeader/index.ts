@@ -1,16 +1,16 @@
+import ChatsController from "../../controllers/ChatsController";
 import Block from "../../utils/Block";
 import Router from "../../utils/Router";
 import { CircleButton } from "../CircleButton";
+import { MessageContainerTitle } from "../MessageContainerTitle";
 import template from "./messageContainerHeader.hbs";
 import img from "/static/account-circle.svg";
 
 interface MessageContainerHeaderProps {
   styles: Record<string, string>;
+  activeChatId: any;
   title: string;
   avatar: string;
-  events: {
-    click: (event: any) => void;
-  };
 }
 
 export class MessageContainerHeader extends Block<MessageContainerHeaderProps> {
@@ -45,6 +45,52 @@ export class MessageContainerHeader extends Block<MessageContainerHeaderProps> {
         },
       },
     });
+
+    this.children.chatTitle = new MessageContainerTitle({
+      title: this.props.title ?? "",
+      events: {
+        click: (event) => this.openModal(event),
+      },
+    });
+  }
+
+  async openModal(event: any) {
+    if (event.target.getAttribute("name") === "circleButton") {
+      return;
+    }
+
+    await ChatsController.getchatsusers({ id: this.props.activeChatId });
+
+    const modal = document.getElementsByName("chatsUsersModal")[0];
+
+    if (modal) {
+      modal.classList.toggle(this.props.styles.show);
+
+      const span = document.getElementsByName("closeChatsUsersModal")[0];
+
+      const self = this;
+
+      span.onclick = function () {
+        modal.classList.toggle(self.props.styles.show);
+      };
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.classList.toggle(self.props.styles.show);
+        }
+      };
+    }
+  }
+
+  protected componentDidUpdate(
+    oldProps: MessageContainerHeaderProps,
+    newProps: MessageContainerHeaderProps,
+  ): boolean {
+    this.children.chatTitle.setProps({
+      title: newProps.title,
+    });
+
+    return true;
   }
 
   render() {
