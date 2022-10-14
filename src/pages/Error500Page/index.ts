@@ -7,7 +7,7 @@ export class Error500Page extends Block {
   init() {
     this.children.link = new Link({
       label: "Назад к чатам",
-      to: "/chat-list",
+      to: "/messenger",
     });
   }
 

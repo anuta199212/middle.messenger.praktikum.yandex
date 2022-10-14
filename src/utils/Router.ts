@@ -1,4 +1,4 @@
-import Block from './Block';
+import Block from "./Block";
 
 function isEqual(lhs: string, rhs: string): boolean {
   return lhs === rhs;
@@ -11,7 +11,7 @@ function render(query: string, block: Block) {
     throw new Error(`root not found by selector "${query}"`);
   }
 
-  root.innerHTML = '';
+  root.innerHTML = "";
 
   root.append(block.getContent()!);
 
@@ -24,8 +24,8 @@ class Route {
   constructor(
     private pathname: string,
     private readonly blockClass: typeof Block,
-    private readonly query: string) {
-  }
+    private readonly query: string,
+  ) {}
 
   leave() {
     this.block = null;
@@ -73,7 +73,7 @@ class Router {
       const target = event.currentTarget as Window;
 
       this._onRoute(target.location.pathname);
-    }
+    };
 
     this._onRoute(window.location.pathname);
   }
@@ -95,7 +95,7 @@ class Router {
   }
 
   public go(pathname: string) {
-    this.history.pushState({}, '', pathname);
+    this.history.pushState({}, "", pathname);
 
     this._onRoute(pathname);
   }
@@ -109,8 +109,8 @@ class Router {
   }
 
   private getRoute(pathname: string) {
-    return this.routes.find(route => route.match(pathname));
+    return this.routes.find((route) => route.match(pathname));
   }
 }
 
-export default new Router('#app');
+export default new Router("#app");
