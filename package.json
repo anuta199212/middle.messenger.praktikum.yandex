@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "parcel ./src/index.html -p 3000",
     "build": "parcel build ./src/index.html --no-cache --no-scope-hoist",
-    "start": "npm run build && node server.js"
+    "start": " node server.js"
   },
   "keywords": [],
   "author": "",

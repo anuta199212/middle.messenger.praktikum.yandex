@@ -22,6 +22,7 @@ export class UserController {
 
       router.go("/settings");
     } catch (e: any) {
+      alert(e.reason);
       console.error(e);
     }
   }
@@ -32,6 +33,7 @@ export class UserController {
 
       router.go("/settings");
     } catch (e: any) {
+      alert(e.reason);
       console.error(e);
     }
   }
@@ -42,6 +44,7 @@ export class UserController {
 
       router.go("/settings");
     } catch (e: any) {
+      alert(e.reason);
       console.error(e);
     }
   }

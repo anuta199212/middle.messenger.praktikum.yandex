@@ -28,6 +28,7 @@ export class UserController {
 
       router.go("/messenger");
     } catch (e: any) {
+      alert(e.reason);
       console.error(e);
     }
   }
@@ -38,6 +39,7 @@ export class UserController {
 
       router.go("/messenger");
     } catch (e: any) {
+      alert(e.reason);
       console.error(e);
     }
   }
@@ -48,6 +50,7 @@ export class UserController {
 
       router.go("/messenger");
     } catch (e: any) {
+      alert(e.reason);
       console.error(e);
     }
   }
@@ -66,8 +69,9 @@ export class UserController {
       });
 
       store.set("chats", chats);
-    } catch (e) {
-      store.set("chatsError", e);
+    } catch (e: any) {
+      alert(e.reason);
+      console.error(e);
     }
 
     store.set("chatsAreLoaded", true);
@@ -78,17 +82,22 @@ export class UserController {
   }
 
   async getcurrentchats(data: GetCurentData) {
-    //TODO
-    const createdChat = await this.api.getcurrentchats(data);
-
-    store.set("createdChat", createdChat); //TODO
+    try {
+      const createdChat = await this.api.getcurrentchats(data);
+      store.set("createdChat", createdChat);
+    } catch (e: any) {
+      alert(e.reason);
+    }
   }
 
   async getchatsusers(data: GetUserData) {
-    //TODO
-    const users = await this.api.getuserchats(data);
+    try {
+      const users = await this.api.getuserchats(data);
 
-    store.set("users", users);
+      store.set("users", users);
+    } catch (e: any) {
+      alert(e.reason);
+    }
   }
 }
 

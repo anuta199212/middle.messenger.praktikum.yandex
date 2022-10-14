@@ -15,6 +15,7 @@ export class AuthController {
 
       router.go("/messenger");
     } catch (e: any) {
+      alert(e.reason);
       console.error(e);
     }
   }
@@ -27,7 +28,8 @@ export class AuthController {
 
       router.go("/messenger");
     } catch (e: any) {
-      console.error(e.message);
+      alert(e.reason);
+      console.error(e);
     }
   }
 
@@ -43,7 +45,8 @@ export class AuthController {
 
       router.go("/");
     } catch (e: any) {
-      console.error(e.message);
+      alert(e.reason);
+      console.error(e);
     }
   }
 }
