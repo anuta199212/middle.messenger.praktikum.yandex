@@ -36,12 +36,6 @@ export class MessageContainerHeader extends Block<MessageContainerHeaderProps> {
             ?.addEventListener("click", () => {
               Router.go("/chats-add-user");
             });
-
-          document
-            .getElementsByName("deleteUser")[0]
-            ?.addEventListener("click", () => {
-              Router.go("/chats-delete-user");
-            });
         },
       },
     });
@@ -49,12 +43,14 @@ export class MessageContainerHeader extends Block<MessageContainerHeaderProps> {
     this.children.chatTitle = new MessageContainerTitle({
       title: this.props.title ?? "",
       events: {
-        click: (event) => this.openModal(event),
+        click: (event) => this.openUserListModal(event),
       },
     });
   }
 
-  async openModal(event: any) {
+  async openUserListModal(event: any) {
+    console.log("open userList Modal");
+
     if (event.target.getAttribute("name") === "circleButton") {
       return;
     }

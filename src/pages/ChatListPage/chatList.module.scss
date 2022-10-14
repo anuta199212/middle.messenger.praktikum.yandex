@@ -159,7 +159,8 @@
   padding: 0;
   border: 1px solid var(--chat-input-bg-color);
   border-radius: 5px;
-  width: 40%;
+  width: max-content;
+  min-width: 30%;
   min-height: 130px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
@@ -167,8 +168,15 @@
   animation-name: animatetop;
   animation-duration: 0.4s;
 }
-.close {
+.close-user-list-modal {
   float: right;
+  font-size: 13px;
+  cursor: pointer;
+}
+.close {
+  position: absolute;
+  padding-left: 95%;
+  padding-top: 2%;
   font-size: 13px;
   cursor: pointer;
 }

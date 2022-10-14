@@ -2,8 +2,6 @@ import Block from "../../utils/Block";
 import template from "./chatList.hbs";
 import * as chatListStyles from "./chatList.module.scss";
 import { CircleButton } from "../../components/CircleButton";
-import { InputMessageContainer } from "../../components/InputMessageContainer";
-import { validateForm } from "../../utils/validateForm";
 import styles from "../../styles.module.scss";
 import { withStore } from "../../utils/Store";
 import ChatsController from "../../controllers/ChatsController";
@@ -11,8 +9,9 @@ import Router from "../../utils/Router";
 import { Chats } from "../../api/ChatsAPI";
 import { ChatList } from "../../components/ChatList";
 import { MessageContainer } from "../../components/MessageContainer";
-import { UsersList } from "../../components/UsersList";
 import { UsersListModal } from "../../components/UserListModal";
+import { ChatCreateModal } from "../../components/ChatCreateModal";
+import { ChatAddUserModal } from "../../components/ChatAddUserModal";
 
 interface MessageItemType {
   incoming: boolean;
@@ -74,7 +73,8 @@ export class ChatListPageBase extends Block {
           document
             .getElementsByName("createChats")[0]
             ?.addEventListener("click", () => {
-              Router.go("/chats-create");
+              //Router.go("/chats-create");
+              this.openModal(event);
             });
         },
       },
@@ -95,7 +95,32 @@ export class ChatListPageBase extends Block {
 
     this.children.usersListModal = new UsersListModal({});
 
+    this.children.chatCreateModal = new ChatCreateModal({});
+
     return true;
+  }
+
+  async openModal(event: any) {
+    console.log("open chatCreateModal");
+    const modal = document.getElementsByName("chatCreateModal")[0];
+
+    console.log(modal);
+
+    if (modal) {
+      modal.classList.toggle(styles.show);
+
+      const span = document.getElementsByName("closeCreateModal")[0];
+
+      span.onclick = function () {
+        modal.classList.toggle(styles.show);
+      };
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.classList.toggle(styles.show);
+        }
+      };
+    }
   }
 
   render() {

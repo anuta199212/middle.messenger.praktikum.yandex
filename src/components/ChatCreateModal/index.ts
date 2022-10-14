@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import template from "./chatCreate.hbs";
+import template from "./chatCreateModal.hbs";
 import { Button } from "../../components/Button";
 import * as buttonStyles from "../../components/Button/button.module.scss";
 import * as inputStyles from "../../components/InputField/inputField.module.scss";
@@ -8,9 +8,9 @@ import { validateForm } from "../../utils/validateForm";
 import styles from "../../styles.module.scss";
 import { withStore } from "../../utils/Store";
 import ChatsController from "../../controllers/ChatsController";
-import { AddUsersData, CreateData } from "../../api/ChatsAPI";
+import { CreateData } from "../../api/ChatsAPI";
 
-class ChatCreatePageBase extends Block {
+class ChatCreateModalBase extends Block {
   init() {
     this.children.button = new Button({
       text: "Создать",
@@ -60,4 +60,4 @@ const withChats = withStore((state) => ({
   createdChat: state.createdChat,
 }));
 
-export const ChatCreatePage = withChats(ChatCreatePageBase);
+export const ChatCreateModal = withChats(ChatCreateModalBase);
