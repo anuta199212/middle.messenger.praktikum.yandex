@@ -11,7 +11,6 @@ import { ChatList } from "../../components/ChatList";
 import { MessageContainer } from "../../components/MessageContainer";
 import { UsersListModal } from "../../components/UserListModal";
 import { ChatCreateModal } from "../../components/ChatCreateModal";
-import { ChatAddUserModal } from "../../components/ChatAddUserModal";
 
 interface MessageItemType {
   incoming: boolean;

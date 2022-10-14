@@ -37,10 +37,6 @@ const navigation = {
       title: "Показать профиль",
     },
     {
-      url: "/chats-create",
-      title: "Создать чат",
-    },
-    {
       url: "/chats-delete-user",
       title: "Удалить пользователя",
     },

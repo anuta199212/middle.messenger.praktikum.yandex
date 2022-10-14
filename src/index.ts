@@ -10,7 +10,6 @@ import { PasswordEditPage } from "./pages/PasswordEditPage";
 import { Error500Page } from "./pages/Error500Page";
 import { Error404Page } from "./pages/Error404Page";
 import { ChatListPage } from "./pages/ChatListPage";
-import { ChatCreatePage } from "./pages/ChatCreatePage";
 import ChatsController from "./controllers/ChatsController";
 import { AvatarEditPage } from "./pages/AvatarEditPage";
 import { ChatAddUserPage } from "./pages/ChatAddUserPage";
@@ -25,10 +24,9 @@ window.addEventListener("DOMContentLoaded", async () => {
     .use(navigation.pages[5].url, PasswordEditPage)
     .use(navigation.pages[6].url, Error500Page)
     .use(navigation.pages[7].url, Error404Page)
-    .use(navigation.pages[9].url, ChatCreatePage)
-    .use(navigation.pages[10].url, ChatDeleteUserPage)
-    .use(navigation.pages[11].url, ChatAddUserPage)
-    .use(navigation.pages[13].url, ChatListPage);
+    .use(navigation.pages[9].url, ChatDeleteUserPage)
+    .use(navigation.pages[10].url, ChatAddUserPage)
+    .use(navigation.pages[12].url, ChatListPage);
 
   let isProtectedRoute = true;
 
