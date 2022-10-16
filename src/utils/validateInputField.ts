@@ -1,32 +1,30 @@
 import Block from "../utils/Block";
 import { InputField } from "../components/InputField";
 
+interface ValidateResultType {
+  isValid: boolean;
+  message: {
+    errorMessage: string;
+    tooltipMessage: string;
+  };
+  alertMessage?: string;
+}
+
 export function validateInputField(children: Record<string, Block>): {
   formData: {
     [key: string]: string;
   };
-  result: {
-    isValid: boolean;
-    message: {
-      errorMessage: string;
-      tooltipMessage: string;
-    };
-  };
+  result: ValidateResultType;
 } {
   const formData: Record<string, string> = {};
 
-  let result: {
-    isValid: boolean;
-    message: {
-      errorMessage: string;
-      tooltipMessage: string;
-    };
-  } = {
+  let result: ValidateResultType = {
     isValid: false,
     message: {
       errorMessage: "",
       tooltipMessage: "",
     },
+    alertMessage: "",
   };
 
   Object.entries(children).forEach(([, value]) => {
@@ -38,6 +36,9 @@ export function validateInputField(children: Record<string, Block>): {
           formData[fieldName] = fieldValue;
 
           result = (value1 as InputField).validate();
+          if (!result.isValid) {
+            result.alertMessage = fieldName + ", " + result.alertMessage;
+          }
         }
       });
     }

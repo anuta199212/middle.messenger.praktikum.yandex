@@ -35,8 +35,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     case navigation.pages[1].url:
       isProtectedRoute = false;
       break;
-    default:
-      Router.go(navigation.pages[7].url);
   }
 
   try {

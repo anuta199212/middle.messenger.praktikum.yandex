@@ -43,6 +43,8 @@ export class LoginPage extends Block {
 
           if (result.isValid) {
             AuthController.signin(formData as unknown as SigninData);
+          } else {
+            alert(result.alertMessage);
           }
         },
       },

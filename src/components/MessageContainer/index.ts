@@ -32,6 +32,7 @@ export class MessageContainerBase extends Block<MessageContainerProps> {
     });
 
     this.children.sendButton = new CircleButton({
+      name: "sendButton",
       styles: this.props.styles,
       icon: "fa-solid fa-arrow-right",
       color: "primary",
@@ -52,6 +53,8 @@ export class MessageContainerBase extends Block<MessageContainerProps> {
               this.props.activeChat.chatId,
               formData.message,
             );
+          } else {
+            alert(result.alertMessage);
           }
         },
       },

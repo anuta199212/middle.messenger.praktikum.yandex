@@ -33,6 +33,8 @@ class ChatCreateModalBase extends Block {
               users: [this.props.user.id],
               chatId: this.props.createdChat[0].id,
             });
+          } else {
+            alert(result.alertMessage);
           }
         },
       },

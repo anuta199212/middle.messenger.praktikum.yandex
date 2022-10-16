@@ -37,6 +37,8 @@ class ChatAddUserPageBase extends Block {
 
           if (result.isValid) {
             ChatsController.adduserschats(reqData);
+          } else {
+            alert(result.alertMessage);
           }
         },
       },

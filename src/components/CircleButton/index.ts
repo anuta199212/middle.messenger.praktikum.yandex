@@ -2,6 +2,7 @@ import Block from "../../utils/Block";
 import template from "./circleButton.hbs";
 
 interface CircleButtonProps {
+  name: string;
   styles: Record<string, string>;
   icon: string;
   color: "primary" | "grey";

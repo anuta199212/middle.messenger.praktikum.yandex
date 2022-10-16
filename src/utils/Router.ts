@@ -1,3 +1,4 @@
+import { navigation } from "../data/navigation";
 import Block from "./Block";
 
 export interface BlockConstructable<P = any> {
@@ -86,6 +87,7 @@ class Router {
     const route = this.getRoute(pathname);
 
     if (!route) {
+      this.go(navigation.pages[7].url);
       return;
     }
 

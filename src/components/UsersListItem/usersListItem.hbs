@@ -30,7 +30,7 @@
         </td>
 
         <td class="{{styles.text-align-right}} {{styles.width-35}}">
-          <i name="deleteUser" class="fa-regular fa-trash-can"></i>
+          {{#if isNotAdmin}}<i name="deleteUser" class="fa-regular fa-trash-can"></i>{{/if}}
         </td>
       </tr>
     </table>

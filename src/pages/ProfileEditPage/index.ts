@@ -36,6 +36,8 @@ class ProfileEditPageBase extends Block {
 
           if (result.isValid) {
             UserController.profile(formData as unknown as UserData);
+          } else {
+            alert(result.alertMessage);
           }
         },
       },

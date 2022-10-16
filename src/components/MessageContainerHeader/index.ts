@@ -20,6 +20,7 @@ export class MessageContainerHeader extends Block<MessageContainerHeaderProps> {
 
   init() {
     this.children.button = new CircleButton({
+      name: "chatMoreButton",
       styles: this.props.styles,
       icon: "fa-solid fa-ellipsis-vertical",
       color: "grey",
@@ -49,7 +50,7 @@ export class MessageContainerHeader extends Block<MessageContainerHeaderProps> {
   }
 
   async openUserListModal(event: any) {
-    if (event.target.getAttribute("name") === "circleButton") {
+    if (event.target.getAttribute("name") === "chatMoreButton") {
       return;
     }
 

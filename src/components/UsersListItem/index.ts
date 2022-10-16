@@ -20,6 +20,7 @@ interface UsersListItemProps {
     role: string;
   };
   events?: { click: (event: any) => void };
+  isNotAdmin: boolean;
 }
 
 export class UsersListItem extends Block<UsersListItemProps> {
@@ -48,6 +49,7 @@ export class UsersListItem extends Block<UsersListItemProps> {
           }
         },
       },
+      isNotAdmin: props.user.role !== "admin",
     });
   }
 

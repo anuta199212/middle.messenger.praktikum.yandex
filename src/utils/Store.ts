@@ -16,6 +16,7 @@ interface State {
   messages: Record<number, Message[]>;
   activeChat?: ActiveChat;
   chatsAreLoaded?: boolean;
+  createdChat: Chats;
 }
 
 export class Store extends EventBus {

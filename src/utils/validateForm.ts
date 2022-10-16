@@ -11,6 +11,8 @@ export function validateForm(
 
   if (!result.isValid) {
     console.log("Некорректно заполнены поля формы");
+    result.alertMessage =
+      "Некорректно заполнены поля: " + result.alertMessage?.slice(0, -2) + ".";
   }
 
   return { formData, result };

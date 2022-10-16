@@ -21,6 +21,8 @@ export class SignUpPage extends Block {
 
           if (result.isValid) {
             AuthController.signup(formData as unknown as SignupData);
+          } else {
+            alert(result.alertMessage);
           }
         },
       },

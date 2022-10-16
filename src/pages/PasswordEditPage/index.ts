@@ -21,6 +21,8 @@ class PasswordEditPageBase extends Block {
 
           if (result.isValid) {
             UserController.password(formData as unknown as PasswordData);
+          } else {
+            alert(result.alertMessage);
           }
         },
       },

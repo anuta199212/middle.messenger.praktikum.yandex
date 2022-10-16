@@ -26,6 +26,7 @@ export class ChatListPageBase extends Block {
     ChatsController.getchats();
 
     this.children.buttonMore = new CircleButton({
+      name: "moreBtn",
       styles: chatListStyles,
       icon: "fa-solid fa-ellipsis-vertical",
       color: "grey",

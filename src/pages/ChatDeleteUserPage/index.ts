@@ -37,6 +37,8 @@ class ChatDeleteUserPageBase extends Block {
 
           if (result.isValid) {
             ChatsController.deleteuserschats(reqData);
+          } else {
+            alert(result.alertMessage);
           }
         },
       },

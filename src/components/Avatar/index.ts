@@ -1,6 +1,7 @@
 import Block from "../../utils/Block";
 import { PropsWithRouter, withRouter } from "../../hocs/withRouter";
 import template from "./avatar.hbs";
+import img from "/static/account-circle.svg";
 
 interface AvatarProps extends PropsWithRouter {
   avatar: string;
@@ -25,7 +26,7 @@ class BaseAvatar extends Block<AvatarProps> {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, img });
   }
 }
 
