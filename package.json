@@ -56,6 +56,7 @@
     "eslint-plugin-editorconfig": "4.0.2",
     "express-history-api-fallback": "2.2.1",
     "handlebars": "4.7.7",
+    "highlight.js": "^10.4.1",
     "nanoid": "^3.3.3"
   }
 }
