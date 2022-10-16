@@ -127,20 +127,18 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     if (!arr) {
       return;
     }
-    /*close any already open lists of autocompleted values*/
 
     if (!value) {
       return false;
     }
     this.currentFocus = -1;
-    /*create a DIV element that will contain the items (values):*/
+
     const a = document.createElement("DIV");
     a.setAttribute("id", this.id + "autocomplete-list");
 
     a.setAttribute("class", autocompleteInputStyles["autocomplete-items"]);
-    /*append the DIV element as a child of the autocomplete container:*/
+
     event.target.parentNode?.appendChild(a);
-    /*for each item in the array...*/
 
     const self = this;
 
@@ -149,20 +147,16 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     });
 
     for (let i = 0; i < arr.length; i++) {
-      /*check if the item starts with the same letters as the text field value:*/
-      /*create a DIV element for each matching element:*/
       const b = document.createElement("DIV");
-      /*make the matching letters bold:*/
 
       b.innerHTML = arr[i].login;
-      /*insert a input field that will hold the current array item's value:*/
+
       b.innerHTML +=
         "<input id='" +
         arr[i].id +
         "' type='hidden' value='" +
         arr[i].login +
         "'>";
-      /*execute a function when someone clicks on the item value (DIV element):*/
 
       b.addEventListener("click", function (e) {
         event.target.value = this.getElementsByTagName("input")[0].value;
@@ -188,36 +182,22 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
       y = x.getElementsByTagName("div");
     }
     if (event.code == "ArrowDown") {
-      /*If the arrow DOWN key is pressed,
-		  increase the currentFocus letiable:*/
       this.currentFocus++;
-      /*and and make the current item more visible:*/
+
       this.addActive(y);
     } else if (event.code == "ArrowUp") {
-      //up
-      /*If the arrow UP key is pressed,
-		  decrease the currentFocus letiable:*/
       this.currentFocus--;
-      /*and and make the current item more visible:*/
+
       this.addActive(y);
     } else if (event.code == "Enter") {
-      /*If the ENTER key is pressed, prevent the form from being submitted,*/
       event.preventDefault();
       if (this.currentFocus > -1) {
-        /*and simulate a click on the "active" item:*/
         if (x) y[this.currentFocus].click();
       }
     }
   }
 
-  //TODO
-  /*document.addEventListener("click", function (e) {
-      closeAllLists(e.target);
-    });*/
-
   closeAllLists(elmnt?: any) {
-    /*close all autocomplete lists in the document,
-	except the one passed as an argument:*/
     const x = document.getElementsByClassName(
       autocompleteInputStyles["autocomplete-items"],
     );
@@ -230,20 +210,18 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
   }
 
   addActive(y: any) {
-    /*a function to classify an item as "active":*/
     if (!y) return false;
-    /*start by removing the "active" class on all items:*/
+
     this.removeActive(y);
     if (this.currentFocus >= y.length) this.currentFocus = 0;
     if (this.currentFocus < 0) this.currentFocus = y.length - 1;
-    /*add class "autocomplete-active":*/
+
     y[this.currentFocus].classList.add(
       autocompleteInputStyles["autocomplete-active"],
     );
   }
 
   removeActive(y: any) {
-    /*a function to remove the "active" class from all autocomplete items:*/
     for (let i = 0; i < y.length; i++) {
       y[i].classList.remove(autocompleteInputStyles["autocomplete-active"]);
     }

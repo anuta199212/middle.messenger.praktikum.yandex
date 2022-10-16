@@ -20,7 +20,6 @@ class ProfileEditPageBase extends Block {
           const { formData, result } = validateForm(event, this.children);
 
           if (result.isValid) {
-            //TODO
             UserController.profile(formData as unknown as UserData);
           }
         },

@@ -32,8 +32,6 @@ export class UsersListItem extends Block<UsersListItemProps> {
         click: (event) => {
           event.preventDefault();
 
-          console.log(event.target?.getAttribute("name"));
-
           if (event.target?.getAttribute("name") === "deleteUser") {
             const chatId = store.getState().activeChat?.chatId ?? 0;
 
@@ -50,19 +48,9 @@ export class UsersListItem extends Block<UsersListItemProps> {
 
             ChatsController.getchatsusers({ id: chatId });
           }
-
-          // console.log(this.props.users);
         },
       },
     });
-  }
-
-  init() {
-    /*this.children.avatar = new Avatar({
-      avatar: this.props.user.avatar,
-      styles: userListStyles,
-    });*/
-    //this.children.deleteUser
   }
 
   render() {

@@ -20,7 +20,6 @@ export class SignUpPage extends Block {
           const { formData, result } = validateForm(event, this.children);
 
           if (result.isValid) {
-            //TODO
             AuthController.signup(formData as unknown as SignupData);
           }
         },

@@ -12,8 +12,6 @@ import styles from "../../styles.module.scss";
 
 class PasswordEditPageBase extends Block {
   init() {
-    console.log(this.props.password);
-
     this.children.button = new Button({
       text: "Сохранить",
       styles: buttonStyles,
@@ -22,8 +20,6 @@ class PasswordEditPageBase extends Block {
           const { formData, result } = validateForm(event, this.children);
 
           if (result.isValid) {
-            //TODO
-
             UserController.password(formData as unknown as PasswordData);
           }
         },

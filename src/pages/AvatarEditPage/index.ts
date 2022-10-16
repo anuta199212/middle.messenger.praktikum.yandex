@@ -21,7 +21,6 @@ export class AvatarEditPage extends Block {
       styles: buttonStyles,
       events: {
         click: (event: Event) => {
-          console.log("clicked");
           const inputFile: HTMLInputElement | null =
             document.querySelector("#avatar");
 
@@ -32,9 +31,6 @@ export class AvatarEditPage extends Block {
             const formData: any = new FormData();
 
             formData.append("avatar", inputFile.files[0]);
-
-            console.log("inputFile.files[0]:", inputFile.files[0]);
-            console.log("formData:", formData);
 
             UserController.avatar(formData as unknown as AvatarData);
           }

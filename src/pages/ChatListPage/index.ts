@@ -48,7 +48,7 @@ export class ChatListPageBase extends Block {
   }
 
   init() {
-    ChatsController.getchats(); //TODO
+    ChatsController.getchats();
 
     this.children.buttonMore = new CircleButton({
       styles: chatListStyles,
@@ -57,7 +57,6 @@ export class ChatListPageBase extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          console.log("button more clicked");
 
           document
             .getElementsByName("mainDropdown")[0]
@@ -72,7 +71,6 @@ export class ChatListPageBase extends Block {
           document
             .getElementsByName("createChats")[0]
             ?.addEventListener("click", () => {
-              //Router.go("/chats-create");
               this.openModal(event);
             });
         },
@@ -100,10 +98,7 @@ export class ChatListPageBase extends Block {
   }
 
   async openModal(event: any) {
-    console.log("open chatCreateModal");
     const modal = document.getElementsByName("chatCreateModal")[0];
-
-    console.log(modal);
 
     if (modal) {
       modal.classList.toggle(styles.show);

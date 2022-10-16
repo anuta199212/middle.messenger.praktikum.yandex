@@ -23,6 +23,13 @@ export interface DeleteUsersData {
   chatId: number;
 }
 
+export interface ActiveChat {
+  chatId: number;
+  title: string;
+  avatar: string;
+  userId: number;
+}
+
 export interface Chats {
   id: number;
   title: string;
@@ -43,10 +50,6 @@ export class ChatsAPI extends BaseAPI {
   read(): Promise<Chats[]> {
     return this.http.get("");
   }
-
-  /*async getchats() {
-    return this.http.get("");
-  }*/
 
   createchats(data: CreateData) {
     return this.http.post("", data);

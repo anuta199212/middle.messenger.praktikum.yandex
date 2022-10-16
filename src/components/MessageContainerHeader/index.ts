@@ -49,8 +49,6 @@ export class MessageContainerHeader extends Block<MessageContainerHeaderProps> {
   }
 
   async openUserListModal(event: any) {
-    console.log("open userList Modal");
-
     if (event.target.getAttribute("name") === "circleButton") {
       return;
     }

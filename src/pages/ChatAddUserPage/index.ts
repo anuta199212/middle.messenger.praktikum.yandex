@@ -27,21 +27,17 @@ class ChatAddUserPageBase extends Block {
           event.preventDefault();
           const { formData, result } = validateForm(event, this.children);
 
-          //console.log(formData);
-
           const reqData = this.prepairRequestData();
 
           console.log(reqData);
 
           if (result.isValid) {
-            //TODO
             ChatsController.adduserschats(reqData);
           }
         },
       },
     });
 
-    //TODO inputField - event
     this.children.input = new InputContainer({
       styles: inputStyles,
       name: "login",

@@ -9,13 +9,9 @@ export function validateForm(
 
   const { formData, result } = validateInputField(children);
 
-  //if (!url) {
   if (!result.isValid) {
     console.log("Некорректно заполнены поля формы");
   }
-  /* } else if (result.isValid) {
-    document.location.href = url;
-  }*/
 
   return { formData, result };
 }

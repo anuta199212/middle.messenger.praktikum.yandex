@@ -20,7 +20,6 @@ class ChatCreateModalBase extends Block {
           const { formData, result } = validateForm(event, this.children);
 
           if (result.isValid) {
-            //TODO
             await ChatsController.createchats(
               formData as unknown as CreateData,
             );

@@ -38,7 +38,6 @@ class ChatDeleteUserPageBase extends Block {
       },
     });
 
-    //TODO inputField - event
     this.children.input = new InputContainer({
       styles: inputStyles,
       name: "login",
@@ -53,8 +52,6 @@ class ChatDeleteUserPageBase extends Block {
   }
 
   prepairRequestData() {
-    console.log(this.props.activeChat);
-
     const reqData: DeleteUsersData = {
       users: [],
       chatId: this.props.activeChat?.chatId,
@@ -70,7 +67,6 @@ class ChatDeleteUserPageBase extends Block {
       }
     });
 
-    console.log(reqData);
     return reqData;
   }
 

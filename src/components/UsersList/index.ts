@@ -39,7 +39,7 @@ export class UsersListBase extends Block {
 }
 
 const withUsers = withStore((state) => {
-  return { users: [...(state.users || [])] }; //TODO
+  return { users: [...(state.users || [])] };
 });
 
 export const UsersList = withUsers(UsersListBase);

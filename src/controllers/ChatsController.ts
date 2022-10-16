@@ -56,7 +56,6 @@ export class UserController {
   }
 
   async getchats() {
-    //TODO
     try {
       store.set("chatsAreLoaded", false);
 
