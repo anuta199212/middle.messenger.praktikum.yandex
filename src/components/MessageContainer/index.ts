@@ -1,20 +1,19 @@
 import Block from "../../utils/Block";
 import template from "./messageContainer.hbs";
 import { MessageContainerHeader } from "../MessageContainerHeader";
-import ChatsController from "../../controllers/ChatsController";
 import MessagesController, {
   Message as MessageInfo,
 } from "../../controllers/MessagesController";
-//import * as messageContainerStyles from "./messageContainer.module.scss";
 import { CircleButton } from "../CircleButton";
 import { validateForm } from "../../utils/validateForm";
 import { InputMessageContainer } from "../InputMessageContainer";
 import { withStore } from "../../utils/Store";
 import { Message } from "../Message";
+import { ActiveChat } from "../../api/ChatsAPI";
 
 interface MessageContainerProps {
   styles: Record<string, string>;
-  activeChat: any; //number | undefined;
+  activeChat: ActiveChat;
   messages: MessageInfo[];
   userId: number;
 }
@@ -70,7 +69,10 @@ export class MessageContainerBase extends Block<MessageContainerProps> {
     this.children.messages = this.createMessages(this.props);
   }
 
-  protected componentDidUpdate(oldProps: any, newProps: any) {
+  protected componentDidUpdate(
+    oldProps: MessageContainerProps,
+    newProps: MessageContainerProps,
+  ) {
     this.children.header.setProps({
       activeChatId: newProps.activeChat?.chatId,
       title: newProps.activeChat?.title,

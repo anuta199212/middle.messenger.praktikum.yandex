@@ -6,8 +6,13 @@ import { withStore } from "../../utils/Store";
 import styles from "../../styles.module.scss";
 //TODO styles
 
+interface ChaListProps {
+  chats: Chats;
+  isLoaded: boolean;
+}
+
 export class ChatListBase extends Block {
-  constructor(props: any) {
+  constructor(props: ChaListProps) {
     super(props);
   }
 
@@ -15,7 +20,10 @@ export class ChatListBase extends Block {
     this.createChatsList();
   }
 
-  protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+  protected componentDidUpdate(
+    oldProps: ChaListProps,
+    newProps: ChaListProps,
+  ): boolean {
     this.createChatsList();
 
     return true;

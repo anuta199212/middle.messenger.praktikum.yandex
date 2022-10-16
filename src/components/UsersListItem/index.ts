@@ -4,7 +4,6 @@ import { DeleteUsersData } from "../../api/ChatsAPI";
 import img from "/static/account-circle.svg";
 import store from "../../utils/Store";
 import ChatsController from "../../controllers/ChatsController";
-import { Avatar } from "../Avatar";
 import * as userListStyles from "./userList.module.scss";
 
 interface UsersListItemProps {
@@ -20,7 +19,6 @@ interface UsersListItemProps {
     phone: string;
     role: string;
   };
-
   events?: { click: (event: any) => void };
 }
 

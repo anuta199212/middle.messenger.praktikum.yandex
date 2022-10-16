@@ -2,7 +2,6 @@ import API, {
   AddUsersData,
   ChatsAPI,
   CreateData,
-  DeleteData,
   DeleteUsersData,
   GetCurentData,
   GetUserData,

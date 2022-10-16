@@ -3,9 +3,18 @@ import template from "./userListModal.hbs";
 import styles from "../../styles.module.scss";
 import { UsersList } from "../UsersList";
 import { withStore } from "../../utils/Store";
+import { ActiveChat } from "../../api/ChatsAPI";
+import { User } from "../../api/AuthAPI";
+
+interface UsersListModalProps {
+  title?: string;
+  usesrCount?: number;
+  activeChat: ActiveChat;
+  users: User[];
+}
 
 class UsersListModalBase extends Block {
-  constructor(props: any) {
+  constructor(props: UsersListModalProps) {
     super({
       ...props,
       title: props.activeChat?.title ?? "",

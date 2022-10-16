@@ -6,7 +6,7 @@
     "dev": "parcel ./src/index.html -p 3000",
     "build": "parcel build ./src/index.html --no-cache --no-scope-hoist",
     "start": "npm run build && node server.js",
-    "eslint": "eslint . --ext .ts,.js",
+    "eslint": "eslint . --ext .ts,.js --fix",
     "test": "nyc mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'"
   },
   "keywords": [],

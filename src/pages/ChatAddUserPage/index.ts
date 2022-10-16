@@ -8,13 +8,17 @@ import { validateForm } from "../../utils/validateForm";
 import styles from "../../styles.module.scss";
 import { withStore } from "../../utils/Store";
 import ChatsController from "../../controllers/ChatsController";
-import { AddUsersData } from "../../api/ChatsAPI";
+import { ActiveChat, AddUsersData } from "../../api/ChatsAPI";
 import UserController from "../../controllers/UserController";
 import { SearchUserData } from "../../api/UserAPI";
 import { AutocompleteInputField } from "../../components/AutocompleteInputField";
 
+interface ChatAddUserProps {
+  activeChat: ActiveChat;
+}
+
 class ChatAddUserPageBase extends Block {
-  constructor(props: any) {
+  constructor(props: ChatAddUserProps) {
     super(props);
   }
 
@@ -25,7 +29,7 @@ class ChatAddUserPageBase extends Block {
       events: {
         click: (event: SubmitEvent) => {
           event.preventDefault();
-          const { formData, result } = validateForm(event, this.children);
+          const { result } = validateForm(event, this.children);
 
           const reqData = this.prepairRequestData();
 
@@ -75,9 +79,8 @@ class ChatAddUserPageBase extends Block {
   }
 }
 
-const withChats = withStore((state) => ({
-  chats: state.chats,
+const withActiveChat = withStore((state) => ({
   activeChat: state.activeChat,
 }));
 
-export const ChatAddUserPage = withChats(ChatAddUserPageBase);
+export const ChatAddUserPage = withActiveChat(ChatAddUserPageBase);

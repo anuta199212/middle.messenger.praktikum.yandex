@@ -11,7 +11,7 @@ interface AvatarEditPageProps {
 }
 
 export class AvatarEditPage extends Block {
-  constructor(props: any) {
+  constructor(props: AvatarEditPageProps) {
     super(props);
   }
 
@@ -28,7 +28,7 @@ export class AvatarEditPage extends Block {
             event.preventDefault();
 
             const inputFile: any = document.getElementById("avatar");
-            const formData: any = new FormData();
+            const formData = new FormData();
 
             formData.append("avatar", inputFile.files[0]);
 

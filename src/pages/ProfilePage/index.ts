@@ -9,8 +9,20 @@ import { LinkBtn } from "../../components/LinkBtn";
 import { Link } from "../../components/Link";
 import { Avatar } from "../../components/Avatar";
 
+interface ProfileProps {
+  id: number;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  email: string;
+  password: string;
+  phone: string;
+  avatar: string;
+}
+
 class ProfilePageBase extends Block {
-  constructor(props: any) {
+  constructor(props: ProfileProps) {
     super(props);
   }
 
@@ -108,7 +120,7 @@ class ProfilePageBase extends Block {
     });
   }
 
-  componentDidUpdate(oldProps: any, newProps: any) {
+  componentDidUpdate(oldProps: ProfileProps, newProps: ProfileProps) {
     this.children.inputEmail.setProps({ value: newProps.email });
     this.children.inputLogin.setProps({ value: newProps.login });
     this.children.inputFName.setProps({ value: newProps.first_name });

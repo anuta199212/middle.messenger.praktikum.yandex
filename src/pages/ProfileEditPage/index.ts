@@ -10,7 +10,22 @@ import { withStore } from "../../utils/Store";
 import UserController from "../../controllers/UserController";
 import { UserData } from "../../api/UserAPI";
 
+interface ProfileEditProps {
+  id: number;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  email: string;
+  password: string;
+  phone: string;
+  avatar: string;
+}
 class ProfileEditPageBase extends Block {
+  constructor(props: ProfileEditProps) {
+    super(props);
+  }
+
   init() {
     this.children.button = new Button({
       text: "Сохранить",
@@ -87,7 +102,7 @@ class ProfileEditPageBase extends Block {
     });
   }
 
-  componentDidUpdate(oldProps: any, newProps: any) {
+  componentDidUpdate(oldProps: ProfileEditProps, newProps: ProfileEditProps) {
     this.children.inputEmail.setProps({ value: newProps.email });
     this.children.inputLogin.setProps({ value: newProps.login });
     this.children.inputFName.setProps({ value: newProps.first_name });

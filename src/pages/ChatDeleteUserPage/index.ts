@@ -11,10 +11,14 @@ import ChatsController from "../../controllers/ChatsController";
 import UserController from "../../controllers/UserController";
 import { SearchUserData } from "../../api/UserAPI";
 import { AutocompleteInputField } from "../../components/AutocompleteInputField";
-import { DeleteUsersData } from "../../api/ChatsAPI";
+import { ActiveChat, DeleteUsersData } from "../../api/ChatsAPI";
+
+interface ChatDeleteUserProps {
+  activeChat: ActiveChat;
+}
 
 class ChatDeleteUserPageBase extends Block {
-  constructor(props: any) {
+  constructor(props: ChatDeleteUserProps) {
     super(props);
   }
 
@@ -75,9 +79,8 @@ class ChatDeleteUserPageBase extends Block {
   }
 }
 
-const withChats = withStore((state) => ({
-  chats: state.chats,
+const withActiveChat = withStore((state) => ({
   activeChat: state.activeChat,
 }));
 
-export const ChatDeleteUserPage = withChats(ChatDeleteUserPageBase);
+export const ChatDeleteUserPage = withActiveChat(ChatDeleteUserPageBase);

@@ -8,7 +8,7 @@ import img from "/static/account-circle.svg";
 
 interface MessageContainerHeaderProps {
   styles: Record<string, string>;
-  activeChatId: any;
+  activeChatId: number;
   title: string;
   avatar: string;
 }

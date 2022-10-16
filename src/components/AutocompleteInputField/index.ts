@@ -18,7 +18,6 @@ interface AutocompleteInputFieldProps {
     blur: () => void;
     input: (event: any) => void;
     keydown: (event: any) => void;
-    //change: (event: any) => void;
   };
   autocompleteList: { id: number; login: string }[];
   autocompleteFunc: (value: any) => void;
@@ -102,7 +101,6 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     }
   }
 
-  // TODO comments
   private async onInput(event: any) {
     const value = (event.target as HTMLInputElement).value;
 
