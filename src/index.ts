@@ -28,29 +28,12 @@ window.addEventListener("DOMContentLoaded", async () => {
     .use(navigation.pages[10].url, ChatAddUserPage)
     .use(navigation.pages[12].url, ChatListPage);
 
-  let isProtectedRoute = true;
-
-  switch (window.location.pathname) {
-    case navigation.pages[0].url:
-    case navigation.pages[1].url:
-      isProtectedRoute = false;
-      break;
-  }
-
   try {
     await AuthController.fetchUser();
     await ChatsController.getchats();
-
-    Router.start();
-
-    if (!isProtectedRoute) {
-      Router.go(navigation.pages[2].url);
-    }
   } catch (e) {
-    Router.start();
-
-    if (isProtectedRoute) {
-      Router.go(navigation.pages[0].url);
-    }
+    Router.go(navigation.pages[0].url);
   }
+
+  Router.start();
 });
