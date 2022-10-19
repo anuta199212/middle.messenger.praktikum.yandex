@@ -109,7 +109,7 @@ class ProfilePageBase extends Block {
       to: "/login",
       events: {
         click: () => {
-          AuthController.logout();
+          AuthController.logOut();
         },
       },
     });

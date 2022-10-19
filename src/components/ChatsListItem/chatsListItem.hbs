@@ -1,42 +1,21 @@
 <li class="{{styles.menu-list-li}} {{#if isActive}}{{styles.chat-active}}{{/if}}">
-  <a href="#" class="{{styles.menu-item}}">
-    <table class="{{styles.width-100}}">
-      <tr>
-        <td
-          rowspan="2"
-          class="{{styles.text-align-center}} {{styles.width-45}}"
-        >
-          <img
-		  src="{{img}}"
-		  	{{#if avatar}}
-            src="{{avatar}}"
-			{{/if}}
-            alt="Avatar"
-            class="{{styles.chat-avatar-img}}"
-          />
-
-        </td>
-        <td class="{{styles.chat-title}}">
-          {{chats.title}}
-        </td>
-        <td
-          class="{{styles.chat-message-text}}
-            {{styles.text-align-right}}
-            {{styles.width-35}}"
-        >
-          {{time}}
-        </td>
-      </tr>
-      <tr>
-        <td class="{{styles.chat-message-text}} {{styles.text-align-left}}">
-          {{chats.last_message.content}}
-        </td>
-        <td>
-          {{#if chats.unread_count}}
-            <span class="{{styles.chat-badge}}">{{chats.unread_count}}</span>
-          {{/if}}
-        </td>
-      </tr>
-    </table>
+  <a
+     class="{{styles.menu-item}}">
+    <div class="{{styles.grid-container}}">
+      <div class="{{styles.chat-list-item-avatar}}">
+        <img src="{{src}}"
+             alt="Avatar"
+             class="{{styles.chat-avatar-img}}"
+             />
+      </div>
+      <div class="{{styles.chat-list-item-title}}">{{chats.title}}</div>
+      <div class="{{styles.chat-list-item-time}}">{{time}}</div>
+      <div class="{{styles.chat-list-item-message}}">{{chats.last_message.content}}</div>
+      <div class="{{styles.chat-list-item-unread}}">
+        {{#if chats.unread_count}}
+        <span class="{{styles.chat-badge}}">{{chats.unread_count}}</span>
+        {{/if}}
+      </div>
+    </div>
   </a>
 </li>

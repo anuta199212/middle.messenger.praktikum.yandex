@@ -51,23 +51,23 @@ export class ChatsAPI extends BaseAPI {
     return this.http.get("");
   }
 
-  createchats(data: CreateData) {
+  createChats(data: CreateData) {
     return this.http.post("", data);
   }
 
-  deleteuserschats(data: DeleteUsersData) {
+  deleteUsersChats(data: DeleteUsersData) {
     return this.http.delete("/users", data);
   }
 
-  getuserchats(data: GetUserData) {
+  getUserChats(data: GetUserData) {
     return this.http.get(`/${data.id}/users`);
   }
 
-  adduserschats(data: AddUsersData) {
+  addUsersChats(data: AddUsersData) {
     return this.http.put("/users", data);
   }
 
-  getcurrentchats(data: GetCurentData) {
+  getCurrentChats(data: GetCurentData) {
     return this.http.get(`?limit=${data.limit}&title=${data.title}`);
   }
 

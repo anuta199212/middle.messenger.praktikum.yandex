@@ -56,7 +56,7 @@ export class UserAPI extends BaseAPI {
     return this.http.put("/profile/avatar", data, "multipart/form-data");
   }
 
-  searchuser(data: SearchUserData) {
+  searchUser(data: SearchUserData) {
     return this.http.post("/search", data);
   }
 

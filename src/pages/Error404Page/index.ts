@@ -4,14 +4,11 @@ import styles from "../../styles.module.scss";
 import { Link } from "../../components/Link";
 
 export class Error404Page extends Block {
-  constructor() {
-    super({});
-  }
-
   init() {
     this.children.link = new Link({
       label: "Назад к чатам",
       to: "/messenger",
+      align: "center",
     });
   }
 

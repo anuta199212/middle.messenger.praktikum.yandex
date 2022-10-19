@@ -9,6 +9,7 @@ interface LinkProps extends PropsWithRouter {
   events?: {
     click: () => void;
   };
+  align?: "left" | "center" | "right";
 }
 
 class BaseLink extends Block<LinkProps> {
@@ -19,6 +20,11 @@ class BaseLink extends Block<LinkProps> {
         click: () => this.navigate(),
       },
     });
+  }
+  init() {
+    this.props.align = styles[`text-align-${this.props.align ?? "left"}`];
+
+    console.log(this.props.align);
   }
 
   navigate() {

@@ -11,6 +11,7 @@ interface ChatsListItemProps {
   chats: Chats;
   events?: { click: (event: Event) => void };
   time?: string;
+  src?: string | Record<string, string>;
 }
 
 class ChatsListItemBase extends Block<ChatsListItemProps> {
@@ -33,12 +34,14 @@ class ChatsListItemBase extends Block<ChatsListItemProps> {
 
   init() {
     this.props.time = convertTime(this.props.chats.last_message?.time ?? "");
+    this.props.src = this.props.chats.avatar
+      ? `https://ya-praktikum.tech/api/v2/resources/${this.props.chats.avatar}`
+      : img;
   }
 
   render() {
     return this.compile(template, {
       ...this.props,
-      img,
       isActive: this.props.chats.id === this.props.activeChat?.chatId,
     });
   }

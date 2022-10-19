@@ -55,10 +55,10 @@ export class UserController {
     store.set("user", user);
   }
 
-  async searchuser(data: SearchUserData) {
+  async searchUser(data: SearchUserData) {
     store.set("autocompleteList", []);
 
-    const autocompleteList = await this.api.searchuser(data);
+    const autocompleteList = await this.api.searchUser(data);
 
     store.set("autocompleteList", autocompleteList);
   }

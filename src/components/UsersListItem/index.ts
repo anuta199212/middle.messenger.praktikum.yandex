@@ -6,21 +6,23 @@ import store from "../../utils/Store";
 import ChatsController from "../../controllers/ChatsController";
 import * as userListStyles from "./userList.module.scss";
 
+export interface UserWithRole {
+  id: number;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  avatar: string;
+  email: string;
+  phone: string;
+  role: string;
+}
+
 interface UsersListItemProps {
   styles: Record<string, string>;
-  user: {
-    id: number;
-    first_name: string;
-    second_name: string;
-    display_name: string;
-    login: string;
-    avatar: string;
-    email: string;
-    phone: string;
-    role: string;
-  };
+  user: UserWithRole;
   events?: { click: (event: any) => void };
-  isNotAdmin: boolean;
+  isNotAdmin?: boolean;
 }
 
 export class UsersListItem extends Block<UsersListItemProps> {
@@ -43,7 +45,7 @@ export class UsersListItem extends Block<UsersListItemProps> {
 
             console.log(reqData);
 
-            ChatsController.deleteuserschats(reqData);
+            ChatsController.deleteUsersChats(reqData);
 
             ChatsController.getchatsusers({ id: chatId });
           }

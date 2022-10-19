@@ -15,13 +15,7 @@ class Block<P extends Record<string, any> = any> {
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
 
-  /** JSDoc
-   * @param {string} tagName
-   * @param {Object} props
-   *
-   * @returns {void}
-   */
-  constructor(propsWithChildren: P) {
+  constructor(propsWithChildren = {} as P) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);

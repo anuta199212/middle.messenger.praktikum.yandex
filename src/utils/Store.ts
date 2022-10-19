@@ -5,9 +5,13 @@ import { User } from "../api/AuthAPI";
 import { ActiveChat, Chats } from "../api/ChatsAPI";
 import { Message } from "../controllers/MessagesController";
 
-export enum StoreEvents {
-  Updated = "updated",
+export interface StoreType {
+  Updated: string;
 }
+
+export const StoreEvents: StoreType = {
+  Updated: "updated",
+};
 
 interface State {
   user: User;

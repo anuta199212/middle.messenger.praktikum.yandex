@@ -36,7 +36,7 @@ class ChatAddUserPageBase extends Block {
           console.log(reqData);
 
           if (result.isValid) {
-            ChatsController.adduserschats(reqData);
+            ChatsController.addUsersChats(reqData);
           } else {
             alert(result.alertMessage);
           }
@@ -53,7 +53,7 @@ class ChatAddUserPageBase extends Block {
       disabled: "",
       autoComplete: true,
       autocompleteFunc: (value: string) =>
-        UserController.searchuser({ login: value } as SearchUserData),
+        UserController.searchUser({ login: value } as SearchUserData),
     });
   }
 

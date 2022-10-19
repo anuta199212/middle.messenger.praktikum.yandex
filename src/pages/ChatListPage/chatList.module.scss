@@ -106,6 +106,9 @@
 }
 
 .chat-app-title-container {
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: space-between;
   padding: 15px;
 }
 .chat-app-title {
@@ -197,4 +200,29 @@
   padding: 2px 16px;
   font-family: Inter;
   font-size: 13px;
+}
+
+.chat-list-item-avatar {
+  grid-area: avatar;
+}
+.chat-list-item-title {
+  grid-area: title;
+}
+.chat-list-item-time {
+  text-align: right;
+  grid-area: time;
+}
+.chat-list-item-message {
+  grid-area: message;
+}
+.chat-list-item-unread {
+  text-align: right;
+  grid-area: unread;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "avatar title title title title time"
+    "avatar message message message message unread";
 }

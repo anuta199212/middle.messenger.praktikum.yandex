@@ -9,6 +9,7 @@ interface AvatarProps extends PropsWithRouter {
   events?: {
     click: () => void;
   };
+  src?: string | Record<string, string>;
 }
 
 class BaseAvatar extends Block<AvatarProps> {
@@ -21,12 +22,18 @@ class BaseAvatar extends Block<AvatarProps> {
     });
   }
 
+  protected init(): void {
+    this.props.src = this.props.avatar
+      ? `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
+      : img;
+  }
+
   navigate() {
     this.props.router.go("/avatar-edit");
   }
 
   render() {
-    return this.compile(template, { ...this.props, img });
+    return this.compile(template, this.props);
   }
 }
 

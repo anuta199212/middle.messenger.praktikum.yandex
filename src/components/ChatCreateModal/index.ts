@@ -20,16 +20,16 @@ class ChatCreateModalBase extends Block {
           const { formData, result } = validateForm(event, this.children);
 
           if (result.isValid) {
-            await ChatsController.createchats(
+            await ChatsController.createChats(
               formData as unknown as CreateData,
             );
 
-            await ChatsController.getcurrentchats({
+            await ChatsController.getCurrentChats({
               limit: 1,
               title: formData.title,
             });
 
-            await ChatsController.adduserschats({
+            await ChatsController.addUsersChats({
               users: [this.props.user.id],
               chatId: this.props.createdChat[0].id,
             });

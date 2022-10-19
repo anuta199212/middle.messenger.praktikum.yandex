@@ -1,13 +1,21 @@
-export enum Method {
-  Get = "Get",
-  Post = "Post",
-  Put = "Put",
-  Patch = "Patch",
-  Delete = "Delete",
+export interface MethodsType {
+  Get: string;
+  Post: string;
+  Put: string;
+  Patch: string;
+  Delete: string;
 }
 
+export const Method: MethodsType = {
+  Get: "Get",
+  Post: "Post",
+  Put: "Put",
+  Patch: "Patch",
+  Delete: "Delete",
+};
+
 type Options = {
-  method: Method;
+  method: string;
   data?: any;
   type?: string;
 };

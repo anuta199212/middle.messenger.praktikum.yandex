@@ -20,7 +20,6 @@ interface InputFieldProps {
 export class InputField extends Block<InputFieldProps> {
   constructor(props: InputFieldProps) {
     super(props);
-    //this.props.value = "";
     this.props.events = {
       focus: () => this.onFocus(),
       blur: () => this.onBlur(),

@@ -9,9 +9,9 @@ export class AuthController {
     this.api = API;
   }
 
-  async signin(data: SigninData) {
+  async signIn(data: SigninData) {
     try {
-      await this.api.signin(data);
+      await this.api.signIn(data);
 
       router.go("/messenger");
     } catch (e: any) {
@@ -20,9 +20,9 @@ export class AuthController {
     }
   }
 
-  async signup(data: SignupData) {
+  async signUp(data: SignupData) {
     try {
-      await this.api.signup(data);
+      await this.api.signUp(data);
 
       await this.fetchUser();
 
@@ -39,9 +39,9 @@ export class AuthController {
     store.set("user", user);
   }
 
-  async logout() {
+  async logOut() {
     try {
-      await this.api.logout();
+      await this.api.logOut();
 
       router.go("/");
     } catch (e: any) {

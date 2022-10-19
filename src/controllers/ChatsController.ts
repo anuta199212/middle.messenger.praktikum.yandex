@@ -17,9 +17,9 @@ export class UserController {
     this.api = API;
   }
 
-  async createchats(data: CreateData) {
+  async createChats(data: CreateData) {
     try {
-      await this.api.createchats(data);
+      await this.api.createChats(data);
 
       //await this.api.read();
 
@@ -32,9 +32,9 @@ export class UserController {
     }
   }
 
-  async deleteuserschats(data: DeleteUsersData) {
+  async deleteUsersChats(data: DeleteUsersData) {
     try {
-      await this.api.deleteuserschats(data);
+      await this.api.deleteUsersChats(data);
 
       router.go("/messenger");
     } catch (e: any) {
@@ -43,9 +43,9 @@ export class UserController {
     }
   }
 
-  async adduserschats(data: AddUsersData) {
+  async addUsersChats(data: AddUsersData) {
     try {
-      await this.api.adduserschats(data);
+      await this.api.addUsersChats(data);
 
       router.go("/messenger");
     } catch (e: any) {
@@ -79,9 +79,9 @@ export class UserController {
     return this.api.getToken(id);
   }
 
-  async getcurrentchats(data: GetCurentData) {
+  async getCurrentChats(data: GetCurentData) {
     try {
-      const createdChat = await this.api.getcurrentchats(data);
+      const createdChat = await this.api.getCurrentChats(data);
       store.set("createdChat", createdChat);
     } catch (e: any) {
       alert(e.reason);
@@ -90,7 +90,7 @@ export class UserController {
 
   async getchatsusers(data: GetUserData) {
     try {
-      const users = await this.api.getuserchats(data);
+      const users = await this.api.getUserChats(data);
 
       store.set("users", users);
     } catch (e: any) {

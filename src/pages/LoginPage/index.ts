@@ -11,10 +11,6 @@ import { Button } from "../../components/Button";
 import { validateForm } from "../../utils/validateForm";
 
 export class LoginPage extends Block {
-  constructor() {
-    super({});
-  }
-
   init() {
     this.children.login = new InputContainer({
       styles: inputStyles,
@@ -42,7 +38,7 @@ export class LoginPage extends Block {
           const { formData, result } = validateForm(event, this.children);
 
           if (result.isValid) {
-            AuthController.signin(formData as unknown as SigninData);
+            AuthController.signIn(formData as unknown as SigninData);
           } else {
             alert(result.alertMessage);
           }
@@ -53,6 +49,7 @@ export class LoginPage extends Block {
     this.children.link = new Link({
       label: "Регистрация",
       to: "/sign-up",
+      align: "center",
     });
   }
 

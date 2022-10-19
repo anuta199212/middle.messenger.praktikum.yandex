@@ -13,10 +13,6 @@ interface InputMessageContainerProps {
 }
 
 export class InputMessageContainer extends Block<InputMessageContainerProps> {
-  constructor(props: InputMessageContainerProps) {
-    super(props);
-  }
-
   setValue(value: string) {
     return ((this.element as HTMLInputElement).value = value);
   }

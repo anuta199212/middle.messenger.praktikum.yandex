@@ -36,7 +36,7 @@ class ChatDeleteUserPageBase extends Block {
           const reqData = this.prepairRequestData();
 
           if (result.isValid) {
-            ChatsController.deleteuserschats(reqData);
+            ChatsController.deleteUsersChats(reqData);
           } else {
             alert(result.alertMessage);
           }
@@ -53,7 +53,7 @@ class ChatDeleteUserPageBase extends Block {
       disabled: "",
       autoComplete: true,
       autocompleteFunc: (value: string) =>
-        UserController.searchuser({ login: value } as SearchUserData),
+        UserController.searchUser({ login: value } as SearchUserData),
     });
   }
 

@@ -30,11 +30,11 @@ export class AuthAPI extends BaseAPI {
     super("/auth");
   }
 
-  signin(data: SigninData) {
+  signIn(data: SigninData) {
     return this.http.post("/signin", data);
   }
 
-  signup(data: SignupData) {
+  signUp(data: SignupData) {
     return this.http.post("/signup", data);
   }
 
@@ -42,7 +42,7 @@ export class AuthAPI extends BaseAPI {
     return this.http.get("/user");
   }
 
-  logout() {
+  logOut() {
     return this.http.post("/logout");
   }
 

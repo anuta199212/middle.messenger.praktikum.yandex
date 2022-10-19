@@ -4,7 +4,6 @@ import { Chats } from "../../api/ChatsAPI";
 import { ChatsListItem } from "../ChatsListItem";
 import { withStore } from "../../utils/Store";
 import styles from "../../styles.module.scss";
-//TODO styles
 
 interface ChaListProps {
   chats: Chats;

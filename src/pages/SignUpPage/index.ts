@@ -20,7 +20,7 @@ export class SignUpPage extends Block {
           const { formData, result } = validateForm(event, this.children);
 
           if (result.isValid) {
-            AuthController.signup(formData as unknown as SignupData);
+            AuthController.signUp(formData as unknown as SignupData);
           } else {
             alert(result.alertMessage);
           }
@@ -85,6 +85,7 @@ export class SignUpPage extends Block {
     this.children.link = new Link({
       label: "Войти",
       to: "/",
+      align: "center",
     });
   }
 

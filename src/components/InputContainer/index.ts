@@ -25,24 +25,16 @@ export class InputContainer extends Block<InputContainerProps> {
   init() {
     if (this.props.autoComplete) {
       this.children.input = new AutocompleteInputField({
-        styles: inputStyles,
-        name: this.props.name,
-        type: this.props.type,
-        text: this.props.text,
-        required: this.props.required,
-        disabled: this.props.disabled,
+        ...this.props,
         value: this.props.value ?? "",
-        autocompleteFunc: this.props.autocompleteFunc ?? (() => {}),
         autocompleteList: this.props.autocompleteList ?? [],
+        autocompleteFunc: this.props.autocompleteFunc ?? (() => {}),
+        styles: inputStyles,
       });
     } else {
       this.children.input = new InputField({
+        ...this.props,
         styles: inputStyles,
-        name: this.props.name,
-        type: this.props.type,
-        text: this.props.text,
-        required: this.props.required,
-        disabled: this.props.disabled,
         value: this.props.value ?? "",
       });
     }

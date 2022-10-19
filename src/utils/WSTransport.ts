@@ -1,11 +1,18 @@
 import { EventBus } from "./EventBus";
 
-export enum WSTransportEvents {
-  Connected = "connected",
-  Error = "error",
-  Message = "message",
-  Close = "close",
+export interface WSTransportEventsType {
+  Connected: string;
+  Error: string;
+  Message: string;
+  Close: string;
 }
+
+export const WSTransportEvents: WSTransportEventsType = {
+  Connected: "connected",
+  Error: "error",
+  Message: "message",
+  Close: "close",
+};
 
 export default class WSTransport extends EventBus {
   private socket: WebSocket | null = null;

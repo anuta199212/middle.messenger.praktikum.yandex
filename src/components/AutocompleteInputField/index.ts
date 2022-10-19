@@ -3,6 +3,7 @@ import { fieldsRules } from "../../data/fieldsRules";
 import template from "./autocompleteInputField.hbs";
 import store from "../../utils/Store";
 import * as autocompleteInputStyles from "../AutocompleteInputField/autocompleteInputField.module.scss";
+import { debounce } from "../../utils/debounce";
 
 interface AutocompleteInputFieldProps {
   id?: string;
@@ -102,72 +103,80 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
   }
 
   private async onInput(event: any) {
-    const value = (event.target as HTMLInputElement).value;
+    const changeInput = async (args: any) => {
+      const value = (event.target as HTMLInputElement).value;
 
-    this.closeAllLists();
+      console.log("value:", value);
 
-    if (value) {
-      await this.props.autocompleteFunc(value);
-    }
+      this.closeAllLists();
 
-    const autocompleteStoreList = store.getState().autocompleteList;
+      if (value) {
+        await this.props.autocompleteFunc(value);
+      }
 
-    const autocompleteList: { id: number; login: string }[] = [];
+      const autocompleteStoreList = store.getState().autocompleteList;
 
-    if (Array.isArray(autocompleteStoreList)) {
-      autocompleteStoreList.forEach((element: { id: number; login: any }) => {
-        autocompleteList.push({ id: element.id, login: element.login });
+      const autocompleteList: { id: number; login: string }[] = [];
+
+      if (Array.isArray(autocompleteStoreList)) {
+        autocompleteStoreList.forEach((element: { id: number; login: any }) => {
+          autocompleteList.push({ id: element.id, login: element.login });
+        });
+      }
+
+      const arr = autocompleteList;
+
+      if (!arr) {
+        return;
+      }
+
+      if (!value) {
+        return false;
+      }
+      this.currentFocus = -1;
+
+      const a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+
+      a.setAttribute("class", autocompleteInputStyles["autocomplete-items"]);
+
+      event.target.parentNode?.appendChild(a);
+
+      const self = this;
+
+      document.addEventListener("click", function (e) {
+        self.closeAllLists(e.target);
       });
-    }
 
-    const arr = autocompleteList;
+      for (let i = 0; i < arr.length; i++) {
+        const b = document.createElement("DIV");
 
-    if (!arr) {
-      return;
-    }
+        b.innerHTML = arr[i].login;
 
-    if (!value) {
-      return false;
-    }
-    this.currentFocus = -1;
+        b.innerHTML +=
+          "<input id='" +
+          arr[i].id +
+          "' type='hidden' value='" +
+          arr[i].login +
+          "'>";
 
-    const a = document.createElement("DIV");
-    a.setAttribute("id", this.id + "autocomplete-list");
+        b.addEventListener("click", function (e) {
+          event.target.value = this.getElementsByTagName("input")[0].value;
 
-    a.setAttribute("class", autocompleteInputStyles["autocomplete-items"]);
+          self.props.id = this.getElementsByTagName("input")[0].id;
+          self.props.value = this.getElementsByTagName("input")[0].value;
 
-    event.target.parentNode?.appendChild(a);
+          self.closeAllLists();
+        });
+        a.appendChild(b);
+      }
 
-    const self = this;
+      event.target.focus();
+    };
 
-    document.addEventListener("click", function (e) {
-      self.closeAllLists(e.target);
-    });
+    const debouncedInput = debounce(changeInput, 1000);
 
-    for (let i = 0; i < arr.length; i++) {
-      const b = document.createElement("DIV");
-
-      b.innerHTML = arr[i].login;
-
-      b.innerHTML +=
-        "<input id='" +
-        arr[i].id +
-        "' type='hidden' value='" +
-        arr[i].login +
-        "'>";
-
-      b.addEventListener("click", function (e) {
-        event.target.value = this.getElementsByTagName("input")[0].value;
-
-        self.props.id = this.getElementsByTagName("input")[0].id;
-        self.props.value = this.getElementsByTagName("input")[0].value;
-
-        self.closeAllLists();
-      });
-      a.appendChild(b);
-    }
-
-    event.target.focus();
+    debouncedInput(this);
   }
 
   private onKeyDown(event: any) {
