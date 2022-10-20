@@ -29,7 +29,7 @@ class ChatAddUserPageBase extends Block {
       events: {
         click: (event: SubmitEvent) => {
           event.preventDefault();
-          const { result } = validateForm(event, this.children);
+          const { result } = validateForm(this.children);
 
           const reqData = this.prepairRequestData();
 

@@ -41,24 +41,24 @@ export class InputField extends Block<InputFieldProps> {
       tooltipMessage: "",
     };
 
-    const maxLength = fieldsRules[this.props.name].maxLength;
+    const maxLength = fieldsRules[this.props.name]?.maxLength;
 
     if (this.props.required && !this.props.value) {
       isValid = false;
       message.errorMessage = "Обязательное поле";
     } else if (
       (maxLength && this.props.value.length > maxLength) ||
-      this.props.value.length < fieldsRules[this.props.name].minLength
+      this.props.value.length < fieldsRules[this.props.name]?.minLength
     ) {
       isValid = false;
       message.errorMessage = "Некорректная длина поля";
       message.tooltipMessage = fieldsRules[this.props.name].errorMessage.length;
     } else if (
-      !this.props.value.toString().match(fieldsRules[this.props.name].regex)
+      !this.props.value.toString().match(fieldsRules[this.props.name]?.regex)
     ) {
       isValid = false;
       message.errorMessage = "Некорректное значение поля";
-      message.tooltipMessage = fieldsRules[this.props.name].errorMessage.match;
+      message.tooltipMessage = fieldsRules[this.props.name]?.errorMessage.match;
     }
 
     return { isValid, message };

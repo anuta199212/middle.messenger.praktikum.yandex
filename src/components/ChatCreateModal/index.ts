@@ -17,7 +17,8 @@ class ChatCreateModalBase extends Block {
       styles: buttonStyles,
       events: {
         click: async (event: SubmitEvent) => {
-          const { formData, result } = validateForm(event, this.children);
+          event.preventDefault();
+          const { formData, result } = validateForm(this.children);
 
           if (result.isValid) {
             await ChatsController.createChats(
