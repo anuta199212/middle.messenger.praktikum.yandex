@@ -3,6 +3,10 @@ import { InputField } from "../components/InputField";
 
 interface ValidateResultType {
   isValid: boolean;
+  message: {
+    errorMessage: string;
+    tooltipMessage: string;
+  };
   alertMessage?: string;
 }
 
@@ -14,8 +18,12 @@ export function validateInputField(children: Record<string, Block>): {
 } {
   const formData: Record<string, string> = {};
 
-  const result: ValidateResultType = {
-    isValid: true,
+  let result: ValidateResultType = {
+    isValid: false,
+    message: {
+      errorMessage: "",
+      tooltipMessage: "",
+    },
     alertMessage: "",
   };
 
@@ -27,16 +35,9 @@ export function validateInputField(children: Record<string, Block>): {
 
           formData[fieldName] = fieldValue;
 
-          const inputResult = (value1 as InputField).validate();
-
-          if (!inputResult.isValid) {
-            result.isValid = inputResult.isValid;
-
-            if (result.alertMessage === "") {
-              result.alertMessage = fieldName;
-            } else {
-              result.alertMessage += ", " + fieldName;
-            }
+          result = (value1 as InputField).validate();
+          if (!result.isValid) {
+            result.alertMessage = fieldName + ", " + result.alertMessage;
           }
         }
       });

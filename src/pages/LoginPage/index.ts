@@ -35,9 +35,7 @@ export class LoginPage extends Block {
       styles: buttonStyles,
       events: {
         click: (event: SubmitEvent) => {
-          event.preventDefault();
-
-          const { formData, result } = validateForm(this.children);
+          const { formData, result } = validateForm(event, this.children);
 
           if (result.isValid) {
             AuthController.signIn(formData as unknown as SigninData);

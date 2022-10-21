@@ -106,6 +106,8 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     const changeInput = async (args: any) => {
       const value = (event.target as HTMLInputElement).value;
 
+      console.log("value:", value);
+
       this.closeAllLists();
 
       if (value) {

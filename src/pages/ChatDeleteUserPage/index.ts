@@ -29,7 +29,7 @@ class ChatDeleteUserPageBase extends Block {
       events: {
         click: (event: SubmitEvent) => {
           event.preventDefault();
-          const { formData, result } = validateForm(this.children);
+          const { formData, result } = validateForm(event, this.children);
 
           console.log(formData);
 

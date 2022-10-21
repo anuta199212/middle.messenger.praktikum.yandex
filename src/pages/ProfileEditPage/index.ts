@@ -32,9 +32,7 @@ class ProfileEditPageBase extends Block {
       styles: buttonStyles,
       events: {
         click: (event: SubmitEvent) => {
-          event.preventDefault();
-
-          const { formData, result } = validateForm(this.children);
+          const { formData, result } = validateForm(event, this.children);
 
           if (result.isValid) {
             UserController.profile(formData as unknown as UserData);
