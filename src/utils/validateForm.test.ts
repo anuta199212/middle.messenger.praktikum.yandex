@@ -4,7 +4,7 @@ import { InputField } from "../components/InputField";
 import Block from "./Block";
 import { validateForm } from "./validateForm";
 
-describe("validateForm", () => {
+describe.only("validateForm", () => {
   interface TestComponentProps {
     inputs: { name: string; value: string }[];
   }
