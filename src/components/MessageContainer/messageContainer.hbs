@@ -4,11 +4,11 @@
 
     <div class="{{styles.message-list}}">{{{messages}}}</div>
 
-    <div class="{{styles.message-send-container}}">
+    <form class="{{styles.message-send-container}}" name="sendMessageForm">
       {{{inputMessage}}}
 
       {{{sendButton}}}
-    </div>
+    </form>
   </div>
 {{else}}
   <div class="{{styles.empty-chat}}">

@@ -36,28 +36,6 @@ export class MessageContainerBase extends Block<MessageContainerProps> {
       styles: this.props.styles,
       icon: "fa-solid fa-arrow-right",
       color: "primary",
-      events: {
-        click: (event: SubmitEvent) => {
-          event.preventDefault();
-
-          if (!this.props.activeChat) {
-            return;
-          }
-
-          const { formData, result } = validateForm(this.children);
-
-          this.children.inputMessage.setValue("");
-
-          if (result.isValid) {
-            MessagesController.sendMessage(
-              this.props.activeChat.chatId,
-              formData.message,
-            );
-          } else {
-            alert(result.alertMessage);
-          }
-        },
-      },
     });
 
     this.children.inputMessage = new InputMessageContainer({
@@ -70,6 +48,29 @@ export class MessageContainerBase extends Block<MessageContainerProps> {
     });
 
     this.children.messages = this.createMessages(this.props);
+
+    document.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!this.props.activeChat) {
+        return;
+      }
+
+      const { formData, result } = validateForm(this.children);
+
+      console.log(formData);
+
+      this.children.inputMessage.setValue("");
+
+      if (result.isValid) {
+        MessagesController.sendMessage(
+          this.props.activeChat.chatId,
+          formData.message,
+        );
+      } else {
+        alert(result.alertMessage);
+      }
+    });
   }
 
   protected componentDidUpdate(
