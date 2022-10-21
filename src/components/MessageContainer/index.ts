@@ -44,7 +44,7 @@ export class MessageContainerBase extends Block<MessageContainerProps> {
             return;
           }
 
-          const { formData, result } = validateForm(event, this.children);
+          const { formData, result } = validateForm(this.children);
 
           this.children.inputMessage.setValue("");
 
