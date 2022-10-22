@@ -7,7 +7,7 @@ interface LinkProps extends PropsWithRouter {
   to: string;
   label: string;
   events?: {
-    click: () => void;
+    click: (event: any) => void;
   };
   align?: "left" | "center" | "right";
 }
@@ -17,7 +17,7 @@ class BaseLink extends Block<LinkProps> {
     super({
       ...props,
       events: {
-        click: () => this.navigate(),
+        click: (event: any) => this.navigate(event),
       },
     });
   }
@@ -27,7 +27,9 @@ class BaseLink extends Block<LinkProps> {
     console.log(this.props.align);
   }
 
-  navigate() {
+  navigate(event: any) {
+    event.preventDefault();
+
     this.props.router.go(this.props.to);
   }
 

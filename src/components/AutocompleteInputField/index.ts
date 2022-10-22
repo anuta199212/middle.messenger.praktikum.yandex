@@ -133,12 +133,12 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
       }
       this.currentFocus = -1;
 
-      const a = document.createElement("DIV");
-      a.setAttribute("id", this.id + "autocomplete-list");
+      const list = document.createElement("DIV");
+      list.setAttribute("id", this.id + "autocomplete-list");
 
-      a.setAttribute("class", autocompleteInputStyles["autocomplete-items"]);
+      list.setAttribute("class", autocompleteInputStyles["autocomplete-items"]);
 
-      event.target.parentNode?.appendChild(a);
+      event.target.parentNode?.appendChild(list);
 
       const self = this;
 
@@ -147,18 +147,18 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
       });
 
       for (let i = 0; i < arr.length; i++) {
-        const b = document.createElement("DIV");
+        const item = document.createElement("DIV");
 
-        b.innerHTML = arr[i].login;
+        const itemInput = document.createElement("INPUT");
+        itemInput.setAttribute("id", arr[i].id.toString());
+        itemInput.setAttribute("type", "hidden");
+        itemInput.setAttribute("value", arr[i].login);
 
-        b.innerHTML +=
-          "<input id='" +
-          arr[i].id +
-          "' type='hidden' value='" +
-          arr[i].login +
-          "'>";
+        item.appendChild(document.createTextNode(arr[i].login));
 
-        b.addEventListener("click", function (e) {
+        item.appendChild(itemInput);
+
+        item.addEventListener("click", function (e) {
           event.target.value = this.getElementsByTagName("input")[0].value;
 
           self.props.id = this.getElementsByTagName("input")[0].id;
@@ -166,7 +166,7 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
 
           self.closeAllLists();
         });
-        a.appendChild(b);
+        list.appendChild(item);
       }
 
       event.target.focus();

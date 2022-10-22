@@ -31,7 +31,7 @@ export class ChatListBase extends Block {
   private createChatsList() {
     const chatList = this.props.chats?.map((chatsItem: Chats) => {
       return new ChatsListItem({
-        styles: styles,
+        styles,
         chats: chatsItem,
       });
     });
