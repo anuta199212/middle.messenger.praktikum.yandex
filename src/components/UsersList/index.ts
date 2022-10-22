@@ -10,10 +10,10 @@ export class UsersListBase extends Block {
   }
 
   init() {
-    const usersList = this.props.users?.map((usersItem: UserWithRole) => {
+    const usersList = this.props.users?.map((user: UserWithRole) => {
       return new UsersListItem({
-        styles: styles,
-        user: usersItem,
+        styles,
+        user,
       });
     });
 

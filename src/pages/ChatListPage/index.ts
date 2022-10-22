@@ -56,7 +56,7 @@ export class ChatListPageBase extends Block {
     this.children.chatsList = new ChatList({});
 
     this.children.messageContainer = new MessageContainer({
-      styles: styles,
+      styles,
       activeChat: this.props.activeChat,
     });
   }
