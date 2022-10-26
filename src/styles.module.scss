@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: Inter;
+  src: url(/static/Inter-Regular.ttf); /* Путь к файлу со шрифтом */
+}
+
 body,
 html {
   height: 100%;
