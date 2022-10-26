@@ -1,28 +1,31 @@
-import Block from "../../block/block";
+import Block from "../../utils/Block";
 import template from "./signUp.hbs";
-import { Button } from "../../components/Button";
 import * as buttonStyles from "../../components/Button/button.module.scss";
 import * as inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
-import { navigation } from "../../data/navigation";
 import { validateForm } from "../../utils/validateForm";
+import styles from "../../styles.module.scss";
+import { Link } from "../../components/Link";
+import { SignupData } from "../../api/AuthAPI";
+import AuthController from "../../controllers/AuthController";
+import { Button } from "../../components/Button";
 
-interface SignUpPageProps {
-  styles: Record<string, string>;
-}
-
-export class SignUpPage extends Block<SignUpPageProps> {
-  constructor(props: SignUpPageProps) {
-    super("div", props);
-  }
-
+export class SignUpPage extends Block {
   init() {
     this.children.button = new Button({
       text: "Зарегистрироваться",
       styles: buttonStyles,
       events: {
         click: (event: SubmitEvent) => {
-          validateForm(event, this.children, navigation.pages[12].url);
+          event.preventDefault();
+
+          const { formData, result } = validateForm(this.children);
+
+          if (result.isValid) {
+            AuthController.signUp(formData as unknown as SignupData);
+          } else {
+            alert(result.alertMessage);
+          }
         },
       },
     });
@@ -80,9 +83,15 @@ export class SignUpPage extends Block<SignUpPageProps> {
       required: true,
       disabled: "",
     });
+
+    this.children.link = new Link({
+      label: "Войти",
+      to: "/",
+      align: "center",
+    });
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }

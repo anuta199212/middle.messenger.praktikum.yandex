@@ -1,20 +1,29 @@
-import Block from "../../block/block";
+import Block from "../../utils/Block";
 import template from "./profileEdit.hbs";
 import * as inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
 import { Button } from "../../components/Button";
 import * as buttonStyles from "../../components/Button/button.module.scss";
-import { navigation } from "../../data/navigation";
 import { validateForm } from "../../utils/validateForm";
+import styles from "../../styles.module.scss";
+import { withStore } from "../../utils/Store";
+import UserController from "../../controllers/UserController";
+import { UserData } from "../../api/UserAPI";
 
-interface ProfileEditPageProps {
-  styles: Record<string, string>;
-  avatar: Record<string, string>;
+interface ProfileEditProps {
+  id: number;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  email: string;
+  password: string;
+  phone: string;
+  avatar: string;
 }
-
-export class ProfileEditPage extends Block<ProfileEditPageProps> {
-  constructor(props: ProfileEditPageProps) {
-    super("div", props);
+class ProfileEditPageBase extends Block {
+  constructor(props: ProfileEditProps) {
+    super(props);
   }
 
   init() {
@@ -23,7 +32,15 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
       styles: buttonStyles,
       events: {
         click: (event: SubmitEvent) => {
-          validateForm(event, this.children, navigation.pages[2].url);
+          event.preventDefault();
+
+          const { formData, result } = validateForm(this.children);
+
+          if (result.isValid) {
+            UserController.profile(formData as unknown as UserData);
+          } else {
+            alert(result.alertMessage);
+          }
         },
       },
     });
@@ -35,6 +52,7 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
       type: "email",
       required: true,
       disabled: "",
+      value: this.props.email,
     });
 
     this.children.inputLogin = new InputContainer({
@@ -44,6 +62,7 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
       type: "text",
       required: true,
       disabled: "",
+      value: this.props.login,
     });
 
     this.children.inputFName = new InputContainer({
@@ -53,6 +72,7 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
       type: "text",
       required: true,
       disabled: "",
+      value: this.props.first_name,
     });
 
     this.children.inputSName = new InputContainer({
@@ -62,6 +82,7 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
       type: "text",
       required: true,
       disabled: "",
+      value: this.props.second_name,
     });
 
     this.children.inputDName = new InputContainer({
@@ -71,6 +92,7 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
       type: "text",
       required: true,
       disabled: "",
+      value: this.props.display_name,
     });
 
     this.children.inputPhone = new InputContainer({
@@ -80,10 +102,25 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
       type: "text",
       required: true,
       disabled: "",
+      value: this.props.phone,
     });
   }
 
+  componentDidUpdate(oldProps: ProfileEditProps, newProps: ProfileEditProps) {
+    this.children.inputEmail.setProps({ value: newProps.email });
+    this.children.inputLogin.setProps({ value: newProps.login });
+    this.children.inputFName.setProps({ value: newProps.first_name });
+    this.children.inputSName.setProps({ value: newProps.second_name });
+    this.children.inputDName.setProps({ value: newProps.display_name });
+    this.children.inputPhone.setProps({ value: newProps.phone });
+
+    return true;
+  }
+
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }
+const withUser = withStore((state) => ({ ...state.user }));
+
+export const ProfileEditPage = withUser(ProfileEditPageBase);

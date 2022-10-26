@@ -1,0 +1,20 @@
+<table class="{{styles.message-container-header-table}}">
+  <tr>
+    <td class="{{styles.message-container-header-avatar}}">
+      <img src="{{img}}"
+           {{#if avatar}} src="{{avatar}}"
+           {{/if}} alt="Avatar"/>
+    </td>
+    <td class="{{styles.message-container-header-title}}">
+      {{{chatTitle}}}
+    </td>
+    <td class="{{styles.message-container-header-button}}">
+      <div class="{{styles.dropdown}}">{{{button}}}
+        <div name="myDropdown"
+             class="{{styles.dropdown-content}}">
+          <p name="addUser">Добавить пользователя</p>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,21 @@
+<li class="{{styles.menu-list-li}} {{#if isActive}}{{styles.chat-active}}{{/if}}">
+  <a
+     class="{{styles.menu-item}}">
+    <div class="{{styles.grid-container}}">
+      <div class="{{styles.chat-list-item-avatar}}">
+        <img src="{{src}}"
+             alt="Avatar"
+             class="{{styles.chat-avatar-img}}"
+             />
+      </div>
+      <div class="{{styles.chat-list-item-title}}">{{chats.title}}</div>
+      <div class="{{styles.chat-list-item-time}}">{{time}}</div>
+      <div class="{{styles.chat-list-item-message}}">{{chats.last_message.content}}</div>
+      <div class="{{styles.chat-list-item-unread}}">
+        {{#if chats.unread_count}}
+        <span class="{{styles.chat-badge}}">{{chats.unread_count}}</span>
+        {{/if}}
+      </div>
+    </div>
+  </a>
+</li>

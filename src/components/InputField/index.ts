@@ -1,4 +1,4 @@
-import Block from "../../block/block";
+import Block from "../../utils/Block";
 import { fieldsRules } from "../../data/fieldsRules";
 import template from "./inputField.hbs";
 
@@ -19,8 +19,7 @@ interface InputFieldProps {
 
 export class InputField extends Block<InputFieldProps> {
   constructor(props: InputFieldProps) {
-    super("div", props);
-    this.props.value = "";
+    super(props);
     this.props.events = {
       focus: () => this.onFocus(),
       blur: () => this.onBlur(),
@@ -42,24 +41,24 @@ export class InputField extends Block<InputFieldProps> {
       tooltipMessage: "",
     };
 
-    const maxLength = fieldsRules[this.props.name].maxLength;
+    const maxLength = fieldsRules[this.props.name]?.maxLength;
 
     if (this.props.required && !this.props.value) {
       isValid = false;
       message.errorMessage = "Обязательное поле";
     } else if (
       (maxLength && this.props.value.length > maxLength) ||
-      this.props.value.length < fieldsRules[this.props.name].minLength
+      this.props.value.length < fieldsRules[this.props.name]?.minLength
     ) {
       isValid = false;
       message.errorMessage = "Некорректная длина поля";
       message.tooltipMessage = fieldsRules[this.props.name].errorMessage.length;
     } else if (
-      !this.props.value.toString().match(fieldsRules[this.props.name].regex)
+      !this.props.value.toString().match(fieldsRules[this.props.name]?.regex)
     ) {
       isValid = false;
       message.errorMessage = "Некорректное значение поля";
-      message.tooltipMessage = fieldsRules[this.props.name].errorMessage.match;
+      message.tooltipMessage = fieldsRules[this.props.name]?.errorMessage.match;
     }
 
     return { isValid, message };
@@ -88,8 +87,10 @@ export class InputField extends Block<InputFieldProps> {
       this.props.name + "ErrTooltip",
     )[0];
 
-    message.innerText = result.message.errorMessage;
-    tooltip.innerText = result.message.tooltipMessage;
+    if (message && tooltip) {
+      message.innerText = result.message.errorMessage;
+      tooltip.innerText = result.message.tooltipMessage;
+    }
   }
 
   render() {

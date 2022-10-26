@@ -1,4 +1,4 @@
-[`Sprint_2`](https://github.com/anuta199212/middle.messenger.praktikum.yandex/pull/2) pull request.
+[`Sprint_3`](https://github.com/anuta199212/middle.messenger.praktikum.yandex/pull/3) pull request.
 
 # Введение
 
@@ -34,12 +34,14 @@ npm run start
 ```
 static          - статические ресурсы: картинки, иконки, прочее
 src\
-    block\    - базовый класс компонентов
+    api\          - классы API для отпавки запросов на сервер
     components\   - частичные шаблоны (кнопки, инпуты)
-    pages\    - шаблоны страниц
-    data\       - данные для формирования элементов шаблонов
-	typings\  - типы
-	utils\    - экспортируемые для переиспользования классы и функции
+    controllers\  - классы контроллеров
+    pages\        - шаблоны страниц
+    data\         - данные для формирования элементов шаблонов
+    hocs\         - классы HOC
+    typings\      - типы
+    utils\        - экспортируемые для переиспользования классы и функции, базовый класс компонентов
 ```
 
 ## Используемые инструменты

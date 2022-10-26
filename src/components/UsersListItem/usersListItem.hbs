@@ -1,0 +1,38 @@
+<li class="{{styles.a}}">
+  <a href="#" class="{{styles.menu-item}}">
+    <table class="{{styles.width-100}}">
+      <tr>
+        <td class="{{styles.text-align-center}} {{styles.width-35}}">
+
+            <div>
+              <span class="{{userListStyles.avatar}}" name="avatarSpan">
+                <img
+                {{#if user.avatar}}
+                  src="https://ya-praktikum.tech/api/v2/resources/{{user.avatar}}"
+                {{else}}
+                  src="{{img}}"
+                {{/if}}
+                  alt="Avatar"
+                  class="{{userListStyles.avatar-img}}"
+                  name="avatarImg"
+                />
+              </span>
+            </div>
+        </td>
+
+        <td class="{{styles.user-title}} ">
+          {{#if user.display_name}}
+            {{user.display_name}}
+          {{else}}
+            {{user.first_name}}
+            {{user.second_name}}
+          {{/if}}
+        </td>
+
+        <td class="{{styles.text-align-right}} {{styles.width-35}}">
+          {{#if isNotAdmin}}<i name="deleteUser" class="fa-regular fa-trash-can"></i>{{/if}}
+        </td>
+      </tr>
+    </table>
+  </a>
+</li>

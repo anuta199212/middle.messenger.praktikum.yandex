@@ -1,24 +1,14 @@
-import Block from "../block/block";
+import Block from "../utils/Block";
 import { validateInputField } from "./validateInputField";
 
-export function validateForm(
-  event: SubmitEvent,
-  children: Record<string, Block<any>>,
-  url?: string,
-) {
-  event.preventDefault();
-
+export function validateForm(children: Record<string, Block<any>>) {
   const { formData, result } = validateInputField(children);
 
-  console.log(formData);
-
-  if (!url) {
-    if (!result.isValid) {
-      console.log("Поле сообщения не должно быть пустым");
-    }
-  } else if (result.isValid) {
-    document.location.href = url;
-  } else {
+  if (!result.isValid) {
     console.log("Некорректно заполнены поля формы");
+    result.alertMessage =
+      "Некорректно заполнены поля: " + result.alertMessage + ".";
   }
+
+  return { formData, result };
 }

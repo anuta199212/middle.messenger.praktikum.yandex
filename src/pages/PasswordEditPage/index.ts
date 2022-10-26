@@ -1,29 +1,31 @@
-import Block from "../../block/block";
+import Block from "../../utils/Block";
 import template from "./passwordEdit.hbs";
 import { Button } from "../../components/Button";
 import * as buttonStyles from "../../components/Button/button.module.scss";
 import { InputContainer } from "../../components/InputContainer";
 import * as inputStyles from "../../components/InputField/inputField.module.scss";
-import { navigation } from "../../data/navigation";
 import { validateForm } from "../../utils/validateForm";
+import UserController from "../../controllers/UserController";
+import { PasswordData } from "../../api/UserAPI";
+import { withStore } from "../../utils/Store";
+import styles from "../../styles.module.scss";
 
-interface PasswordEditPageProps {
-  styles: Record<string, string>;
-  avatar: Record<string, string>;
-}
-
-export class PasswordEditPage extends Block<PasswordEditPageProps> {
-  constructor(props: PasswordEditPageProps) {
-    super("div", props);
-  }
-
+class PasswordEditPageBase extends Block {
   init() {
     this.children.button = new Button({
       text: "Сохранить",
       styles: buttonStyles,
       events: {
         click: (event: SubmitEvent) => {
-          validateForm(event, this.children, navigation.pages[2].url);
+          event.preventDefault();
+
+          const { formData, result } = validateForm(this.children);
+
+          if (result.isValid) {
+            UserController.password(formData as unknown as PasswordData);
+          } else {
+            alert(result.alertMessage);
+          }
         },
       },
     });
@@ -57,6 +59,9 @@ export class PasswordEditPage extends Block<PasswordEditPageProps> {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }
+const withUser = withStore((state) => ({ ...state.user }));
+
+export const PasswordEditPage = withUser(PasswordEditPageBase);

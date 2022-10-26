@@ -1,33 +1,18 @@
-import Block from "../../block/block";
+import Block from "../../utils/Block";
 import template from "./login.hbs";
-import { Button } from "../../components/Button";
-import * as buttonStyles from "../../components/Button/button.module.scss";
-import * as inputStyles from "../../components/InputField/inputField.module.scss";
+import styles from "../../styles.module.scss";
+import { Link } from "../../components/Link";
+import { SigninData } from "../../api/AuthAPI";
+import AuthController from "../../controllers/AuthController";
 import { InputContainer } from "../../components/InputContainer";
-import { navigation } from "../../data/navigation";
+import * as inputStyles from "../../components/InputField/inputField.module.scss";
+import * as buttonStyles from "../../components/Button/button.module.scss";
+import { Button } from "../../components/Button";
 import { validateForm } from "../../utils/validateForm";
 
-interface LoginPageProps {
-  styles: Record<string, string>;
-}
-
-export class LoginPage extends Block<LoginPageProps> {
-  constructor(props: LoginPageProps) {
-    super("div", props);
-  }
-
+export class LoginPage extends Block {
   init() {
-    this.children.button = new Button({
-      text: "Войти",
-      styles: buttonStyles,
-      events: {
-        click: (event: SubmitEvent) => {
-          validateForm(event, this.children, navigation.pages[12].url);
-        },
-      },
-    });
-
-    this.children.inputLogin = new InputContainer({
+    this.children.login = new InputContainer({
       styles: inputStyles,
       name: "login",
       text: "Логин",
@@ -36,7 +21,7 @@ export class LoginPage extends Block<LoginPageProps> {
       disabled: "",
     });
 
-    this.children.inputPassword = new InputContainer({
+    this.children.password = new InputContainer({
       styles: inputStyles,
       name: "password",
       text: "Пароль",
@@ -44,9 +29,33 @@ export class LoginPage extends Block<LoginPageProps> {
       required: true,
       disabled: "",
     });
+
+    this.children.button = new Button({
+      text: "Войти",
+      styles: buttonStyles,
+      events: {
+        click: (event: SubmitEvent) => {
+          event.preventDefault();
+
+          const { formData, result } = validateForm(this.children);
+
+          if (result.isValid) {
+            AuthController.signIn(formData as unknown as SigninData);
+          } else {
+            alert(result.alertMessage);
+          }
+        },
+      },
+    });
+
+    this.children.link = new Link({
+      label: "Регистрация",
+      to: "/sign-up",
+      align: "center",
+    });
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }

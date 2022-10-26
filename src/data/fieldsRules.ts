@@ -29,6 +29,33 @@ const fieldsRules: Record<string, FieldType> = {
     minLength: 8,
     maxLength: 40,
   },
+  newPassword: {
+    regex: "^(?=.*[A-Z])(?=.*[0-9]).{8,40}$",
+    errorMessage: {
+      length: "Пароль должен содержать от 8 до 40 символов.",
+      match: "Пароль должен содержать хотя бы одну заглавную букву и цифру.",
+    },
+    minLength: 8,
+    maxLength: 40,
+  },
+  oldPassword: {
+    regex: "^(?=.*[A-Z])(?=.*[0-9]).{8,40}$",
+    errorMessage: {
+      length: "Пароль должен содержать от 8 до 40 символов.",
+      match: "Пароль должен содержать хотя бы одну заглавную букву и цифру.",
+    },
+    minLength: 8,
+    maxLength: 40,
+  },
+  newPasswordAppr: {
+    regex: "^(?=.*[A-Z])(?=.*[0-9]).{8,40}$",
+    errorMessage: {
+      length: "Пароль должен содержать от 8 до 40 символов.",
+      match: "Пароль должен содержать хотя бы одну заглавную букву и цифру.",
+    },
+    minLength: 8,
+    maxLength: 40,
+  },
   first_name: {
     regex: "[A-ZА-Я]+[A-Za-zА-Яа-я-]{0,}$",
     errorMessage: {
@@ -72,6 +99,22 @@ const fieldsRules: Record<string, FieldType> = {
       match: "",
     },
     minLength: 0,
+  },
+  message: {
+    regex: "",
+    errorMessage: {
+      length: "Поле 'Сooбщение' не должно быть пустым",
+      match: "Поле 'Сooбщение' не должно быть пустым",
+    },
+    minLength: 1,
+  },
+  title: {
+    regex: "",
+    errorMessage: {
+      length: "Поле 'Название чата' не должно быть пустым",
+      match: "Поле 'Название чата' не должно быть пустым",
+    },
+    minLength: 1,
   },
 };
 

@@ -1,0 +1,17 @@
+{{#if activeChat}}
+  <div>
+    <div class="{{styles.message-container-header}}">{{{header}}}</div>
+
+    <div class="{{styles.message-list}}">{{{messages}}}</div>
+
+    <form class="{{styles.message-send-container}}" name="sendMessageForm">
+      {{{inputMessage}}}
+
+      {{{sendButton}}}
+    </form>
+  </div>
+{{else}}
+  <div class="{{styles.empty-chat}}">
+    <p class="{{styles.empty-chat-p}}">Выберите чат</p>
+  </div>
+{{/if}}

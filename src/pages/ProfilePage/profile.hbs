@@ -3,17 +3,10 @@
     <div class="{{styles.form-panel-wrapper}}">
       <form class="{{styles.form}}">
 
-        <span class="{{styles.avatar}}">
-          <a href="/src/pages/AvatarEditPage/avatarEdit.hbs">
-            <img
-              src={{avatar}}
-              alt="Avatar"
-              class="{{styles.avatar-img}}"
-            /></a>
-        </span>
+        {{{avatar}}}
 
         <span class="{{styles.form-title}}">
-          {{firstName}}
+          {{first_name}}
         </span>
 
         <div>
@@ -25,27 +18,10 @@
           {{{inputPhone}}}
         </div>
 
-        <div class="{{styles.text-align-left}} {{styles.p-t-15}}">
-          <a
-            class="{{styles.text-primary}}"
-            href="/src/pages/ProfileEditPage/profileEdit.hbs"
-          >
-            Изменить данные
-          </a>
-        </div>
-        <div class="{{styles.text-align-left}} {{styles.p-t-15}}">
-          <a
-            class="{{styles.text-primary}}"
-            href="/src/pages/PasswordEditPage/passwordEdit.hbs"
-          >
-            Изменить пароль
-          </a>
-        </div>
-        <div class="{{styles.text-align-left}} {{styles.p-t-15}}">
-          <a class="{{styles.text-danger}}" href="../LoginPage/login.hbs">
-            Выйти
-          </a>
-        </div>
+        {{{linkDataChange}}}
+        {{{linkPswChange}}}
+        {{{linkChats}}}
+        {{{linkLogout}}}
 
       </form>
     </div>

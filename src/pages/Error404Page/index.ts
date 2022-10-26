@@ -1,16 +1,18 @@
-import Block from "../../block/block";
+import Block from "../../utils/Block";
 import template from "./error404.hbs";
+import styles from "../../styles.module.scss";
+import { Link } from "../../components/Link";
 
-interface ErrorPageProps {
-  styles: Record<string, string>;
-}
-
-export class Error404Page extends Block<ErrorPageProps> {
-  constructor(props: ErrorPageProps) {
-    super("div", props);
+export class Error404Page extends Block {
+  init() {
+    this.children.link = new Link({
+      label: "Назад к чатам",
+      to: "/messenger",
+      align: "center",
+    });
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }

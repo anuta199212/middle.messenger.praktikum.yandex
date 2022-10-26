@@ -1,70 +1,111 @@
-import Block from "../../block/block";
+import Block from "../../utils/Block";
 import template from "./chatList.hbs";
 import * as chatListStyles from "./chatList.module.scss";
-
-import { SendButton } from "../../components/SendButton";
-import { validateInputField } from "../../utils/validateInputField";
-import { InputMessageContainer } from "../../components/InputMessageContainer";
-import { validateForm } from "../../utils/validateForm";
-
-interface MessageItemType {
-  incoming: boolean;
-  text: string;
-  time: string;
-}
-
-interface MessageType {
-  message: MessageItemType[];
-}
-
-interface LastMessageType {
-  text: string;
-  time: string;
-}
-
-interface ItemType {
-  avatar: Record<string, string>;
-  name: string;
-  lastMessage: LastMessageType;
-  unReadCount: number;
-}
-
-interface MessageListType {
-  item: ItemType[];
-}
+import { CircleButton } from "../../components/CircleButton";
+import styles from "../../styles.module.scss";
+import { withStore } from "../../utils/Store";
+import ChatsController from "../../controllers/ChatsController";
+import Router from "../../utils/Router";
+import { ActiveChat, Chats } from "../../api/ChatsAPI";
+import { ChatList } from "../../components/ChatList";
+import { MessageContainer } from "../../components/MessageContainer";
+import { UsersListModal } from "../../components/UserListModal";
+import { ChatCreateModal } from "../../components/ChatCreateModal";
 
 interface ChatListPageProps {
-  styles: Record<string, string>;
-  chatList: MessageListType;
-  messageList: MessageType;
+  chats: Chats[];
+  activeChat: ActiveChat;
 }
 
-export class ChatListPage extends Block<ChatListPageProps> {
+export class ChatListPageBase extends Block {
   constructor(props: ChatListPageProps) {
-    super("div", props);
+    super(props);
   }
 
   init() {
-    this.children.sendButton = new SendButton({
+    ChatsController.getchats();
+
+    this.children.buttonMore = new CircleButton({
+      name: "moreBtn",
       styles: chatListStyles,
+      icon: "fa-solid fa-ellipsis-vertical",
+      color: "grey",
       events: {
-        click: (event: SubmitEvent) => {
-          validateForm(event, this.children);
+        click: (event: Event) => {
+          event.preventDefault();
+
+          document
+            .getElementsByName("mainDropdown")[0]
+            ?.classList.toggle(styles.show);
+
+          document
+            .getElementsByName("toProfile")[0]
+            ?.addEventListener("click", () => {
+              Router.go("/settings");
+            });
+
+          document
+            .getElementsByName("createChats")[0]
+            ?.addEventListener("click", () => {
+              this.openModal(event);
+            });
         },
       },
     });
 
-    this.children.inputMessage = new InputMessageContainer({
-      styles: chatListStyles,
-      name: "message",
-      text: "Сообщение",
-      type: "text",
-      required: true,
-      disabled: "",
+    this.children.chatsList = new ChatList({});
+
+    this.children.messageContainer = new MessageContainer({
+      styles,
+      activeChat: this.props.activeChat,
     });
   }
 
+  componentDidUpdate(
+    oldProps: ChatListPageProps,
+    newProps: ChatListPageProps,
+  ): boolean {
+    this.children.messageContainer.setProps({
+      activeChat: newProps.activeChat,
+    });
+
+    this.children.usersListModal = new UsersListModal({});
+
+    this.children.chatCreateModal = new ChatCreateModal({});
+
+    return true;
+  }
+
+  async openModal(event: any) {
+    const modal = document.getElementsByName("chatCreateModal")[0];
+
+    if (modal) {
+      modal.classList.toggle(styles.show);
+
+      const span = document.getElementsByName("closeCreateModal")[0];
+
+      span.onclick = function () {
+        modal.classList.toggle(styles.show);
+      };
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.classList.toggle(styles.show);
+        }
+      };
+    }
+  }
+
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }
+
+const withChats = withStore((state) => {
+  return {
+    chats: state.chats,
+    activeChat: state.activeChat,
+  };
+});
+
+export const ChatListPage = withChats(ChatListPageBase);

@@ -1,4 +1,6 @@
 @import "./pages/ChatListPage/chatList.module.scss";
+@import "./components/MessageContainer/messageContainer.module.scss";
+@import "./components/UsersListItem/userList.module.scss";
 
 * {
   margin: 0px;
@@ -13,7 +15,7 @@ html {
 }
 
 :root {
-  --main-bg-color: #fbfbfb;
+  --main-bg-color: #efefef;
   --menu-item-hover-bg-color: #e4edfd;
   --form-title-color: #252525;
   --input-color: #adadad;
@@ -30,12 +32,18 @@ html {
   width: 25%;
   position: fixed;
   overflow: auto;
+  border-right: 1px solid var(--input-color);
 }
 
 .menu-list {
   margin: 0;
   padding: 0;
   list-style-type: none;
+  font-size: 0;
+}
+
+.menu-list-li {
+  font-size: 13px;
 }
 
 .menu-item {
@@ -147,4 +155,20 @@ html {
 
 .p-b-50 {
   padding-bottom: 50px;
+}
+
+.p-b-0 {
+  padding-bottom: 0;
+}
+
+.link {
+  font-family: Inter;
+  font-size: 13px;
+  color: var(--text-primary-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link-danger {
+  color: var(--text-danger-color);
 }

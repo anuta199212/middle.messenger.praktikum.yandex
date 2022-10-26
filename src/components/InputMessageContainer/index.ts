@@ -1,4 +1,4 @@
-import Block from "../../block/block";
+import Block from "../../utils/Block";
 import template from "./inputMessageContainer.hbs";
 import { InputField } from "../InputField";
 
@@ -13,8 +13,8 @@ interface InputMessageContainerProps {
 }
 
 export class InputMessageContainer extends Block<InputMessageContainerProps> {
-  constructor(props: InputMessageContainerProps) {
-    super("div", props);
+  setValue(value: string) {
+    return ((this.element as HTMLInputElement).value = value);
   }
 
   init() {
