@@ -9,7 +9,7 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "sourceMap": true,
-    "noEmit": true,
+    //"noEmit": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

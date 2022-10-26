@@ -65,7 +65,7 @@ export class MessageContainerBase extends Block<MessageContainerProps> {
       if (result.isValid) {
         MessagesController.sendMessage(
           this.props.activeChat.chatId,
-          formData.message,
+          formData.message
         );
       } else {
         alert(result.alertMessage);
@@ -74,8 +74,8 @@ export class MessageContainerBase extends Block<MessageContainerProps> {
   }
 
   protected componentDidUpdate(
-    oldProps: MessageContainerProps,
-    newProps: MessageContainerProps,
+    _oldProps: MessageContainerProps,
+    newProps: MessageContainerProps
   ) {
     this.children.header.setProps({
       activeChatId: newProps.activeChat?.chatId,

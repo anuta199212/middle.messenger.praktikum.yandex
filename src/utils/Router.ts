@@ -1,7 +1,7 @@
 import { navigation } from "../data/navigation";
 import Block from "./Block";
 
-export interface BlockConstructable<P = any> {
+export interface BlockConstructable<P extends Record<string, any> = any> {
   new (props: P): Block<P>;
 }
 
@@ -29,7 +29,7 @@ class Route {
   constructor(
     private pathname: string,
     private readonly blockClass: BlockConstructable,
-    private readonly query: string,
+    private readonly query: string
   ) {}
 
   leave() {

@@ -47,7 +47,7 @@ export class ChatListPageBase extends Block {
           document
             .getElementsByName("createChats")[0]
             ?.addEventListener("click", () => {
-              this.openModal(event);
+              this.openModal();
             });
         },
       },
@@ -62,8 +62,8 @@ export class ChatListPageBase extends Block {
   }
 
   componentDidUpdate(
-    oldProps: ChatListPageProps,
-    newProps: ChatListPageProps,
+    _oldProps: ChatListPageProps,
+    newProps: ChatListPageProps
   ): boolean {
     this.children.messageContainer.setProps({
       activeChat: newProps.activeChat,
@@ -76,7 +76,7 @@ export class ChatListPageBase extends Block {
     return true;
   }
 
-  async openModal(event: any) {
+  async openModal() {
     const modal = document.getElementsByName("chatCreateModal")[0];
 
     if (modal) {

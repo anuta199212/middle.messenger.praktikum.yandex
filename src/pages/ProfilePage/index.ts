@@ -120,7 +120,7 @@ class ProfilePageBase extends Block {
     });
   }
 
-  componentDidUpdate(oldProps: ProfileProps, newProps: ProfileProps) {
+  componentDidUpdate(_oldProps: ProfileProps, newProps: ProfileProps) {
     this.children.inputEmail.setProps({ value: newProps.email });
     this.children.inputLogin.setProps({ value: newProps.login });
     this.children.inputFName.setProps({ value: newProps.first_name });

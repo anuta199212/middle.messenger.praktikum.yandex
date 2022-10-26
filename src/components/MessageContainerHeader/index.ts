@@ -78,7 +78,7 @@ export class MessageContainerHeader extends Block<MessageContainerHeaderProps> {
   }
 
   protected componentDidUpdate(
-    oldProps: MessageContainerHeaderProps,
+    _oldProps: MessageContainerHeaderProps,
     newProps: MessageContainerHeaderProps,
   ): boolean {
     this.children.chatTitle.setProps({

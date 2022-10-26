@@ -19,10 +19,7 @@ export class ChatListBase extends Block {
     this.createChatsList();
   }
 
-  protected componentDidUpdate(
-    oldProps: ChaListProps,
-    newProps: ChaListProps,
-  ): boolean {
+  protected componentDidUpdate(): boolean {
     this.createChatsList();
 
     return true;

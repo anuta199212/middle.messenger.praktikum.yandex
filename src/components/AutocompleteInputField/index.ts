@@ -103,7 +103,7 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
   }
 
   private async onInput(event: any) {
-    const changeInput = async (args: any) => {
+    const changeInput = async () => {
       const value = (event.target as HTMLInputElement).value;
 
       this.closeAllLists();
@@ -158,7 +158,7 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
 
         item.appendChild(itemInput);
 
-        item.addEventListener("click", function (e) {
+        item.addEventListener("click", function () {
           event.target.value = this.getElementsByTagName("input")[0].value;
 
           self.props.id = this.getElementsByTagName("input")[0].id;
@@ -230,13 +230,6 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     for (let i = 0; i < y.length; i++) {
       y[i].classList.remove(autocompleteInputStyles["autocomplete-active"]);
     }
-  }
-
-  protected componentDidUpdate(
-    oldProps: AutocompleteInputFieldProps,
-    newProps: AutocompleteInputFieldProps,
-  ): boolean {
-    return true;
   }
 
   render() {

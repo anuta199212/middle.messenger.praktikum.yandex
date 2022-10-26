@@ -41,8 +41,8 @@ export class InputContainer extends Block<InputContainerProps> {
   }
 
   componentDidUpdate(
-    oldProps: InputContainerProps,
-    newProps: InputContainerProps,
+    _oldProps: InputContainerProps,
+    newProps: InputContainerProps
   ) {
     this.children.input.setProps({ value: newProps.value });
     this.children.input.setProps({
