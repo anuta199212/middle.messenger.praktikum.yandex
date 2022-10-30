@@ -1,6 +1,5 @@
 import Block from "../../utils/Block";
 import template from "./inputContainer.hbs";
-import * as inputStyles from "../InputField/inputField.module.scss";
 import { InputField } from "../InputField";
 import { AutocompleteInputField } from "../AutocompleteInputField";
 
@@ -29,12 +28,10 @@ export class InputContainer extends Block<InputContainerProps> {
         value: this.props.value ?? "",
         autocompleteList: this.props.autocompleteList ?? [],
         autocompleteFunc: this.props.autocompleteFunc ?? (() => {}),
-        styles: inputStyles,
       });
     } else {
       this.children.input = new InputField({
         ...this.props,
-        styles: inputStyles,
         value: this.props.value ?? "",
       });
     }
@@ -42,7 +39,7 @@ export class InputContainer extends Block<InputContainerProps> {
 
   componentDidUpdate(
     _oldProps: InputContainerProps,
-    newProps: InputContainerProps
+    newProps: InputContainerProps,
   ) {
     this.children.input.setProps({ value: newProps.value });
     this.children.input.setProps({

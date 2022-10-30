@@ -29,7 +29,7 @@ class Route {
   constructor(
     private pathname: string,
     private readonly blockClass: BlockConstructable,
-    private readonly query: string
+    private readonly query: string,
   ) {}
 
   leave() {

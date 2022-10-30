@@ -1,7 +1,7 @@
 import Block from "../../utils/Block";
 import template from "./avatarEdit.hbs";
 import { Button } from "../../components/Button";
-import * as buttonStyles from "../../components/Button/button.module.scss";
+import buttonStyles from "../../components/Button/button.module.scss";
 import styles from "../../styles.module.scss";
 import UserController from "../../controllers/UserController";
 import { AvatarData } from "../../api/UserAPI";

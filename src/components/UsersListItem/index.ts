@@ -4,7 +4,7 @@ import { DeleteUsersData } from "../../api/ChatsAPI";
 import img from "/static/account-circle.svg";
 import store from "../../utils/Store";
 import ChatsController from "../../controllers/ChatsController";
-import * as userListStyles from "./userList.module.scss";
+import userListStyles from "./userList.module.scss";
 
 export interface UserWithRole {
   id: number;

@@ -5,8 +5,8 @@ import { Link } from "../../components/Link";
 import { SigninData } from "../../api/AuthAPI";
 import AuthController from "../../controllers/AuthController";
 import { InputContainer } from "../../components/InputContainer";
-import * as inputStyles from "../../components/InputField/inputField.module.scss";
-import * as buttonStyles from "../../components/Button/button.module.scss";
+import inputStyles from "../../components/InputField/inputField.module.scss";
+import buttonStyles from "../../components/Button/button.module.scss";
 import { Button } from "../../components/Button";
 import { validateForm } from "../../utils/validateForm";
 

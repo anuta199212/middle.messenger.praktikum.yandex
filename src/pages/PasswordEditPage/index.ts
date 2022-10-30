@@ -1,9 +1,9 @@
 import Block from "../../utils/Block";
 import template from "./passwordEdit.hbs";
 import { Button } from "../../components/Button";
-import * as buttonStyles from "../../components/Button/button.module.scss";
+import buttonStyles from "../../components/Button/button.module.scss";
 import { InputContainer } from "../../components/InputContainer";
-import * as inputStyles from "../../components/InputField/inputField.module.scss";
+import inputStyles from "../../components/InputField/inputField.module.scss";
 import { validateForm } from "../../utils/validateForm";
 import UserController from "../../controllers/UserController";
 import { PasswordData } from "../../api/UserAPI";

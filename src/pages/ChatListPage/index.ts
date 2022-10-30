@@ -1,6 +1,6 @@
 import Block from "../../utils/Block";
 import template from "./chatList.hbs";
-import * as chatListStyles from "./chatList.module.scss";
+import chatListStyles from "./chatList.module.scss";
 import { CircleButton } from "../../components/CircleButton";
 import styles from "../../styles.module.scss";
 import { withStore } from "../../utils/Store";
@@ -63,7 +63,7 @@ export class ChatListPageBase extends Block {
 
   componentDidUpdate(
     _oldProps: ChatListPageProps,
-    newProps: ChatListPageProps
+    newProps: ChatListPageProps,
   ): boolean {
     this.children.messageContainer.setProps({
       activeChat: newProps.activeChat,

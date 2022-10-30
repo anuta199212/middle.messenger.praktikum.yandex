@@ -1,9 +1,9 @@
 import Block from "../../utils/Block";
 import template from "./profileEdit.hbs";
-import * as inputStyles from "../../components/InputField/inputField.module.scss";
+import inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
 import { Button } from "../../components/Button";
-import * as buttonStyles from "../../components/Button/button.module.scss";
+import buttonStyles from "../../components/Button/button.module.scss";
 import { validateForm } from "../../utils/validateForm";
 import styles from "../../styles.module.scss";
 import { withStore } from "../../utils/Store";

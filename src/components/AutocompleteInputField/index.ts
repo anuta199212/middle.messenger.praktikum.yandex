@@ -2,7 +2,7 @@ import Block from "../../utils/Block";
 import { fieldsRules } from "../../data/fieldsRules";
 import template from "./autocompleteInputField.hbs";
 import store from "../../utils/Store";
-import * as autocompleteInputStyles from "../AutocompleteInputField/autocompleteInputField.module.scss";
+import autocompleteInputStyles from "../AutocompleteInputField/autocompleteInputField.module.scss";
 import { debounce } from "../../utils/debounce";
 
 interface AutocompleteInputFieldProps {
@@ -17,7 +17,7 @@ interface AutocompleteInputFieldProps {
   events?: {
     focus: () => void;
     blur: () => void;
-    input: (event: any) => void;
+    input: () => void;
     keydown: (event: any) => void;
   };
   autocompleteList: { id: number; login: string }[];
@@ -31,7 +31,7 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     this.props.events = {
       focus: () => this.onFocus(),
       blur: () => this.onBlur(),
-      input: (event: any) => this.onInput(event),
+      input: () => this.onInput(),
       keydown: (event: any) => this.onKeyDown(event),
     };
   }
@@ -102,79 +102,83 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     }
   }
 
-  private async onInput(event: any) {
-    const changeInput = async () => {
-      const value = (event.target as HTMLInputElement).value;
+  changeInput = async () => {
+    //const value = (event.target as HTMLInputElement).value;
 
-      this.closeAllLists();
+    const input = document.getElementsByName("login")[0] as HTMLInputElement;
 
-      if (value) {
-        await this.props.autocompleteFunc(value);
-      }
+    const value = input.value;
 
-      const autocompleteStoreList = store.getState().autocompleteList;
+    this.closeAllLists();
 
-      const autocompleteList: { id: number; login: string }[] = [];
+    if (value) {
+      await this.props.autocompleteFunc(value);
+    }
 
-      if (Array.isArray(autocompleteStoreList)) {
-        autocompleteStoreList.forEach((element: { id: number; login: any }) => {
-          autocompleteList.push({ id: element.id, login: element.login });
-        });
-      }
+    const autocompleteStoreList = store.getState().autocompleteList;
 
-      const arr = autocompleteList;
+    const autocompleteList: { id: number; login: string }[] = [];
 
-      if (!arr) {
-        return;
-      }
-
-      if (!value) {
-        return false;
-      }
-      this.currentFocus = -1;
-
-      const list = document.createElement("DIV");
-      list.setAttribute("id", this.id + "autocomplete-list");
-
-      list.setAttribute("class", autocompleteInputStyles["autocomplete-items"]);
-
-      event.target.parentNode?.appendChild(list);
-
-      const self = this;
-
-      document.addEventListener("click", function (e) {
-        self.closeAllLists(e.target);
+    if (Array.isArray(autocompleteStoreList)) {
+      autocompleteStoreList.forEach((element: { id: number; login: any }) => {
+        autocompleteList.push({ id: element.id, login: element.login });
       });
+    }
 
-      for (let i = 0; i < arr.length; i++) {
-        const item = document.createElement("DIV");
+    const arr = autocompleteList;
 
-        const itemInput = document.createElement("INPUT");
-        itemInput.setAttribute("id", arr[i].id.toString());
-        itemInput.setAttribute("type", "hidden");
-        itemInput.setAttribute("value", arr[i].login);
+    if (!arr) {
+      return;
+    }
 
-        item.appendChild(document.createTextNode(arr[i].login));
+    if (!value) {
+      return false;
+    }
+    this.currentFocus = -1;
 
-        item.appendChild(itemInput);
+    const list = document.createElement("DIV");
+    list.setAttribute("id", this.id + "autocomplete-list");
 
-        item.addEventListener("click", function () {
-          event.target.value = this.getElementsByTagName("input")[0].value;
+    list.setAttribute("class", autocompleteInputStyles["autocomplete-items"]);
 
-          self.props.id = this.getElementsByTagName("input")[0].id;
-          self.props.value = this.getElementsByTagName("input")[0].value;
+    input.parentNode?.appendChild(list);
 
-          self.closeAllLists();
-        });
-        list.appendChild(item);
-      }
+    const self = this;
 
-      event.target.focus();
-    };
+    document.addEventListener("click", function (e) {
+      self.closeAllLists(e.target);
+    });
 
-    const debouncedInput = debounce(changeInput, 1000);
+    for (let i = 0; i < arr.length; i++) {
+      const item = document.createElement("DIV");
 
-    debouncedInput(this);
+      const itemInput = document.createElement("INPUT");
+      itemInput.setAttribute("id", arr[i].id.toString());
+      itemInput.setAttribute("type", "hidden");
+      itemInput.setAttribute("value", arr[i].login);
+
+      item.appendChild(document.createTextNode(arr[i].login));
+
+      item.appendChild(itemInput);
+
+      item.addEventListener("click", function () {
+        input.value = this.getElementsByTagName("input")[0].value;
+
+        self.props.id = this.getElementsByTagName("input")[0].id;
+        self.props.value = this.getElementsByTagName("input")[0].value;
+
+        self.closeAllLists();
+      });
+      list.appendChild(item);
+    }
+
+    input.focus();
+  };
+
+  debouncedInput = debounce(this.changeInput, 1000);
+
+  private async onInput() {
+    this.debouncedInput();
   }
 
   private onKeyDown(event: any) {

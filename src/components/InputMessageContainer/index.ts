@@ -1,6 +1,7 @@
 import Block from "../../utils/Block";
 import template from "./inputMessageContainer.hbs";
 import { InputField } from "../InputField";
+import styles from "../../pages/ChatListPage/chatList.module.scss";
 
 interface InputMessageContainerProps {
   styles: Record<string, string>;
@@ -19,7 +20,7 @@ export class InputMessageContainer extends Block<InputMessageContainerProps> {
 
   init() {
     this.children.input = new InputField({
-      styles: this.props.styles,
+      styles,
       name: this.props.name,
       type: this.props.type,
       text: this.props.text,
@@ -27,6 +28,8 @@ export class InputMessageContainer extends Block<InputMessageContainerProps> {
       disabled: this.props.disabled,
       value: this.props.value ?? "",
     });
+
+    console.log("styles:", styles);
   }
 
   render() {

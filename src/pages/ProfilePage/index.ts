@@ -2,7 +2,7 @@ import Block from "../../utils/Block";
 import template from "./profile.hbs";
 import { withStore } from "../../utils/Store";
 import AuthController from "../../controllers/AuthController";
-import * as inputStyles from "../../components/InputField/inputField.module.scss";
+import inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
 import styles from "../../styles.module.scss";
 import { LinkBtn } from "../../components/LinkBtn";

@@ -1,7 +1,7 @@
 import Block from "../../utils/Block";
 import template from "./signUp.hbs";
-import * as buttonStyles from "../../components/Button/button.module.scss";
-import * as inputStyles from "../../components/InputField/inputField.module.scss";
+import buttonStyles from "../../components/Button/button.module.scss";
+import inputStyles from "../../components/InputField/inputField.module.scss";
 import { InputContainer } from "../../components/InputContainer";
 import { validateForm } from "../../utils/validateForm";
 import styles from "../../styles.module.scss";

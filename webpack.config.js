@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+
 const path = require("path");
-//const HtmlWebpackPlugin = require('html-webpack-plugin');
-//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-//const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const miniCss = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -13,7 +14,7 @@ module.exports = {
     publicPath: "/",
   },
   resolve: {
-    extensions: [".ts", ".js", "json"],
+    extensions: [".ts", ".js", "json", "scss"],
   },
   devServer: {
     static: {
@@ -39,26 +40,22 @@ module.exports = {
         exclude: /(node_modules)/,
       },
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
         type: "asset/resource",
       },
       {
-        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-        type: "asset/inline",
-      },
-      {
         test: /\.(s*)css$/,
-        use: ["css-loader", "sass-loader"],
-      },
-      {
-        test: /\.hbs$/,
-        use: [
-          {
-            loader: "handlebars-loader",
-          },
-        ],
-        exclude: /(node_modules)/,
+        use: [miniCss.loader, "css-loader", "sass-loader"],
       },
     ],
   },
+  plugins: [
+    //new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "src/index.html"),
+    }),
+    new miniCss({
+      filename: "style.[hash].css",
+    }),
+  ],
 };
