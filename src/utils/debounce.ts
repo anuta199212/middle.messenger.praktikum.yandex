@@ -1,10 +1,16 @@
-export function debounce(f: (...args: any[]) => void, delay: number) {
-  return function (this: any, ...args: any[]) {
-    const previousCall = this.lastCall;
-    this.lastCall = Date.now();
-    if (previousCall && this.lastCall - previousCall <= delay) {
-      clearTimeout(this.lastCallTimer);
+export const debounce = <F extends (...args: any[]) => any>(
+  func: F,
+  delay: number,
+) => {
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+
+  const debounced = (...args: Parameters<F>) => {
+    if (timeout !== null) {
+      clearTimeout(timeout);
+      timeout = null;
     }
-    this.lastCallTimer = setTimeout(() => f(args), delay);
+    timeout = setTimeout(() => func(...args), delay);
   };
-}
+
+  return debounced as (...args: Parameters<F>) => ReturnType<F>;
+};
