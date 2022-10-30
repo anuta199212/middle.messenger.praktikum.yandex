@@ -1,7 +1,7 @@
 import Block from "../../utils/Block";
 import template from "./inputMessageContainer.hbs";
 import { InputField } from "../InputField";
-import styles from "../../pages/ChatListPage/chatList.module.scss";
+import styles from "./inputMessageContainer.module.scss";
 
 interface InputMessageContainerProps {
   styles: Record<string, string>;
