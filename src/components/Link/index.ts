@@ -23,8 +23,6 @@ class BaseLink extends Block<LinkProps> {
   }
   init() {
     this.props.align = styles[`text-align-${this.props.align ?? "left"}`];
-
-    console.log(this.props.align);
   }
 
   navigate(event: any) {

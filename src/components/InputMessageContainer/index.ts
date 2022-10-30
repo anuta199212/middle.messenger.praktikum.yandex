@@ -28,8 +28,6 @@ export class InputMessageContainer extends Block<InputMessageContainerProps> {
       disabled: this.props.disabled,
       value: this.props.value ?? "",
     });
-
-    console.log("styles:", styles);
   }
 
   render() {
