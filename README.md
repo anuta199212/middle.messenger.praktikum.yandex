@@ -56,3 +56,7 @@ src\
 ## **Ссылка на макет в Figma**
 
 [Макет](https://www.figma.com/file/BrNECnizIJE0fYCNMVUZPJ/MessageApp?node-id=3%3A481)
+
+## **Ссылка на приложение в heroku**
+
+[Приложение](https://message-app-practicum.herokuapp.com/)
