@@ -16,10 +16,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "^1.0.2",
-    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
-    "@parcel/transformer-css-experimental": "^2.3.2",
-    "@parcel/transformer-sass": "^2.7.0",
     "@types/chai": "^4.3.3",
     "@types/jsdom": "^20.0.0",
     "@types/mocha": "^10.0.0",
