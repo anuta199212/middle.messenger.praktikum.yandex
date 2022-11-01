@@ -41,7 +41,7 @@ const store = new Store();
 
 export function withStore(mapStateToProps: (state: State) => any) {
   return function wrap(Component: typeof Block<any>) {
-    let previousState: any;
+    let previousState: State;
 
     return class WithStore extends Component {
       constructor(props: any) {

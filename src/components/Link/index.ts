@@ -17,7 +17,7 @@ class BaseLink extends Block<LinkProps> {
     super({
       ...props,
       events: {
-        click: (event: any) => this.navigate(event),
+        click: (event: Event) => this.navigate(event),
       },
     });
   }
@@ -25,7 +25,7 @@ class BaseLink extends Block<LinkProps> {
     this.props.align = styles[`text-align-${this.props.align ?? "left"}`];
   }
 
-  navigate(event: any) {
+  navigate(event: Event) {
     event.preventDefault();
 
     this.props.router.go(this.props.to);

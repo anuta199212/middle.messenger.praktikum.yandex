@@ -27,10 +27,17 @@ export class AvatarEditPage extends Block {
           if (inputFile && inputFile.files) {
             event.preventDefault();
 
-            const inputFile: any = document.getElementById("avatar");
+            const inputFile: HTMLInputElement | null = document.getElementById(
+              "avatar",
+            ) as HTMLInputElement;
             const formData = new FormData();
 
-            formData.append("avatar", inputFile.files[0]);
+            let file: string | Blob = "";
+            if (inputFile && inputFile.files) {
+              file = inputFile.files[0];
+            }
+
+            formData.append("avatar", file);
 
             UserController.avatar(formData as unknown as AvatarData);
           }

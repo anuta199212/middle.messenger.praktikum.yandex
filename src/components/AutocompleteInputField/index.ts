@@ -18,7 +18,7 @@ interface AutocompleteInputFieldProps {
     focus: () => void;
     blur: () => void;
     input: () => void;
-    keydown: (event: any) => void;
+    keydown: (event: KeyboardEvent) => void;
   };
   autocompleteList: { id: number; login: string }[];
   autocompleteFunc: (value: any) => void;
@@ -120,9 +120,11 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     const autocompleteList: { id: number; login: string }[] = [];
 
     if (Array.isArray(autocompleteStoreList)) {
-      autocompleteStoreList.forEach((element: { id: number; login: any }) => {
-        autocompleteList.push({ id: element.id, login: element.login });
-      });
+      autocompleteStoreList.forEach(
+        (element: { id: number; login: string }) => {
+          autocompleteList.push({ id: element.id, login: element.login });
+        },
+      );
     }
 
     const arr = autocompleteList;
@@ -181,7 +183,7 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     this.debouncedInput();
   }
 
-  private onKeyDown(event: any) {
+  private onKeyDown(event: KeyboardEvent) {
     const x = document.getElementsByClassName(
       autocompleteInputStyles["autocomplete-items"],
     )[0];
@@ -201,12 +203,14 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     } else if (event.code == "Enter") {
       event.preventDefault();
       if (this.currentFocus > -1) {
-        if (x) y[this.currentFocus].click();
+        if (x) {
+          y[this.currentFocus].click();
+        }
       }
     }
   }
 
-  closeAllLists(elmnt?: any) {
+  closeAllLists(elmnt?: EventTarget | null) {
     const x = document.getElementsByClassName(
       autocompleteInputStyles["autocomplete-items"],
     );
@@ -218,7 +222,7 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     }
   }
 
-  addActive(y: any) {
+  addActive(y: Element[]) {
     if (!y) return false;
 
     this.removeActive(y);
@@ -230,7 +234,7 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
     );
   }
 
-  removeActive(y: any) {
+  removeActive(y: Element[]) {
     for (let i = 0; i < y.length; i++) {
       y[i].classList.remove(autocompleteInputStyles["autocomplete-active"]);
     }

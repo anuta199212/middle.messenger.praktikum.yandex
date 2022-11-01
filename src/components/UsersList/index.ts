@@ -4,8 +4,12 @@ import { UsersListItem, UserWithRole } from "../UsersListItem";
 import { withStore } from "../../utils/Store";
 import styles from "../../styles.module.scss";
 
-export class UsersListBase extends Block {
-  constructor(props: any) {
+interface UsersListProps {
+  users?: UserWithRole[];
+}
+
+export class UsersListBase extends Block<UsersListProps> {
+  constructor(props: UsersListProps) {
     super(props);
   }
 

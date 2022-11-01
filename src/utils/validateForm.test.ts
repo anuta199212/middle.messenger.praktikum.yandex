@@ -1,5 +1,4 @@
 import { expect } from "chai";
-//import sinon from "sinon";
 import { InputField } from "../components/InputField";
 import Block from "./Block";
 import { validateForm } from "./validateForm";

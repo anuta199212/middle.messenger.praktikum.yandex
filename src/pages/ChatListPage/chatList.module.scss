@@ -1,49 +1,57 @@
-@-webkit-keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
 @keyframes animatetop {
   from {
     top: -300px;
     opacity: 0;
   }
+
   to {
     top: 0;
     opacity: 1;
   }
 }
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
 :root {
   --chat-title-color: #252525;
   --chat-badge-primary-color: #3369f3;
   --chat-input-bg-color: #fbfbfb;
   --chat-outgoing-color: #f8f8f8;
   --chat-incoming-color: #e4edfd;
-  --chat-btn-more-color: #999999;
+  --chat-btn-more-color: #999;
 }
+
 .chat-title {
   display: block;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 13px;
   color: var(--chat-title-color);
   text-align: left;
 }
+
 .chat-message-text {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 12px;
   color: var(--input-field-color);
 }
+
 .chat-message-time {
   float: right;
   padding-top: 10px;
   padding-bottom: 0;
   font-size: 11px;
 }
+
 .chat-avatar-img {
   width: 40px;
 }
@@ -68,7 +76,7 @@
 .chat-message-container {
   margin-left: 25%;
   width: 75%;
-  padding: 0px;
+  padding: 0;
   position: fixed;
   overflow: auto;
   height: 80%;
@@ -81,9 +89,9 @@
   border-radius: 50%;
   color: white;
   background-color: var(--btn-bg-color);
-  //position: fixed;
   margin-left: 8px;
 }
+
 .chat-btn-more {
   width: 32px;
   height: 32px;
@@ -92,6 +100,7 @@
   float: right;
   border: none;
 }
+
 .chat-btn-more-color {
   color: var(--chat-btn-more-color);
   background-color: var(--main-bg-color);
@@ -103,8 +112,9 @@
   justify-content: space-between;
   padding: 15px;
 }
+
 .chat-app-title {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 20px;
   color: var(--form-title-color);
   text-align: center;
@@ -112,28 +122,31 @@
   padding-top: 2px;
   padding-left: 4px;
 }
-.chat-search-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.chat-search-input {
-  width: 90%;
-  background-color: var(--chat-input-bg-color);
-  border-radius: 5px;
-  height: 32px;
-  padding: 8px;
-  border: 1px solid var(--input-color);
-}
+
 .width-100 {
   width: 100%;
 }
+
 .width-45 {
   width: 45px;
 }
+
 .width-35 {
   width: 35px;
 }
+
+.separator {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+
+.separator-line {
+  border-bottom: 2px solid var(--input-color);
+  width: 90%;
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -144,9 +157,10 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgb(0 0 0);
+  background-color: rgb(0 0 0 / 40%);
 }
+
 .modal-content {
   position: relative;
   background-color: var(--main-bg-color);
@@ -157,17 +171,17 @@
   width: max-content;
   min-width: 30%;
   min-height: 130px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
   animation-name: animatetop;
   animation-duration: 0.4s;
 }
+
 .close-user-list-modal {
   float: right;
   font-size: 13px;
   cursor: pointer;
 }
+
 .close {
   position: absolute;
   padding-left: 95%;
@@ -175,38 +189,45 @@
   font-size: 13px;
   cursor: pointer;
 }
+
 .modal-header {
-  padding: 8px 16px 8px 16px;
+  padding: 8px 16px;
   background-color: var(--main-bg-color);
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 15px;
   height: 50px;
   border-bottom: solid 1px var(--chat-input-bg-color);
 }
+
 .modal-text {
   color: var(--chat-btn-more-color);
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 12px;
 }
+
 .modal-body {
   padding: 2px 16px;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 13px;
 }
 
 .chat-list-item-avatar {
   grid-area: avatar;
 }
+
 .chat-list-item-title {
   grid-area: title;
 }
+
 .chat-list-item-time {
   text-align: right;
   grid-area: time;
 }
+
 .chat-list-item-message {
   grid-area: message;
 }
+
 .chat-list-item-unread {
   text-align: right;
   grid-area: unread;

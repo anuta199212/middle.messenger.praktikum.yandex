@@ -133,10 +133,6 @@ class Block<P extends Record<string, any> = any> {
   protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
 
-    /*Object.entries(this.children).forEach(([name, component]) => {
-      contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
-    });*/
-
     Object.entries(this.children).forEach(([key, child]) => {
       if (Array.isArray(child)) {
         contextAndStubs[key] = child.map(
@@ -153,18 +149,6 @@ class Block<P extends Record<string, any> = any> {
 
     temp.innerHTML = html;
 
-    /* Object.entries(this.children).forEach(([_, component]) => {
-      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
-
-      if (!stub) {
-        return;
-      }
-
-      component.getContent()?.append(...Array.from(stub.childNodes));
-
-      stub.replaceWith(component.getContent()!);
-    });*/
-
     Object.values(this.children).forEach((child) => {
       if (Array.isArray(child)) {
         for (let i = 0; i < child.length; i++) {
@@ -172,7 +156,7 @@ class Block<P extends Record<string, any> = any> {
           if (!stub) {
             return;
           }
-          // child[i].getContent()?.append(...Array.from(stub.childNodes));
+
           stub.replaceWith(child[i].getContent());
         }
       } else {
@@ -181,7 +165,7 @@ class Block<P extends Record<string, any> = any> {
         if (!stub) {
           return;
         }
-        //  child.getContent()?.append(...Array.from(stub.childNodes));
+
         stub.replaceWith(child.getContent());
       }
     });

@@ -21,8 +21,6 @@ export class UserController {
     try {
       await this.api.createChats(data);
 
-      //await this.api.read();
-
       this.getchats();
 
       router.go("/messenger");
