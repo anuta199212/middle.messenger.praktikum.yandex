@@ -1,52 +1,57 @@
 {
   "name": "test",
-  "version": "^1.0.0",
+  "version": "1.0.0",
   "description": "",
   "scripts": {
     "dev": "webpack  --mode=development --progress && webpack serve",
     "build": "webpack --mode=production",
     "start": "npm run build && node server.js",
     "eslint": "eslint . --ext .ts,.js --fix",
+    "stylelint": "stylelint \"**/*.scss\" --fix",
     "test": "nyc mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'",
-    "validate": "npm-run-all --parallel test eslint",
-    "precommit": "npm run validate",
-    "prepush": "npm run validate"
+    "validate": "npm-run-all --parallel test eslint stylelint",
+    "prepare": "husky install"
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard",
+      "stylelint-config-standard-scss"
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/chai": "^4.3.3",
-    "@types/jsdom": "^20.0.0",
-    "@types/mocha": "^10.0.0",
-    "@types/proxyquire": "^1.3.28",
-    "@types/sinon": "^10.0.13",
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
-    "@typescript-eslint/parser": "^5.34.0",
-    "chai": "^4.3.6",
+    "@types/chai": "4.3.3",
+    "@types/jsdom": "20.0.0",
+    "@types/mocha": "10.0.0",
+    "@types/proxyquire": "1.3.28",
+    "@types/sinon": "10.0.13",
+    "@typescript-eslint/eslint-plugin": "5.42.0",
+    "@typescript-eslint/parser": "5.42.0",
+    "chai": "4.3.6",
     "clean-webpack-plugin": "4.0.0",
     "css-loader": "6.7.1",
-    "eslint": "^8.22.0",
-    "express": "^4.18.1",
+    "eslint": "8.26.0",
+    "express": "4.18.2",
     "html-webpack-plugin": "5.5.0",
     "husky": "8.0.1",
-    "jsdom": "^20.0.1",
+    "jsdom": "20.0.2",
     "mini-css-extract-plugin": "2.6.1",
-    "mocha": "^10.0.0",
+    "mocha": "10.1.0",
     "node-sass": "7.0.3",
     "npm-run-all": "4.1.5",
-    "nyc": "^15.1.0",
-    "proxyquire": "^2.1.3",
+    "nyc": "15.1.0",
+    "proxyquire": "2.1.3",
     "sass-loader": "13.1.0",
-    "sinon": "^14.0.1",
-    "stylelint": "^14.11.0",
-    "stylelint-config-standard": "^29.0.0",
-    "stylelint-config-standard-scss": "^6.0.0",
-    "stylelint-scss": "^4.3.0",
+    "sinon": "14.0.1",
+    "stylelint": "14.14.0",
+    "stylelint-config-standard": "29.0.0",
+    "stylelint-config-standard-scss": "6.0.0",
     "ts-loader": "9.4.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.8.4",
-    "typescript-plugin-css-modules": "^3.4.0",
+    "ts-node": "10.9.1",
+    "typescript": "4.8.4",
+    "typescript-plugin-css-modules": "3.4.0",
     "webpack": "5.74.0",
     "webpack-cli": "4.10.0",
     "webpack-dev-server": "4.11.1"
@@ -59,18 +64,17 @@
     }
   },
   "engines": {
-    "npm": "^8.19.2",
+    "npm": "8.19.2",
     "node": "v16.18.0"
   },
   "dependencies": {
-    "eslint-plugin-editorconfig": "^4.0.2",
-    "express-history-api-fallback": "^2.2.1",
-    "handlebars": "^4.7.7",
+    "eslint-plugin-editorconfig": "4.0.2",
+    "express-history-api-fallback": "2.2.1",
+    "handlebars": "4.7.7",
     "handlebars-loader": "1.7.2",
-    "highlight.js": "^11.6.0",
-    "nanoid": "^4.0.0"
+    "nanoid": "3.3.3"
   },
   "overrides": {
-    "highlight.js": "^11.6.0"
+    "highlight.js": "11.6.0"
   }
 }
