@@ -10,7 +10,7 @@ module.exports = {
   entry: ["./src/index.ts"],
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "./js/bundle.[hash].js",
+    filename: "./bundle.[fullhash].js",
     publicPath: "/",
   },
   resolve: {
@@ -53,9 +53,10 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.html"),
+      favicon: "static/favicon.ico",
     }),
     new miniCss({
-      filename: "style.[hash].css",
+      filename: "style.[fullhash].css",
     }),
   ],
 };
