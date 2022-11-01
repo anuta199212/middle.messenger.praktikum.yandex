@@ -1,4 +1,4 @@
-[`Sprint_3`](https://github.com/anuta199212/middle.messenger.praktikum.yandex/pull/3) pull request.
+[`Sprint_4`](https://github.com/anuta199212/middle.messenger.praktikum.yandex/pull/4) pull request.
 
 # Введение
 
