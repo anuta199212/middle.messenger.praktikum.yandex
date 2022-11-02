@@ -1,17 +1,22 @@
-@import "./pages/ChatListPage/chatList.module.scss";
-@import "./components/MessageContainer/messageContainer.module.scss";
-@import "./components/UsersListItem/userList.module.scss";
+@import "./pages/ChatListPage/chatList.module";
+@import "./components/MessageContainer/messageContainer.module";
+@import "./components/UsersListItem/userList.module";
 
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Inter, sans-serif;
+  src: url("/static/Inter-Regular.ttf"); /* Путь к файлу со шрифтом */
 }
 
 body,
 html {
   height: 100%;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
 }
 
 :root {
@@ -19,11 +24,11 @@ html {
   --menu-item-hover-bg-color: #e4edfd;
   --form-title-color: #252525;
   --input-color: #adadad;
-  --input-field-color: #555555;
-  --input-focus-after-color: #999999;
+  --input-field-color: #555;
+  --input-focus-after-color: #999;
   --btn-bg-color: #3369f3;
   --text-primary-color: #3369f3;
-  --text-danger-color: #ff0000;
+  --text-danger-color: #f00;
 }
 
 .menu {
@@ -36,7 +41,7 @@ html {
 }
 
 .menu-list {
-  margin: 0;
+  margin: -10% 0 0;
   padding: 0;
   list-style-type: none;
   font-size: 0;
@@ -62,7 +67,7 @@ html {
 
 .form-title {
   display: block;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 20px;
   color: var(--form-title-color);
   line-height: 1.2;
@@ -74,9 +79,9 @@ html {
   width: 100%;
   min-height: 100vh;
   display: -webkit-box;
-  display: -webkit-flex;
+  display: flex;
   display: -moz-box;
-  display: -ms-flexbox;
+  display: flexbox;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -90,22 +95,18 @@ html {
   background: white;
   border-radius: 10px;
   overflow: hidden;
-  padding: 77px 55px 33px 55px;
-  box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
-  -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
-  -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+  padding: 77px 55px 33px;
+  box-shadow: 0 5px 10px 0 rgb(0 0 0 / 10%);
 }
 
 .text-primary {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 13px;
   color: var(--text-primary-color);
 }
 
 .text-danger {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 13px;
   color: var(--text-danger-color);
 }
@@ -124,7 +125,7 @@ html {
 
 .error-form-title {
   display: block;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 40px;
   color: var(--form-title-color);
   line-height: 1.2;
@@ -150,7 +151,7 @@ html {
 }
 
 .p-t-115 {
-  padding-top: 115p;
+  padding-top: 115px;
 }
 
 .p-b-50 {
@@ -162,7 +163,7 @@ html {
 }
 
 .link {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 13px;
   color: var(--text-primary-color);
   text-decoration: underline;

@@ -1,14 +1,14 @@
-import Block from "../../utils/Block";
-import template from "./profileEdit.hbs";
-import * as inputStyles from "../../components/InputField/inputField.module.scss";
-import { InputContainer } from "../../components/InputContainer";
-import { Button } from "../../components/Button";
-import * as buttonStyles from "../../components/Button/button.module.scss";
-import { validateForm } from "../../utils/validateForm";
-import styles from "../../styles.module.scss";
-import { withStore } from "../../utils/Store";
-import UserController from "../../controllers/UserController";
-import { UserData } from "../../api/UserAPI";
+import Block from "@/src/utils/Block";
+import template from "@/src/pages/ProfileEditPage/profileEdit.hbs";
+import inputStyles from "@/src/components/InputField/inputField.module.scss";
+import { InputContainer } from "@/src/components/InputContainer";
+import { Button } from "@/src/components/Button";
+import buttonStyles from "@/src/components/Button/button.module.scss";
+import { validateForm } from "@/src/utils/validateForm";
+import styles from "@/src/styles.module.scss";
+import { withStore } from "@/src/utils/Store";
+import UserController from "@/src/controllers/UserController";
+import { UserData } from "@/src/api/UserAPI";
 
 interface ProfileEditProps {
   id: number;
@@ -106,7 +106,7 @@ class ProfileEditPageBase extends Block {
     });
   }
 
-  componentDidUpdate(oldProps: ProfileEditProps, newProps: ProfileEditProps) {
+  componentDidUpdate(_oldProps: ProfileEditProps, newProps: ProfileEditProps) {
     this.children.inputEmail.setProps({ value: newProps.email });
     this.children.inputLogin.setProps({ value: newProps.login });
     this.children.inputFName.setProps({ value: newProps.first_name });

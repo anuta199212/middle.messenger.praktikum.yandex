@@ -1,7 +1,7 @@
-import Block from "../../utils/Block";
-import { PropsWithRouter, withRouter } from "../../hocs/withRouter";
-import template from "./avatar.hbs";
-import img from "/static/account-circle.svg";
+import Block from "@/src/utils/Block";
+import { PropsWithRouter, withRouter } from "@/src/hocs/withRouter";
+import template from "@/src/components/Avatar/avatar.hbs";
+import img from "@/static/account-circle.svg";
 
 interface AvatarProps extends PropsWithRouter {
   avatar: string;

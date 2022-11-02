@@ -1,5 +1,5 @@
-import Block from "../utils/Block";
-import { validateInputField } from "./validateInputField";
+import Block from "@/src/utils/Block";
+import { validateInputField } from "@/src/utils/validateInputField";
 
 export function validateForm(children: Record<string, Block<any>>) {
   const { formData, result } = validateInputField(children);

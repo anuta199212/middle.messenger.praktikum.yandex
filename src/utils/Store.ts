@@ -1,9 +1,9 @@
-import { set } from "./helpers";
-import { EventBus } from "./EventBus";
-import Block from "./Block";
-import { User } from "../api/AuthAPI";
-import { ActiveChat, Chats } from "../api/ChatsAPI";
-import { Message } from "../controllers/MessagesController";
+import { set } from "@/src/utils/helpers";
+import { EventBus } from "@/src/utils/EventBus";
+import Block from "@/src/utils/Block";
+import { User } from "@/src/api/AuthAPI";
+import { ActiveChat, Chats } from "@/src/api/ChatsAPI";
+import { Message } from "@/src/controllers/MessagesController";
 
 export interface StoreType {
   Updated: string;
@@ -41,7 +41,7 @@ const store = new Store();
 
 export function withStore(mapStateToProps: (state: State) => any) {
   return function wrap(Component: typeof Block<any>) {
-    let previousState: any;
+    let previousState: State;
 
     return class WithStore extends Component {
       constructor(props: any) {

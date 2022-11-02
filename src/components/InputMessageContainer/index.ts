@@ -1,6 +1,7 @@
-import Block from "../../utils/Block";
-import template from "./inputMessageContainer.hbs";
-import { InputField } from "../InputField";
+import Block from "@/src/utils/Block";
+import template from "@/src/components/InputMessageContainer/inputMessageContainer.hbs";
+import { InputField } from "@/src/components/InputField";
+import styles from "@/src/components/InputMessageContainer/inputMessageContainer.module.scss";
 
 interface InputMessageContainerProps {
   styles: Record<string, string>;
@@ -19,7 +20,7 @@ export class InputMessageContainer extends Block<InputMessageContainerProps> {
 
   init() {
     this.children.input = new InputField({
-      styles: this.props.styles,
+      styles,
       name: this.props.name,
       type: this.props.type,
       text: this.props.text,

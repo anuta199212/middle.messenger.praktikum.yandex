@@ -1,5 +1,5 @@
-import Block from "../../utils/Block";
-import template from "./circleButton.hbs";
+import Block from "@/src/utils/Block";
+import template from "@/src/components/CircleButton/circleButton.hbs";
 
 interface CircleButtonProps {
   name: string;

@@ -1,9 +1,9 @@
-import Block from "../../utils/Block";
-import template from "./chatList.hbs";
-import { Chats } from "../../api/ChatsAPI";
-import { ChatsListItem } from "../ChatsListItem";
-import { withStore } from "../../utils/Store";
-import styles from "../../styles.module.scss";
+import Block from "@/src/utils/Block";
+import template from "@/src/components/ChatList/chatList.hbs";
+import { Chats } from "@/src/api/ChatsAPI";
+import { ChatsListItem } from "@/src/components/ChatsListItem";
+import { withStore } from "@/src/utils/Store";
+import styles from "@/src/styles.module.scss";
 
 interface ChaListProps {
   chats: Chats;
@@ -19,10 +19,7 @@ export class ChatListBase extends Block {
     this.createChatsList();
   }
 
-  protected componentDidUpdate(
-    oldProps: ChaListProps,
-    newProps: ChaListProps,
-  ): boolean {
+  protected componentDidUpdate(): boolean {
     this.createChatsList();
 
     return true;

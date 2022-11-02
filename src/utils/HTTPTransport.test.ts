@@ -2,10 +2,10 @@ import sinon, {
   SinonFakeXMLHttpRequest,
   SinonFakeXMLHttpRequestStatic,
 } from "sinon";
-import HTTPTransport from "./HTTPTransport";
+import HTTPTransport from "@/src/utils/HTTPTransport";
 import { expect } from "chai";
-import { UserData } from "../api/UserAPI";
-import { DeleteUsersData } from "../api/ChatsAPI";
+import { UserData } from "@/src/api/UserAPI";
+import { DeleteUsersData } from "@/src/api/ChatsAPI";
 
 describe("HTTPTransport", () => {
   let xhr: SinonFakeXMLHttpRequestStatic;

@@ -1,17 +1,17 @@
-import Block from "../../utils/Block";
-import template from "./chatDeleteUser.hbs";
-import { Button } from "../../components/Button";
-import * as buttonStyles from "../../components/Button/button.module.scss";
-import * as inputStyles from "../../components/InputField/inputField.module.scss";
-import { InputContainer } from "../../components/InputContainer";
-import { validateForm } from "../../utils/validateForm";
-import styles from "../../styles.module.scss";
-import { withStore } from "../../utils/Store";
-import ChatsController from "../../controllers/ChatsController";
-import UserController from "../../controllers/UserController";
-import { SearchUserData } from "../../api/UserAPI";
-import { AutocompleteInputField } from "../../components/AutocompleteInputField";
-import { ActiveChat, DeleteUsersData } from "../../api/ChatsAPI";
+import Block from "@/src/utils/Block";
+import template from "@/src/pages/ChatDeleteUserPage/chatDeleteUser.hbs";
+import { Button } from "@/src/components/Button";
+import buttonStyles from "@/src/components/Button/button.module.scss";
+import inputStyles from "@/src/components/InputField/inputField.module.scss";
+import { InputContainer } from "@/src/components/InputContainer";
+import { validateForm } from "@/src/utils/validateForm";
+import styles from "@/src/styles.module.scss";
+import { withStore } from "@/src/utils/Store";
+import ChatsController from "@/src/controllers/ChatsController";
+import UserController from "@/src/controllers/UserController";
+import { SearchUserData } from "@/src/api/UserAPI";
+import { AutocompleteInputField } from "@/src/components/AutocompleteInputField";
+import { ActiveChat, DeleteUsersData } from "@/src/api/ChatsAPI";
 
 interface ChatDeleteUserProps {
   activeChat: ActiveChat;

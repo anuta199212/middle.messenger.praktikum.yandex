@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { merge, set } from "./helpers";
+import { merge, set } from "@/src/utils/helpers";
 
 describe("set function", () => {
   const keypath = "test";

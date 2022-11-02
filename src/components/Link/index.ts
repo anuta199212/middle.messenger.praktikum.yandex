@@ -1,7 +1,7 @@
-import Block from "../../utils/Block";
-import { PropsWithRouter, withRouter } from "../../hocs/withRouter";
-import template from "./link.hbs";
-import styles from "../../styles.module.scss";
+import Block from "@/src/utils/Block";
+import { PropsWithRouter, withRouter } from "@/src/hocs/withRouter";
+import template from "@/src/components/Link/link.hbs";
+import styles from "@/src/styles.module.scss";
 
 interface LinkProps extends PropsWithRouter {
   to: string;
@@ -17,17 +17,15 @@ class BaseLink extends Block<LinkProps> {
     super({
       ...props,
       events: {
-        click: (event: any) => this.navigate(event),
+        click: (event: Event) => this.navigate(event),
       },
     });
   }
   init() {
     this.props.align = styles[`text-align-${this.props.align ?? "left"}`];
-
-    console.log(this.props.align);
   }
 
-  navigate(event: any) {
+  navigate(event: Event) {
     event.preventDefault();
 
     this.props.router.go(this.props.to);

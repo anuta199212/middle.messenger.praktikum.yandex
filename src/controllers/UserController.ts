@@ -5,9 +5,9 @@ import API, {
   UserAPI,
   UserData,
   UserId,
-} from "../api/UserAPI";
-import store from "../utils/Store";
-import router from "../utils/Router";
+} from "@/src/api/UserAPI";
+import store from "@/src/utils/Store";
+import router from "@/src/utils/Router";
 
 export class UserController {
   private readonly api: UserAPI;

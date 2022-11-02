@@ -1,4 +1,4 @@
-import { EventBus } from "./EventBus";
+import { EventBus } from "@/src/utils/EventBus";
 
 export interface WSTransportEventsType {
   Connected: string;
@@ -16,7 +16,7 @@ export const WSTransportEvents: WSTransportEventsType = {
 
 export default class WSTransport extends EventBus {
   private socket: WebSocket | null = null;
-  private pingInterval = 0;
+  private pingInterval: NodeJS.Timer | 0 = 0;
 
   constructor(private url: string) {
     super();

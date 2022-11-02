@@ -1,6 +1,6 @@
-import API, { AuthAPI, SigninData, SignupData } from "../api/AuthAPI";
-import store from "../utils/Store";
-import router from "../utils/Router";
+import API, { AuthAPI, SigninData, SignupData } from "@/src/api/AuthAPI";
+import store from "@/src/utils/Store";
+import router from "@/src/utils/Router";
 
 export class AuthController {
   private readonly api: AuthAPI;

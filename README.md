@@ -6,8 +6,8 @@
 
 ## Настройка проекта
 
-1. Скачать репозиторий (git clone `URL`)
-2. Установить зависимости (npm install в директории проекта)
+1. Скачать репозиторий (git clone [`URL`](https://github.com/anuta199212/middle.messenger.praktikum.yandex))
+2. Установить зависимости (`npm install` в директории проекта)
 
 ## Запуск и сборка проекта
 
@@ -27,6 +27,18 @@ npm run build
 
 ```
 npm run start
+```
+
+#### Запуск тестов
+
+```
+npm run test
+```
+
+#### Запуск проверок линтера
+
+```
+npm run eslint
 ```
 
 ## Структура проекта
@@ -52,7 +64,13 @@ src\
 4. Express
 5. Stylelint
 6. ESLint
+7. Webpack
+8. Docker
 
 ## **Ссылка на макет в Figma**
 
 [Макет](https://www.figma.com/file/BrNECnizIJE0fYCNMVUZPJ/MessageApp?node-id=3%3A481)
+
+## **Ссылка на приложение в heroku**
+
+[Приложение](https://message-app-practicum.herokuapp.com/)

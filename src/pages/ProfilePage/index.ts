@@ -1,13 +1,13 @@
-import Block from "../../utils/Block";
-import template from "./profile.hbs";
-import { withStore } from "../../utils/Store";
-import AuthController from "../../controllers/AuthController";
-import * as inputStyles from "../../components/InputField/inputField.module.scss";
-import { InputContainer } from "../../components/InputContainer";
-import styles from "../../styles.module.scss";
-import { LinkBtn } from "../../components/LinkBtn";
-import { Link } from "../../components/Link";
-import { Avatar } from "../../components/Avatar";
+import Block from "@/src/utils/Block";
+import template from "@/src/pages/ProfilePage/profile.hbs";
+import { withStore } from "@/src/utils/Store";
+import AuthController from "@/src/controllers/AuthController";
+import inputStyles from "@/src/components/InputField/inputField.module.scss";
+import { InputContainer } from "@/src/components/InputContainer";
+import styles from "@/src/styles.module.scss";
+import { LinkBtn } from "@/src/components/LinkBtn";
+import { Link } from "@/src/components/Link";
+import { Avatar } from "@/src/components/Avatar";
 
 interface ProfileProps {
   id: number;
@@ -120,7 +120,7 @@ class ProfilePageBase extends Block {
     });
   }
 
-  componentDidUpdate(oldProps: ProfileProps, newProps: ProfileProps) {
+  componentDidUpdate(_oldProps: ProfileProps, newProps: ProfileProps) {
     this.children.inputEmail.setProps({ value: newProps.email });
     this.children.inputLogin.setProps({ value: newProps.login });
     this.children.inputFName.setProps({ value: newProps.first_name });

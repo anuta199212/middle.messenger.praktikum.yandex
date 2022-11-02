@@ -1,6 +1,6 @@
-import Block from "../../utils/Block";
-import { fieldsRules } from "../../data/fieldsRules";
-import template from "./inputField.hbs";
+import Block from "@/src/utils/Block";
+import { fieldsRules } from "@/src/data/fieldsRules";
+import template from "@/src/components/InputField/inputField.hbs";
 
 interface InputFieldProps {
   styles: Record<string, string>;
@@ -13,7 +13,7 @@ interface InputFieldProps {
   events?: {
     focus: () => void;
     blur: () => void;
-    change: (event: any) => void;
+    change: (event: Event) => void;
   };
 }
 
@@ -23,7 +23,7 @@ export class InputField extends Block<InputFieldProps> {
     this.props.events = {
       focus: () => this.onFocus(),
       blur: () => this.onBlur(),
-      change: (event: any) => this.onChange(event),
+      change: (event: Event) => this.onChange(event),
     };
   }
 
@@ -64,7 +64,7 @@ export class InputField extends Block<InputFieldProps> {
     return { isValid, message };
   }
 
-  private onChange(event: any) {
+  private onChange(event: Event) {
     const value = (event.target as HTMLInputElement).value;
 
     this.setProps({ ...this.props, value: value });

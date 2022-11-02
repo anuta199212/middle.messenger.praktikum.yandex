@@ -1,16 +1,16 @@
-import Block from "../../utils/Block";
-import template from "./chatList.hbs";
-import * as chatListStyles from "./chatList.module.scss";
-import { CircleButton } from "../../components/CircleButton";
-import styles from "../../styles.module.scss";
-import { withStore } from "../../utils/Store";
-import ChatsController from "../../controllers/ChatsController";
-import Router from "../../utils/Router";
-import { ActiveChat, Chats } from "../../api/ChatsAPI";
-import { ChatList } from "../../components/ChatList";
-import { MessageContainer } from "../../components/MessageContainer";
-import { UsersListModal } from "../../components/UserListModal";
-import { ChatCreateModal } from "../../components/ChatCreateModal";
+import Block from "@/src/utils/Block";
+import template from "@/src/pages/ChatListPage/chatList.hbs";
+import chatListStyles from "@/src/pages/ChatListPage/chatList.module.scss";
+import { CircleButton } from "@/src/components/CircleButton";
+import styles from "@/src/styles.module.scss";
+import { withStore } from "@/src/utils/Store";
+import ChatsController from "@/src/controllers/ChatsController";
+import Router from "@/src/utils/Router";
+import { ActiveChat, Chats } from "@/src/api/ChatsAPI";
+import { ChatList } from "@/src/components/ChatList";
+import { MessageContainer } from "@/src/components/MessageContainer";
+import { UsersListModal } from "@/src/components/UserListModal";
+import { ChatCreateModal } from "@/src/components/ChatCreateModal";
 
 interface ChatListPageProps {
   chats: Chats[];
@@ -47,7 +47,7 @@ export class ChatListPageBase extends Block {
           document
             .getElementsByName("createChats")[0]
             ?.addEventListener("click", () => {
-              this.openModal(event);
+              this.openModal();
             });
         },
       },
@@ -62,7 +62,7 @@ export class ChatListPageBase extends Block {
   }
 
   componentDidUpdate(
-    oldProps: ChatListPageProps,
+    _oldProps: ChatListPageProps,
     newProps: ChatListPageProps,
   ): boolean {
     this.children.messageContainer.setProps({
@@ -73,10 +73,23 @@ export class ChatListPageBase extends Block {
 
     this.children.chatCreateModal = new ChatCreateModal({});
 
+    this.children.buttonCreate = new CircleButton({
+      name: "addChat",
+      color: "primary",
+      styles: chatListStyles,
+      icon: "fa-solid fa-plus",
+      events: {
+        click: (event: Event) => {
+          this.openModal();
+          console.log(event);
+        },
+      },
+    });
+
     return true;
   }
 
-  async openModal(event: any) {
+  async openModal() {
     const modal = document.getElementsByName("chatCreateModal")[0];
 
     if (modal) {

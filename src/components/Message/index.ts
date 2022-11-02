@@ -1,6 +1,6 @@
-import Block from "../../utils/Block";
-import template from "./message.hbs";
-import styles from "./message.module.scss";
+import Block from "@/src/utils/Block";
+import template from "@/src/components/Message/message.hbs";
+import styles from "@/src/components/Message/message.module.scss";
 
 interface MessageProps {
   content: string;

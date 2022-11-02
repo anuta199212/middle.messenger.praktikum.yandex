@@ -1,19 +1,19 @@
-import { LoginPage } from "./pages/LoginPage";
-import { SignUpPage } from "./pages/SignUpPage";
-import Router from "./utils/Router";
-import { ProfilePage } from "./pages/ProfilePage";
+import { LoginPage } from "@/src/pages/LoginPage";
+import { SignUpPage } from "@/src/pages/SignUpPage";
+import Router from "@/src/utils/Router";
+import { ProfilePage } from "@/src/pages/ProfilePage";
 
-import AuthController from "./controllers/AuthController";
-import { navigation } from "./data/navigation";
-import { ProfileEditPage } from "./pages/ProfileEditPage";
-import { PasswordEditPage } from "./pages/PasswordEditPage";
-import { Error500Page } from "./pages/Error500Page";
-import { Error404Page } from "./pages/Error404Page";
-import { ChatListPage } from "./pages/ChatListPage";
-import ChatsController from "./controllers/ChatsController";
-import { AvatarEditPage } from "./pages/AvatarEditPage";
-import { ChatAddUserPage } from "./pages/ChatAddUserPage";
-import { ChatDeleteUserPage } from "./pages/ChatDeleteUserPage";
+import AuthController from "@/src/controllers/AuthController";
+import { navigation } from "@/src/data/navigation";
+import { ProfileEditPage } from "@/src/pages/ProfileEditPage";
+import { PasswordEditPage } from "@/src/pages/PasswordEditPage";
+import { Error500Page } from "@/src/pages/Error500Page";
+import { Error404Page } from "@/src/pages/Error404Page";
+import { ChatListPage } from "@/src/pages/ChatListPage";
+import ChatsController from "@/src/controllers/ChatsController";
+import { AvatarEditPage } from "@/src/pages/AvatarEditPage";
+import { ChatAddUserPage } from "@/src/pages/ChatAddUserPage";
+import { ChatDeleteUserPage } from "@/src/pages/ChatDeleteUserPage";
 
 window.addEventListener("DOMContentLoaded", async () => {
   Router.use(navigation.pages[0].url, LoginPage)

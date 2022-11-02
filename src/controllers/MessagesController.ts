@@ -1,5 +1,5 @@
-import WSTransport, { WSTransportEvents } from "../utils/WSTransport";
-import store from "../utils/Store";
+import WSTransport, { WSTransportEvents } from "@/src/utils/WSTransport";
+import store from "@/src/utils/Store";
 
 export interface Message {
   chat_id: number;

@@ -1,11 +1,15 @@
-import Block from "../../utils/Block";
-import template from "./usersList.hbs";
-import { UsersListItem, UserWithRole } from "../UsersListItem";
-import { withStore } from "../../utils/Store";
-import styles from "../../styles.module.scss";
+import Block from "@/src/utils/Block";
+import template from "@/src/components/UsersList/usersList.hbs";
+import { UsersListItem, UserWithRole } from "@/src/components/UsersListItem";
+import { withStore } from "@/src/utils/Store";
+import styles from "@/src/styles.module.scss";
 
-export class UsersListBase extends Block {
-  constructor(props: any) {
+interface UsersListProps {
+  users?: UserWithRole[];
+}
+
+export class UsersListBase extends Block<UsersListProps> {
+  constructor(props: UsersListProps) {
     super(props);
   }
 

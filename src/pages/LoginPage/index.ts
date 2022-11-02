@@ -1,14 +1,14 @@
-import Block from "../../utils/Block";
-import template from "./login.hbs";
-import styles from "../../styles.module.scss";
-import { Link } from "../../components/Link";
-import { SigninData } from "../../api/AuthAPI";
-import AuthController from "../../controllers/AuthController";
-import { InputContainer } from "../../components/InputContainer";
-import * as inputStyles from "../../components/InputField/inputField.module.scss";
-import * as buttonStyles from "../../components/Button/button.module.scss";
-import { Button } from "../../components/Button";
-import { validateForm } from "../../utils/validateForm";
+import Block from "@/src/utils/Block";
+import template from "@/src/pages/LoginPage/login.hbs";
+import styles from "@/src/styles.module.scss";
+import { Link } from "@/src/components/Link";
+import { SigninData } from "@/src/api/AuthAPI";
+import AuthController from "@/src/controllers/AuthController";
+import { InputContainer } from "@/src/components/InputContainer";
+import inputStyles from "@/src/components/InputField/inputField.module.scss";
+import buttonStyles from "@/src/components/Button/button.module.scss";
+import { Button } from "@/src/components/Button";
+import { validateForm } from "@/src/utils/validateForm";
 
 export class LoginPage extends Block {
   init() {
