@@ -22,14 +22,6 @@ module.exports = {
       "@pages": path.resolve(__dirname, "./src/pages/"),
     },
   },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, "dist"),
-    },
-    compress: true,
-    port: 3000,
-    historyApiFallback: true,
-  },
   module: {
     rules: [
       {

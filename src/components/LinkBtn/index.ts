@@ -1,6 +1,6 @@
 import Block from "@/src/utils/Block";
 import { PropsWithRouter, withRouter } from "@/src/hocs/withRouter";
-import template from "@/src/components/Link/link.hbs";
+import template from "@/src/components/LinkBtn/link.hbs";
 import styles from "@/src/styles.module.scss";
 
 interface LinkBtnProps extends PropsWithRouter {
