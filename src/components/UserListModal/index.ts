@@ -1,10 +1,10 @@
-import Block from "../../utils/Block";
-import template from "./userListModal.hbs";
-import styles from "../../styles.module.scss";
-import { UsersList } from "../UsersList";
-import { withStore } from "../../utils/Store";
-import { ActiveChat } from "../../api/ChatsAPI";
-import { User } from "../../api/AuthAPI";
+import Block from "@/src/utils/Block";
+import template from "@/src/components/UserListModal/userListModal.hbs";
+import styles from "@/src/styles.module.scss";
+import { UsersList } from "@/src/components/UsersList";
+import { withStore } from "@/src/utils/Store";
+import { ActiveChat } from "@/src/api/ChatsAPI";
+import { User } from "@/src/api/AuthAPI";
 
 interface UsersListModalProps {
   title?: string;

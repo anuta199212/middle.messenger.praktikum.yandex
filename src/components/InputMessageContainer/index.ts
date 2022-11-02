@@ -1,7 +1,7 @@
-import Block from "../../utils/Block";
-import template from "./inputMessageContainer.hbs";
-import { InputField } from "../InputField";
-import styles from "./inputMessageContainer.module.scss";
+import Block from "@/src/utils/Block";
+import template from "@/src/components/InputMessageContainer/inputMessageContainer.hbs";
+import { InputField } from "@/src/components/InputField";
+import styles from "@/src/components/InputMessageContainer/inputMessageContainer.module.scss";
 
 interface InputMessageContainerProps {
   styles: Record<string, string>;

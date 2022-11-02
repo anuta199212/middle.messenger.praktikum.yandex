@@ -1,6 +1,6 @@
-import Block from "../../utils/Block";
-import { fieldsRules } from "../../data/fieldsRules";
-import template from "./inputField.hbs";
+import Block from "@/src/utils/Block";
+import { fieldsRules } from "@/src/data/fieldsRules";
+import template from "@/src/components/InputField/inputField.hbs";
 
 interface InputFieldProps {
   styles: Record<string, string>;

@@ -2,7 +2,7 @@
 
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const miniCss = require("mini-css-extract-plugin");
+const MiniCss = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
@@ -15,6 +15,12 @@ module.exports = {
   },
   resolve: {
     extensions: [".ts", ".js", "json", "scss"],
+    alias: {
+      "@": path.resolve(__dirname, "./"),
+      "@src": path.resolve(__dirname, "./src"),
+      "@components": path.resolve(__dirname, "./src/components/"),
+      "@pages": path.resolve(__dirname, "./src/pages/"),
+    },
   },
   devServer: {
     static: {
@@ -45,7 +51,7 @@ module.exports = {
       },
       {
         test: /\.(s*)css$/,
-        use: [miniCss.loader, "css-loader", "sass-loader"],
+        use: [MiniCss.loader, "css-loader", "sass-loader"],
       },
     ],
   },
@@ -55,7 +61,7 @@ module.exports = {
       template: path.resolve(__dirname, "src/index.html"),
       favicon: "static/favicon.ico",
     }),
-    new miniCss({
+    new MiniCss({
       filename: "style.[fullhash].css",
     }),
   ],

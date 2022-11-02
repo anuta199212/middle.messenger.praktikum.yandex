@@ -1,15 +1,15 @@
-import Block from "../../utils/Block";
-import template from "./messageContainer.hbs";
-import { MessageContainerHeader } from "../MessageContainerHeader";
+import Block from "@/src/utils/Block";
+import template from "@/src/components/MessageContainer/messageContainer.hbs";
+import { MessageContainerHeader } from "@/src/components/MessageContainerHeader";
 import MessagesController, {
   Message as MessageInfo,
-} from "../../controllers/MessagesController";
-import { CircleButton } from "../CircleButton";
-import { validateForm } from "../../utils/validateForm";
-import { InputMessageContainer } from "../InputMessageContainer";
-import { withStore } from "../../utils/Store";
-import { Message } from "../Message";
-import { ActiveChat } from "../../api/ChatsAPI";
+} from "@/src/controllers/MessagesController";
+import { CircleButton } from "@/src/components/CircleButton";
+import { validateForm } from "@/src/utils/validateForm";
+import { InputMessageContainer } from "@/src/components/InputMessageContainer";
+import { withStore } from "@/src/utils/Store";
+import { Message } from "@/src/components/Message";
+import { ActiveChat } from "@/src/api/ChatsAPI";
 
 interface MessageContainerProps {
   styles: Record<string, string>;

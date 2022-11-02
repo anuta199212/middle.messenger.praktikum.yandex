@@ -1,9 +1,9 @@
-import Block from "../../utils/Block";
-import { fieldsRules } from "../../data/fieldsRules";
-import template from "./autocompleteInputField.hbs";
-import store from "../../utils/Store";
-import autocompleteInputStyles from "../AutocompleteInputField/autocompleteInputField.module.scss";
-import { debounce } from "../../utils/debounce";
+import Block from "@/src/utils/Block";
+import { fieldsRules } from "@/src/data/fieldsRules";
+import template from "@/src/components/AutocompleteInputField/autocompleteInputField.hbs";
+import store from "@/src/utils/Store";
+import autocompleteInputStyles from "@/src/components/AutocompleteInputField/autocompleteInputField.module.scss";
+import { debounce } from "@/src/utils/debounce";
 
 interface AutocompleteInputFieldProps {
   id?: string;
@@ -21,7 +21,7 @@ interface AutocompleteInputFieldProps {
     keydown: (event: KeyboardEvent) => void;
   };
   autocompleteList: { id: number; login: string }[];
-  autocompleteFunc: (value: any) => void;
+  autocompleteFunc: (value: string) => void;
 }
 
 export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
@@ -32,7 +32,7 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
       focus: () => this.onFocus(),
       blur: () => this.onBlur(),
       input: () => this.onInput(),
-      keydown: (event: any) => this.onKeyDown(event),
+      keydown: (event: KeyboardEvent) => this.onKeyDown(event),
     };
   }
 
@@ -117,19 +117,26 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
 
     const autocompleteStoreList = store.getState().autocompleteList;
 
-    const autocompleteList: { id: number; login: string }[] = [];
+    let autocompleteList: { id: number; login: string }[] = [];
 
     if (Array.isArray(autocompleteStoreList)) {
-      autocompleteStoreList.forEach(
+      autocompleteList = autocompleteStoreList.map(
         (element: { id: number; login: string }) => {
-          autocompleteList.push({ id: element.id, login: element.login });
+          return {
+            id: element.id,
+            login: element.login,
+          };
         },
       );
+
+      //   autocompleteStoreList.forEach(
+      //     (element: { id: number; login: string }) => {
+      //       autocompleteList.push({ id: element.id, login: element.login });
+      //     },
+      //   );
     }
 
-    const arr = autocompleteList;
-
-    if (!arr) {
+    if (!autocompleteList) {
       return;
     }
 
@@ -145,34 +152,34 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
 
     input.parentNode?.appendChild(list);
 
-    const self = this;
-
-    document.addEventListener("click", function (e) {
-      self.closeAllLists(e.target);
+    document.addEventListener("click", (e) => {
+      this.closeAllLists(e.target);
     });
 
-    for (let i = 0; i < arr.length; i++) {
+    autocompleteList.forEach((autocompleteItem) => {
       const item = document.createElement("DIV");
 
       const itemInput = document.createElement("INPUT");
-      itemInput.setAttribute("id", arr[i].id.toString());
+      itemInput.setAttribute("id", autocompleteItem.id.toString());
       itemInput.setAttribute("type", "hidden");
-      itemInput.setAttribute("value", arr[i].login);
+      itemInput.setAttribute("value", autocompleteItem.login);
 
-      item.appendChild(document.createTextNode(arr[i].login));
+      item.appendChild(document.createTextNode(autocompleteItem.login));
 
       item.appendChild(itemInput);
 
-      item.addEventListener("click", function () {
-        input.value = this.getElementsByTagName("input")[0].value;
+      item.addEventListener("click", () => {
+        const inputField = item.getElementsByTagName("input")[0];
 
-        self.props.id = this.getElementsByTagName("input")[0].id;
-        self.props.value = this.getElementsByTagName("input")[0].value;
+        input.value = inputField.value;
 
-        self.closeAllLists();
+        this.props.id = inputField.id;
+        this.props.value = inputField.value;
+
+        this.closeAllLists();
       });
       list.appendChild(item);
-    }
+    });
 
     input.focus();
   };
@@ -184,60 +191,67 @@ export class AutocompleteInputField extends Block<AutocompleteInputFieldProps> {
   }
 
   private onKeyDown(event: KeyboardEvent) {
-    const x = document.getElementsByClassName(
+    const autocompleteListDiv = document.getElementsByClassName(
       autocompleteInputStyles["autocomplete-items"],
     )[0];
 
-    let y: any;
-    if (x) {
-      y = x.getElementsByTagName("div");
+    console.log("x:", autocompleteListDiv);
+
+    let autocompleteListArray: any;
+    if (autocompleteListDiv) {
+      autocompleteListArray = autocompleteListDiv.getElementsByTagName("div");
+      console.log("y:", autocompleteListArray);
     }
     if (event.code == "ArrowDown") {
       this.currentFocus++;
 
-      this.addActive(y);
+      this.addActive(autocompleteListArray);
     } else if (event.code == "ArrowUp") {
       this.currentFocus--;
 
-      this.addActive(y);
+      this.addActive(autocompleteListArray);
     } else if (event.code == "Enter") {
       event.preventDefault();
       if (this.currentFocus > -1) {
-        if (x) {
-          y[this.currentFocus].click();
+        if (autocompleteListDiv) {
+          autocompleteListArray[this.currentFocus].click();
         }
       }
     }
   }
 
-  closeAllLists(elmnt?: EventTarget | null) {
-    const x = document.getElementsByClassName(
+  closeAllLists(element?: EventTarget | null) {
+    const autocompleteListDiv = document.getElementsByClassName(
       autocompleteInputStyles["autocomplete-items"],
     );
     const inp = document.getElementsByName("login")[0];
-    for (let i = 0; i < x.length; i++) {
-      if (elmnt != x[i] && elmnt != inp) {
-        x[i].parentNode?.removeChild(x[i]);
+    for (const item of autocompleteListDiv) {
+      if (element != item && element != inp) {
+        item.parentNode?.removeChild(item);
       }
     }
   }
 
-  addActive(y: Element[]) {
-    if (!y) return false;
+  addActive(autocompleteListArray: Element[]) {
+    if (!autocompleteListArray) {
+      return false;
+    }
 
-    this.removeActive(y);
-    if (this.currentFocus >= y.length) this.currentFocus = 0;
-    if (this.currentFocus < 0) this.currentFocus = y.length - 1;
+    this.removeActive(autocompleteListArray);
+    if (this.currentFocus >= autocompleteListArray.length)
+      this.currentFocus = 0;
+    if (this.currentFocus < 0)
+      this.currentFocus = autocompleteListArray.length - 1;
 
-    y[this.currentFocus].classList.add(
+    autocompleteListArray[this.currentFocus].classList.add(
       autocompleteInputStyles["autocomplete-active"],
     );
   }
 
-  removeActive(y: Element[]) {
-    for (let i = 0; i < y.length; i++) {
-      y[i].classList.remove(autocompleteInputStyles["autocomplete-active"]);
-    }
+  removeActive(autocompleteListArray: Element[]) {
+    autocompleteListArray.forEach((item) => {
+      item.classList.remove(autocompleteInputStyles["autocomplete-active"]);
+    });
   }
 
   render() {

@@ -1,7 +1,7 @@
 import { expect } from "chai";
-import { InputField } from "../components/InputField";
-import Block from "./Block";
-import { validateForm } from "./validateForm";
+import { InputField } from "@/src/components/InputField";
+import Block from "@/src/utils/Block";
+import { validateForm } from "@/src/utils/validateForm";
 
 describe("validateForm", () => {
   interface TestComponentProps {

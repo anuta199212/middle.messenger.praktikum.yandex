@@ -1,14 +1,14 @@
-import Block from "../../utils/Block";
-import template from "./chatCreateModal.hbs";
-import { Button } from "../../components/Button";
-import buttonStyles from "../../components/Button/button.module.scss";
-import inputStyles from "../../components/InputField/inputField.module.scss";
-import { InputContainer } from "../../components/InputContainer";
-import { validateForm } from "../../utils/validateForm";
-import styles from "../../styles.module.scss";
-import { withStore } from "../../utils/Store";
-import ChatsController from "../../controllers/ChatsController";
-import { CreateData } from "../../api/ChatsAPI";
+import Block from "@/src/utils/Block";
+import template from "@/src/components/ChatCreateModal/chatCreateModal.hbs";
+import { Button } from "@/src/components/Button";
+import buttonStyles from "@/src/components/Button/button.module.scss";
+import inputStyles from "@/src/components/InputField/inputField.module.scss";
+import { InputContainer } from "@/src/components/InputContainer";
+import { validateForm } from "@/src/utils/validateForm";
+import styles from "@/src/styles.module.scss";
+import { withStore } from "@/src/utils/Store";
+import ChatsController from "@/src/controllers/ChatsController";
+import { CreateData } from "@/src/api/ChatsAPI";
 
 class ChatCreateModalBase extends Block {
   init() {

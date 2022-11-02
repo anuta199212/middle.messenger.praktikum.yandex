@@ -1,4 +1,4 @@
-import Router, { BlockConstructable } from "./Router";
+import Router, { BlockConstructable } from "@/src/utils/Router";
 import { expect } from "chai";
 import sinon from "sinon";
 describe("Router", () => {

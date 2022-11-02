@@ -1,5 +1,5 @@
-import Block from "../../utils/Block";
-import template from "./messageContainerTitle.hbs";
+import Block from "@/src/utils/Block";
+import template from "@/src/components/MessageContainerTitle/messageContainerTitle.hbs";
 
 interface MessageContainerTitleProps {
   title: string;

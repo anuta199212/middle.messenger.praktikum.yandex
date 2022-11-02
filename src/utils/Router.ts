@@ -1,5 +1,5 @@
-import { navigation } from "../data/navigation";
-import Block from "./Block";
+import { navigation } from "@/src/data/navigation";
+import Block from "@/src/utils/Block";
 
 export interface BlockConstructable<P extends Record<string, any> = any> {
   new (props: P): Block<P>;

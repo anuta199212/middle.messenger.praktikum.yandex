@@ -1,7 +1,7 @@
-import Block from "../../utils/Block";
-import template from "./error404.hbs";
-import styles from "../../styles.module.scss";
-import { Link } from "../../components/Link";
+import Block from "@/src/utils/Block";
+import template from "@/src/pages/Error404Page/error404.hbs";
+import styles from "@/src/styles.module.scss";
+import { Link } from "@/src/components/Link";
 
 export class Error404Page extends Block {
   init() {

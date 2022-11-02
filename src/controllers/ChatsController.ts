@@ -5,10 +5,10 @@ import API, {
   DeleteUsersData,
   GetCurentData,
   GetUserData,
-} from "../api/ChatsAPI";
-import store from "../utils/Store";
-import router from "../utils/Router";
-import MessagesController from "./MessagesController";
+} from "@/src/api/ChatsAPI";
+import store from "@/src/utils/Store";
+import router from "@/src/utils/Router";
+import MessagesController from "@/src/controllers/MessagesController";
 
 export class UserController {
   private readonly api: ChatsAPI;

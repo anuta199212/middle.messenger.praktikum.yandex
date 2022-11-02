@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import Block from "./Block";
+import Block from "@/src/utils/Block";
 
 describe("Block", () => {
   interface TestComponentProps {

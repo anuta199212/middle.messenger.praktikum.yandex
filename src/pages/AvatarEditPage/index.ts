@@ -1,10 +1,10 @@
-import Block from "../../utils/Block";
-import template from "./avatarEdit.hbs";
-import { Button } from "../../components/Button";
-import buttonStyles from "../../components/Button/button.module.scss";
-import styles from "../../styles.module.scss";
-import UserController from "../../controllers/UserController";
-import { AvatarData } from "../../api/UserAPI";
+import Block from "@/src/utils/Block";
+import template from "@/src/pages/AvatarEditPage/avatarEdit.hbs";
+import { Button } from "@/src/components/Button";
+import buttonStyles from "@/src/components/Button/button.module.scss";
+import styles from "@/src/styles.module.scss";
+import UserController from "@/src/controllers/UserController";
+import { AvatarData } from "@/src/api/UserAPI";
 
 interface AvatarEditPageProps {
   styles: Record<string, string>;

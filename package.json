@@ -9,8 +9,8 @@
     "eslint": "eslint . --ext .ts,.js --fix",
     "stylelint": "stylelint \"**/*.scss\" --fix",
     "test": "nyc mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'",
-    "validate": "npm-run-all --parallel test eslint stylelint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "validate": "lint-staged"
   },
   "stylelint": {
     "extends": [
@@ -37,6 +37,7 @@
     "html-webpack-plugin": "5.5.0",
     "husky": "8.0.1",
     "jsdom": "20.0.2",
+    "lint-staged": "13.0.3",
     "mini-css-extract-plugin": "2.6.1",
     "mocha": "10.1.0",
     "node-sass": "7.0.3",

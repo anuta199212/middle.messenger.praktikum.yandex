@@ -1,4 +1,4 @@
-import { EventBus } from "./EventBus";
+import { EventBus } from "@/src/utils/EventBus";
 import { nanoid } from "nanoid";
 
 class Block<P extends Record<string, any> = any> {

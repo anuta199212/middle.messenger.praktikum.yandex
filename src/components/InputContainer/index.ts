@@ -1,7 +1,7 @@
-import Block from "../../utils/Block";
-import template from "./inputContainer.hbs";
-import { InputField } from "../InputField";
-import { AutocompleteInputField } from "../AutocompleteInputField";
+import Block from "@/src/utils/Block";
+import template from "@/src/components/InputContainer/inputContainer.hbs";
+import { InputField } from "@/src/components/InputField";
+import { AutocompleteInputField } from "@/src/components/AutocompleteInputField";
 
 interface InputContainerProps {
   styles: Record<string, string>;
@@ -12,7 +12,7 @@ interface InputContainerProps {
   disabled: string;
   value?: string;
   autoComplete?: boolean;
-  autocompleteFunc?: (value: any) => void;
+  autocompleteFunc?: (value: string) => void;
   autocompleteList?: [];
 }
 

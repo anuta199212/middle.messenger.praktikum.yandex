@@ -1,4 +1,4 @@
-import { EventBus } from "./EventBus";
+import { EventBus } from "@/src/utils/EventBus";
 
 export interface WSTransportEventsType {
   Connected: string;

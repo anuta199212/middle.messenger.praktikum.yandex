@@ -1,10 +1,10 @@
-import ChatsController from "../../controllers/ChatsController";
-import Block from "../../utils/Block";
-import Router from "../../utils/Router";
-import { CircleButton } from "../CircleButton";
-import { MessageContainerTitle } from "../MessageContainerTitle";
-import template from "./messageContainerHeader.hbs";
-import img from "/static/account-circle.svg";
+import ChatsController from "@/src/controllers/ChatsController";
+import Block from "@/src/utils/Block";
+import Router from "@/src/utils/Router";
+import { CircleButton } from "@/src/components/CircleButton";
+import { MessageContainerTitle } from "@/src/components/MessageContainerTitle";
+import template from "@/src/components/MessageContainerHeader/messageContainerHeader.hbs";
+import img from "@/static/account-circle.svg";
 
 interface MessageContainerHeaderProps {
   styles: Record<string, string>;
@@ -63,15 +63,13 @@ export class MessageContainerHeader extends Block<MessageContainerHeaderProps> {
 
       const span = document.getElementsByName("closeChatsUsersModal")[0];
 
-      const self = this;
-
-      span.onclick = function () {
-        modal.classList.toggle(self.props.styles.show);
+      span.onclick = () => {
+        modal.classList.toggle(this.props.styles.show);
       };
 
-      window.onclick = function (event) {
+      window.onclick = (event) => {
         if (event.target == modal) {
-          modal.classList.toggle(self.props.styles.show);
+          modal.classList.toggle(this.props.styles.show);
         }
       };
     }

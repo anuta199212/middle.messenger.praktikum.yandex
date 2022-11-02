@@ -1,4 +1,4 @@
-import BaseAPI from "./BaseAPI";
+import BaseAPI from "@/src/api/BaseAPI";
 
 export interface SigninData {
   login: string;

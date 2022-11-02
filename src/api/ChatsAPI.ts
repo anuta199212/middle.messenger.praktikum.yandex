@@ -1,5 +1,5 @@
-import { User } from "./AuthAPI";
-import BaseAPI from "./BaseAPI";
+import { User } from "@/src/api/AuthAPI";
+import BaseAPI from "@/src/api/BaseAPI";
 
 export interface CreateData {
   title: string;

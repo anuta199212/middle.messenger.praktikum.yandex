@@ -1,5 +1,5 @@
-import Block from "../utils/Block";
-import { InputField } from "../components/InputField";
+import Block from "@/src/utils/Block";
+import { InputField } from "@/src/components/InputField";
 
 interface ValidateResultType {
   isValid: boolean;

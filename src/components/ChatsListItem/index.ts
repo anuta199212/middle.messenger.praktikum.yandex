@@ -1,9 +1,9 @@
-import Block from "../../utils/Block";
-import template from "./chatsListItem.hbs";
-import { ActiveChat, Chats } from "../../api/ChatsAPI";
-import img from "/static/account-circle.svg";
-import store, { withStore } from "../../utils/Store";
-import { convertTime } from "../../utils/convertTime";
+import Block from "@/src/utils/Block";
+import template from "@/src/components/ChatsListItem/chatsListItem.hbs";
+import { ActiveChat, Chats } from "@/src/api/ChatsAPI";
+import img from "@/static/account-circle.svg";
+import store, { withStore } from "@/src/utils/Store";
+import { convertTime } from "@/src/utils/convertTime";
 
 interface ChatsListItemProps {
   activeChat: ActiveChat;
