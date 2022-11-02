@@ -73,6 +73,19 @@ export class ChatListPageBase extends Block {
 
     this.children.chatCreateModal = new ChatCreateModal({});
 
+    this.children.buttonCreate = new CircleButton({
+      name: "addChat",
+      color: "primary",
+      styles: chatListStyles,
+      icon: "fa-solid fa-plus",
+      events: {
+        click: (event: Event) => {
+          this.openModal();
+          console.log(event);
+        },
+      },
+    });
+
     return true;
   }
 
